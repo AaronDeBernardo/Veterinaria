@@ -25,7 +25,7 @@
     if($rol == 'admin' || $rol == 'veterinario' || $rol == 'peluquero'){
 ?>
     <li class="nav-item">
-        <a class="nav-link" href="abmclientes.php">Clientes</a>
+        <a class="nav-link" href="abmcClientes.php">Clientes</a>
     </li>
 <?php } ?>
 

@@ -4,6 +4,7 @@
     $op = $_POST['operacion'];
     include_once 'connection.php';
     $query;
+    $multiQuery = false;
     $resultados;
     $destino; //la página a la que será redirigido el usuario
     
@@ -70,12 +71,32 @@
             {
                 $query = "INSERT INTO clientes (nombre, apellido, email, clave, telefono, ciudad, direccion) VALUES ('$_POST[nombre]', '$_POST[apellido]', '$_POST[email]', '" . md5($_POST['clave']) . "', '$_POST[telefono]', '$_POST[ciudad]', '$_POST[direccion]');";
             }
-            $destino = 'abmclientes.php';
+            $destino = 'abmcClientes.php';
+        }
+        elseif ($op == 'modificarCliente' && ($tipoUsuario == 'admin' || $tipoUsuario == 'veterinario' || $tipoUsuario == 'peluquero'))
+        {
+            if (!empty($_POST['idModificar']) && isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['email']) && isset($_POST['telefono']) && isset($_POST['ciudad']) && isset($_POST['direccion']))
+            {
+                $query = "UPDATE clientes SET nombre = '$_POST[nombre]', apellido = '$_POST[apellido]', email = '$_POST[email]', telefono = '$_POST[telefono]', ciudad = '$_POST[ciudad]', direccion = '$_POST[direccion]' WHERE id = '$_POST[idModificar]';";
+            }
+            $destino = 'abmcClientes.php';
+        }
+        elseif ($op == 'eliminarCliente' && ($tipoUsuario == 'admin' || $tipoUsuario == 'veterinario' || $tipoUsuario == 'peluquero'))
+        {
+            if (!empty($_POST['idEliminar']))
+            {
+                $query = "UPDATE clientes SET baja = 1 WHERE id = '$_POST[idEliminar]';
+                UPDATE mascotas SET baja = 1 WHERE cliente_id = '$_POST[idEliminar]';";
+                $multiQuery = true;
+            }
+            $destino = 'abmcClientes.php';
         }
     }
     
 
-    if (!empty($query))
+    if (!empty($query) && $multiQuery)
+        $resultados = multiplesConsultas($query);
+    elseif (!empty($query))
         $resultados = consultaSQL($query);
     
     if (empty($resultados)){

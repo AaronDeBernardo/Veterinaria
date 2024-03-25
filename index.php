@@ -58,7 +58,7 @@
 <?php   foreach($files as $file){ ?>
     
                             <div class="carousel-item active">
-                                <img src= <?php echo $rutaInicio . $file ?> class="d-block w-100" alt= ''?>>
+                                <img src= <?php echo $rutaInicio . $file ?> class="d-block w-100" alt= ''>
                             </div>
 <?php   }   ?>
                         </div>

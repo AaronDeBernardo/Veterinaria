@@ -16,7 +16,7 @@
         </div>
         <nav>
             <ul class="nav-opciones">
-                <li><a href="abmclientes.php">CLIENTES</a></li>
+                <li><a href="abmcClientes.php">CLIENTES</a></li>
                 <li><a href="abmmascotas.php">MASCOTAS</a></li>
                 <li><a href="abmcServicios.php">SERVICIOS</a></li>
             </ul>

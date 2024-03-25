@@ -6,10 +6,10 @@
         die();
     }
     include_once 'connection.php';
-    $query = "SELECT id, CONCAT(apellido, ' ', nombre) AS nombre, email, ciudad, direccion, telefono FROM clientes WHERE baja = 0 ORDER BY apellido";
+    $query = "SELECT id, CONCAT(apellido, ' ', nombre) AS nomyape, nombre, apellido, email, ciudad, direccion, telefono FROM clientes WHERE baja = 0 ORDER BY apellido";
     $clientes = consultaSQL($query);
 
-    $query ="SELECT cliente_id, nombre FROM mascotas WHERE ISNULL(fecha_muerte)";
+    $query = "SELECT cliente_id, nombre FROM mascotas WHERE ISNULL(fecha_muerte) AND baja = 0";
     $mascotas = consultaSQL($query);
 ?>
 
@@ -34,13 +34,18 @@
             
 
             <div class="col-3">
-                <div class="list-group" id="list-tab" role="tablist" style="height: 300px; line-height: 1em; overflow-y: auto;">
+                <div class="list-group" id="list-tab" role="tablist" style="max-height: 300px; line-height: 1em; overflow-y: auto;">
                 <?php
                 while($row = mysqli_fetch_array($clientes)){
-                    echo "<a class=list-group-item list-group-item-action id=idCliente:$row[id] data-bs-toggle=list href=#list-cliente$row[id] role=tab 
-                    aria-controls=list-home onclick='getId(this)'>$row[nombre]</a>";
+                    echo "<a class=list-group-item list-group-item-action id=idCliente:$row[id]nom:$row[nombre]ape:$row[apellido] data-bs-toggle=list href=#list-cliente:$row[id] role=tab 
+                    aria-controls=list-home onclick='getId(this)'>$row[nomyape]</a>";
                 }
                 ?>
+                </div>
+                <div class="colBotones" style="margin-top:25px;">
+                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalAnadirCliente">Nuevo cliente</button>
+                    <button type="button" class="btn btn-outline-primary" id="btnModificarCliente" onclick="mostrarModal(this)">Modificar</button>
+                    <button type="button" class="btn btn-outline-danger" id="btnEliminarCliente" onclick="mostrarModal(this)">Baja</button>
                 </div>
             </div>
             <div class="col-6">
@@ -48,25 +53,38 @@
                 <?php
                 mysqli_data_seek($clientes, 0);
                 while($cliente = mysqli_fetch_array($clientes)){
-                    echo "<div class=tab-pane fade id=list-cliente$cliente[id] role=tabpanel aria-labelledby=list-profile-list>Información de $cliente[nombre]";
-                    mysqli_data_seek($mascotas, 0);
-                    while ($m = mysqli_fetch_array($mascotas)){
-                        if ($m['cliente_id'] == $cliente['id']){
-                            echo "Dueño de $m[nombre]";
-                        }
-                    }
+                    echo "<div class=tab-pane fade id=list-cliente:$cliente[id] role=tabpanel aria-labelledby=list-profile-list>";
+                        echo "<div class=card>";
+                            echo "<div class=card-body>";
+                                echo "<p class=card-text>Correo electrónico: $cliente[email]</p>";
+                                echo "<p class=card-text>Ciudad: $cliente[ciudad]</p>";
+                                echo "<p class=card-text>Dirección: $cliente[direccion]</p>";
+                                echo "<p class=card-text>Teléfono: $cliente[telefono]</p>";
+
+                                mysqli_data_seek($mascotas, 0);    
+                                echo "<p>Mascotas: ";
+                                $bandera = false;
+
+                                while ($m = mysqli_fetch_array($mascotas))
+                                {
+                                    if ($m['cliente_id'] == $cliente['id']){
+                                        if ($bandera)
+                                            echo ", ";
+                                        echo "$m[nombre]";
+                                        $bandera = true;
+                                    }
+                                }   
+                                if (!$bandera)
+                                    echo "el cliente no tiene ninguna mascota";
+                                echo "</p>";
+                            echo "</div>";
+                        echo "</div>";
                     echo "</div>";
                 }
                 ?>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        
-        <div class="row colBotones">
-            <div class="col-12">
-                <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalAnadirCliente">Nuevo cliente</button>
-                <button type="button" class="btn btn-outline-primary">Modificar</button>
-                <button type="button" class="btn btn-outline-danger">Baja</button>
             </div>
         </div>
     </div>
@@ -126,15 +144,15 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modalModificarServ" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="modalModificarCliente" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5">Modificar servicio</h1>
+                    <h1 class="modal-title fs-5">Modificar cliente</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="operacionesDB.php" method="POST">
-                    <input type="hidden" name="operacion" value="modificarServ">
+                    <input type="hidden" name="operacion" value="modificarCliente">
                     <input type="hidden" id="idModificar" name="idModificar" value="0">    
                     <div class="modal-body">
                         <div class="form-group">    
@@ -142,20 +160,24 @@
                             <input type="text" name="nombre" class="form-control" required>
                         </div>
                         <div class="form-group">    
-                            <label>Precio</label>
-                            <input type="number" name="precio" class="form-control" step="0.01" min="0" required>
+                            <label>Apellido</label>
+                            <input type="text" name="apellido" class="form-control" required>
                         </div>
                         <div class="form-group">    
-                            <label>Tipo de servicio</label>
-                            <select name="tipo_servicio_id" class="form-control" required>
-
-                            <?php
-                                foreach ($tipos_servicios as $t){
-                                    echo "<option value=$t[id]>$t[nombre]</option>";
-                                }
-                            ?>
-
-                            </select>
+                            <label>Correo electrónico</label>
+                            <input type="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Teléfono</label>
+                            <input type="text" name="telefono" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Ciudad</label>
+                            <input type="text" name="ciudad" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Dirección</label>
+                            <input type="text" name="direccion" class="form-control">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -167,25 +189,25 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modalEliminarServ" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="modalEliminarCliente" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5">Eliminar servicio</h1>
+                        <h1 class="modal-title fs-5">Eliminar cliente</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
                     <form action="operacionesDB.php" method="POST">
                         <div class="modal-body">
-                            <input type="hidden" name="operacion" value="eliminarServ">
+                            <input type="hidden" name="operacion" value="eliminarCliente">
                             <input type="hidden" id="idEliminar" name="idEliminar" value="0">
                             <div class="form-group">
-                                <label>¿Está seguro que desea eliminar el servicio seleccionado?</label>
+                                <label>¿Está seguro que desea eliminar el cliente seleccionado?<br>También se eliminarán sus mascotas.</label>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-danger">Eliminar servicio</button>
+                            <button type="submit" class="btn btn-danger">Eliminar cliente y mascotas</button>
                         </div>
                     </form>
                 </div>

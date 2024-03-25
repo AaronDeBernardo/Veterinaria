@@ -1,30 +1,35 @@
 var idSeleccionado = "";
+var nombre, apellido;
             
 function getId(fila){
-    if(idSeleccionado != "")
-        document.getElementById(idSeleccionado).classList.remove("table-secondary");
-
-    document.getElementById(fila.id).classList.add("table-secondary");
-    idSeleccionado = fila.id;
+    var aux = fila.id.replace('idCliente:', '');
+    idSeleccionado = aux.substring(0, aux.indexOf('nom:'));
+    aux = aux.substring(aux.indexOf('nom:') + 4);
+    nombre = aux.substring(0, aux.indexOf('ape:'))
+    aux = aux.substring(aux.indexOf('ape:') + 4);
+    apellido = aux;
 }
 
-/*function mostrarModal(boton){
+function mostrarModal(boton){
     if (idSeleccionado != ""){
         var myModal;
-        if (boton.id == "btnEliminarServ"){
-            document.getElementById("idEliminar").value = idSeleccionado.replace('idServicio:', '');
-            myModal = new bootstrap.Modal(document.getElementById("modalEliminarServ"), {});
+        if (boton.id == "btnEliminarCliente"){
+            document.getElementById("idEliminar").value = idSeleccionado;
+            myModal = new bootstrap.Modal(document.getElementById("modalEliminarCliente"), {});
         }
-        else //btnModificarServ
+        else //btnModificarCliente
         {
-            var fila = document.getElementById(idSeleccionado);            
-            var contenedor = document.getElementById("modalModificarServ");
+            var contenedor = document.getElementById("modalModificarCliente");
+            var fila = document.getElementById("list-cliente:" + idSeleccionado);
 
-            document.getElementById('idModificar').value = idSeleccionado.replace('idServicio:', '');
-            
-            contenedor.querySelector('[name=nombre]').value = fila.getElementsByTagName('th')[0].textContent;
-            contenedor.querySelector('[name=tipo_servicio_id]').value = fila.getElementsByTagName('td')[0].id.replace('idTipo:', '');
-            contenedor.querySelector('[name=precio]').value = fila.getElementsByTagName('td')[1].textContent;
+            document.getElementById('idModificar').value = idSeleccionado;
+
+            contenedor.querySelector('[name=nombre]').value = nombre;
+            contenedor.querySelector('[name=apellido]').value = apellido;
+            contenedor.querySelector('[name=email]').value = fila.getElementsByTagName('p')[0].textContent.replace('Correo electrónico: ', '');
+            contenedor.querySelector('[name=ciudad]').value = fila.getElementsByTagName('p')[1].textContent.replace('Ciudad: ', '');
+            contenedor.querySelector('[name=direccion]').value = fila.getElementsByTagName('p')[2].textContent.replace('Dirección: ', '');
+            contenedor.querySelector('[name=telefono]').value = fila.getElementsByTagName('p')[3].textContent.replace('Teléfono: ', '');
             
             myModal = new bootstrap.Modal(contenedor, {});
         }
@@ -32,9 +37,9 @@ function getId(fila){
         myModal.show();
     }
     else{
-        alert("Por favor, seleccione una fila de la tabla");
+        alert("Por favor, seleccione una fila de la lista");
     }
-}*/
+}
 
 function encriptar(form)
 {
