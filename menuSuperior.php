@@ -24,7 +24,7 @@
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <img id="imgNuestraEmpresa" src="Recursos/logoServicios.png" alt="Servicios">
-                        <a class="nav-link" id="seccionesNavegacion" href="nuestroServicios.php">SERVICIOS</a>
+                        <a class="nav-link" id="seccionesNavegacion" href="nuestrosServicios.php">SERVICIOS</a>
                     </li>
                 </ul>
             </div>
