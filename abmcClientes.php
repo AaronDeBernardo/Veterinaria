@@ -6,7 +6,11 @@
         die();
     }
     include_once 'connection.php';
-    $query = "SELECT id, CONCAT(apellido, ' ', nombre) AS nomyape, nombre, apellido, email, ciudad, direccion, telefono FROM clientes WHERE baja = 0 ORDER BY apellido";
+    $filtro = '';
+    if (isset($_GET['filtro']))
+        $filtro = "HAVING nomyape LIKE '%$_GET[filtro]%'";
+
+    $query = "SELECT id, CONCAT(apellido, ' ', nombre) AS nomyape, nombre, apellido, email, ciudad, direccion, telefono FROM clientes WHERE baja = 0 $filtro ORDER BY apellido";
     $clientes = consultaSQL($query);
 
     $query = "SELECT cliente_id, nombre FROM mascotas WHERE ISNULL(fecha_muerte) AND baja = 0";
@@ -24,16 +28,21 @@
     <link rel="icon" href="Recursos/logoVeterinaria.png">
 </head>
 <body id="body-secretaria">
-<?php include_once 'menuSuperior.php' ?>    
+    <?php include_once 'menuSuperior.php' ?>    
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-2">
-                <?php include 'menuLateral.php' ?>
-            </div>
-            
+            <?php include 'menuLateral.php' ?>
+            <div class="col-12 col-md-8 col-lg-9 col-xl-10">
+                <form action="" method="GET">
+                    <div class="form-group">
+                        <label>Buscar cliente</label>
+                        <input type="search" name="filtro" onsearch="handler(this)" class="form-control" value=<?php echo $var = $_GET['filtro'] ?? '';?>>
+                        <small class="form-text text-muted">Presione enter para filtrar los clientes.</small>
+                    </div>
+                </form>
 
-            <div class="col-3">
+
                 <div class="list-group" id="list-tab" role="tablist" style="max-height: 300px; line-height: 1em; overflow-y: auto;">
                 <?php
                 while($row = mysqli_fetch_array($clientes)){

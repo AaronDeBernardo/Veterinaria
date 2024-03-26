@@ -41,7 +41,7 @@ function mostrarModal(boton){
     }
 }
 
-function encriptar(form)
-{
-    
+function handler(input){
+    if (input.value == '')
+        window.location.href= 'abmcClientes.php';
 }

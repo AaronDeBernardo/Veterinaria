@@ -11,46 +11,75 @@
     }
 ?>
 
-<ul id="menuLateral" class="nav flex-column">
-    <li class="nav-item">
-        <a class="nav-link active" href="#">Atenciones</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">Mascotas</a>
-    </li>
 
+<link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css">
+<link rel="stylesheet" href="menuLateralStyles.css">
+
+<div class="col-12 col-md-4 col-lg-3 col-xl-2">
+    <aside id="sidebar" class="expand-md">
+        <div class="d-flex d-md-none">
+            <button class="toggle-btn" type="button">
+                <i class="lni lni-grid-alt"></i>
+            </button>
+        </div>
+
+        <ul class="sidebar-nav">
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link">
+                    <i class="lni lni-ticket-alt"></i>
+                    <span>Atenciones</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link">
+                    <i class="lni lni-mashroom"></i>
+                    <span>Mascotas</span>
+                </a>
+            </li>
+            
 
 
 <?php
     if($rol == 'admin' || $rol == 'veterinario' || $rol == 'peluquero'){
 ?>
-    <li class="nav-item">
-        <a class="nav-link" href="abmcClientes.php">Clientes</a>
-    </li>
-<?php } ?>
-
-
-
-<?php
+            <li class="sidebar-item">
+                <a href="abmcClientes.php" class="sidebar-link">
+                    <i class="lni lni-users"></i>
+                    <span>Clientes</span>
+                </a>
+            </li>
+<?php }
+    
     if($rol == 'admin'){
 ?>
-    <li class="nav-item">
-        <a class="nav-link" href="abmcServicios.php">Servicios</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="abmcPersonal.php">Personal</a>
-    </li>
-<?php } ?>
+            <li class="sidebar-item">
+                <a href="abmcServicios.php" class="sidebar-link">
+                    <i class="lni lni-service"></i>
+                    <span>Servicios</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="abmcPersonal.php" class="sidebar-link">
+                    <i class="lni lni-agenda"></i>
+                    <span>Personal</span>
+                </a>
+            </li>
+<?php }
 
-
-
-<?php
     if($rol == 'cliente'){
 ?>
-    <li class="nav-item">
-        <a class="nav-link" href="#">Mis datos</a>
-    </li>
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link">
+                    <i class="lni lni-database"></i>
+                    <span>Mis datos</span>
+                </a>
+            </li>
+
 <?php } ?>
 
 
-</ul>
+        </ul>
+    </aside>
+
+    <script src="scriptMenuLateral.js"></script>
+</div>

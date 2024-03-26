@@ -1,6 +1,14 @@
 <?php
+    if (!isset($_SESSION))
+        session_start();
+    if (!empty($_SESSION['rol']))
+    {
+        header('Location: principal.php');
+        die();
+    }
+        
+    
     include_once 'connection.php';
-    session_start();
     
     if (isset($_POST['email'])){
         $query = "SELECT personal.id, roles.nombre FROM personal INNER JOIN roles ON personal.rol_id = roles.id WHERE email = '$_POST[email]' AND clave = '" . md5($_POST['password']) . "'";      

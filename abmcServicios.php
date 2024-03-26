@@ -22,15 +22,12 @@
         <link rel="icon" href="Recursos/logoVeterinaria.png">
     </head>
     <body id="body-secretaria">
-<?php include_once 'menuSuperior.php' ?>    
+    <?php include_once 'menuSuperior.php' ?>    
     
         <div class="container-fluid">
             <div class="row">
-                <div class="col-2">
-                    <?php include 'menuLateral.php' ?>
-                </div>
-            
-                <div class="col-10">
+                <?php include 'menuLateral.php' ?>
+                <div class="col-12 col-md-8 col-lg-9 col-xl-10">
                     <table class="table">
                         <thead>
                             <tr>
