@@ -91,6 +91,14 @@
             }
             $destino = 'abmcClientes.php';
         }
+        elseif ($op == 'modificarClaveCliente' && ($tipoUsuario == 'admin' || $tipoUsuario == 'veterinario' || $tipoUsuario == 'peluquero'))
+        {
+            if (!empty($_POST['idModificar']) && isset($_POST['clave']))
+            {
+                $query = "UPDATE clientes SET clave = '" . md5($_POST['clave']) . "' WHERE id = '$_POST[idModificar]'";
+            }
+            $destino = 'abmcClientes.php';
+        }
     }
     
 

@@ -5,16 +5,24 @@
         header('Location: index.php');
         die();
     }
+
     include_once 'connection.php';
     $filtro = '';
+    
+    if (isset($_GET['id_cliente']))
+        $filtro = "AND cliente_id = '$_GET[id_cliente]'";
     if (isset($_GET['filtro']))
-        $filtro = "HAVING nomyape LIKE '%$_GET[filtro]%'";
-
-    $query = "SELECT id, CONCAT(apellido, ' ', nombre) AS nomyape, nombre, apellido, email, ciudad, direccion, telefono FROM clientes WHERE baja = 0 $filtro ORDER BY apellido";
-    $clientes = consultaSQL($query);
-
-    $query = "SELECT cliente_id, nombre FROM mascotas WHERE ISNULL(fecha_muerte) AND baja = 0";
+        $filtro = $filtro . " AND mascotas.nombre LIKE '%$_GET[filtro]%'";
+    if (isset($_GET['estadoMascota']) && $_GET['estadoMascota'] == 'vivas')
+        $filtro = $filtro . " AND ISNULL(fecha_muerte)";
+    
+    $query = "SELECT mascotas.id, mascotas.cliente_id, CONCAT(clientes.apellido, ' ', clientes.nombre) AS duenio, mascotas.nombre, mascotas.foto, 
+    mascotas.raza, mascotas.color, mascotas.fecha_de_nac, mascotas.fecha_muerte FROM mascotas 
+    INNER JOIN clientes ON mascotas.cliente_id = clientes.id WHERE mascotas.baja = 0 $filtro ORDER BY duenio";
     $mascotas = consultaSQL($query);
+
+    $query = "SELECT id, CONCAT(apellido, ' ', nombre) AS nomyape FROM clientes ORDER BY nomyape";
+    $clientes = consultaSQL($query);
 ?>
 
 <!DOCTYPE html>
@@ -34,69 +42,84 @@
         <div class="row">
             <?php include 'menuLateral.php' ?>
             <div class="col-12 col-md-4 col-lg-4 col-xl-4">
-                <form action="" method="GET">
+                
+            
+                <div>
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#formFiltro">Filtrar resultados</button>
+                </div>
+
+
+                <form action="" method="GET" class="collapse" id="formFiltro">
                     <div class="form-group">
-                        <label>Buscar cliente</label>
+                        <label>Buscar mascota</label>
                         <input type="search" name="filtro" onsearch="handler(this)" class="form-control" value=<?php echo $var = $_GET['filtro'] ?? '';?>>
-                        <small class="form-text text-muted">Presione enter para filtrar los clientes.</small>
+                        <small class="form-text text-muted">Presione enter para filtrar las mascotas.</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Dueño de la mascota</label>
+                        <select name="idCliente" class="form-control">
+                            <?php
+                                while ($c = mysqli_fetch_array($clientes))
+                                    echo "<option value=$c[id]>$c[nomyape]</option>";
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" name="estadoMascota" value="vivas" id="checkTodas">
+                        <label for="checkTodas">Sólo mascotas vivas</label>
                     </div>
                 </form>
 
-
-                <div class="list-group" id="list-tab" role="tablist" style="max-height: 300px; line-height: 1em; overflow-y: auto;">
-                <?php
-                while($row = mysqli_fetch_array($clientes)){
-                    echo "<a class=list-group-item list-group-item-action id=idCliente:$row[id]nom:$row[nombre]ape:$row[apellido] data-bs-toggle=list href=#list-cliente:$row[id] role=tab 
-                    aria-controls=list-home onclick='getId(this)'>$row[nomyape]</a>";
-                }
-                ?>
-                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Dueño</th>
+                            <th>Nombre mascota</th>
+                            <th>Raza</th>
+                            <th>Color</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+<?php
+    while($m = mysqli_fetch_array($mascotas)){
+?>
+                        <tr id=<?php echo "idMascota:$m[id]"?> onclick='getId(this)'>
+                            <td name="cliente" id=<?php echo "idCliente:$m[cliente_id]>$m[duenio]" ?></td>
+                            <td name="nombre"><?php echo $m['nombre'] ?></td>
+                            <td name="raza"><?php echo $m['raza'] ?></td>
+                            <td name="color"><?php echo $m['color'] ?></td>
+                        </tr>
+<?php } ?>
+                    </tbody>
+                </table>
+                
                 <div class="colBotones" style="margin-top:25px;">
-                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalAnadirCliente">Nuevo cliente</button>
-                    <button type="button" class="btn btn-outline-primary" id="btnModificarCliente" onclick="mostrarModal(this)">Modificar</button>
-                    <button type="button" class="btn btn-outline-danger" id="btnEliminarCliente" onclick="mostrarModal(this)">Baja</button>
+                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#">Nueva mascota</button>
+                    <button type="button" class="btn btn-outline-primary" id="btnModificarMascota" onclick="mostrarModal(this)">Modificar</button>
+                    <button type="button" class="btn btn-outline-danger" id="btnEliminarMascota" onclick="mostrarModal(this)">Baja</button>
                 </div>
             </div>
 
             <div class="col-12 col-md-4 col-lg-5 col-xl-6">
                 <div class="tab-content" id="nav-tabContent">
                 <?php
-                mysqli_data_seek($clientes, 0);
-                while($cliente = mysqli_fetch_array($clientes)){
-                    echo "<div class=tab-pane fade id=list-cliente:$cliente[id] role=tabpanel aria-labelledby=list-profile-list>";
+                mysqli_data_seek($mascotas, 0);
+                while($m = mysqli_fetch_array($mascotas)){
+                    echo "<div class=tab-pane fade id=list-mascota:$m[id] role=tabpanel aria-labelledby=list-profile-list>";
                         echo "<div class=card>";
+                        echo "<img src=data:image/jpeg;base64," . base64_encode($m['foto']) . " class=card-img-top alt=Foto de $m[nombre]>";
+
                             echo "<div class=card-body>";
-                                echo "<p class=card-text>Correo electrónico: $cliente[email]</p>";
-                                echo "<p class=card-text>Ciudad: $cliente[ciudad]</p>";
-                                echo "<p class=card-text>Dirección: $cliente[direccion]</p>";
-                                echo "<p class=card-text>Teléfono: $cliente[telefono]</p>";
+                                echo "<p class=card-text>Fecha de nacimiento: $m[fecha_de_nac]</p>";
+                                if (!empty($m['fecha_muerte']))
+                                    echo "<p class=card-text>Fecha muerte: $m[fecha_muerte]</p>";
 
-                                mysqli_data_seek($mascotas, 0);    
-                                echo "<p>Mascotas: ";
-                                $bandera = false;
-
-                                while ($m = mysqli_fetch_array($mascotas))
-                                {
-                                    if ($m['cliente_id'] == $cliente['id']){
-                                        if ($bandera)
-                                            echo ", ";
-                                        echo "$m[nombre]";
-                                        $bandera = true;
-                                    }
-                                }   
-                                if (!$bandera)
-                                    echo "el cliente no tiene ninguna mascota";
-                                echo "</p>";
                             echo "</div>";
                         echo "</div>";
                     echo "</div>";
                 }
                 ?>
-                        </div>
-                    
-                        <button type="button" class="btn btn-info d-none" id="btnVerMascotas" onclick="verMascotas()">Ver mascotas</button>
-                        <button type="button" class="btn btn-warning d-none" id="btnModificarClave" onclick="mostrarModal(this)">Cambiar contraseña</button>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -107,7 +130,7 @@
 
 
     <!-- Modals -->
-    <div class="modal fade" id="modalAnadirCliente" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="modalAnadirMascota" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -157,7 +180,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modalModificarCliente" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="modalModificarMascota" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -202,7 +225,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modalEliminarCliente" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="modalEliminarMascota" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -228,33 +251,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modalModificarClave" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5">Modificar contraseña</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="operacionesDB.php" method="POST">
-                    <input type="hidden" name="operacion" value="modificarClaveCliente">
-                    <input type="hidden" id="idModificarClave" name="idModificar" value="0">
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label>Nueva contraseña</label>
-                            <input type="password" name="clave" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
-    <script src="./scriptClientes.js"></script>
+    <script src="./scriptMascotas.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </body>

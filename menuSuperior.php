@@ -3,7 +3,7 @@
         session_start();
 ?>
 
-<link rel="stylesheet" href="styles.css?v=5" type="text/css">
+<link rel="stylesheet" href="styles.css" type="text/css">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="index.php">

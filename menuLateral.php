@@ -11,9 +11,8 @@
     }
 ?>
 
-
 <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css">
-<link rel="stylesheet" href="menuLateralStyles.css">
+<link rel="stylesheet" href="stylesMenuLateral.css">
 
 <div class="col-12 col-md-4 col-lg-3 col-xl-2">
     <aside id="sidebar" class="expand-md">
@@ -31,7 +30,7 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
+                <a href="abmcMascotas.php" class="sidebar-link">
                     <i class="lni lni-mashroom"></i>
                     <span>Mascotas</span>
                 </a>

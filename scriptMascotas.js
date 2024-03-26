@@ -1,22 +1,16 @@
 var idSeleccionado = "";
-var nombre, apellido;
-var bandera = false;
             
 function getId(fila)
 {
-    var aux = fila.id.replace('idCliente:', '');
-    idSeleccionado = aux.substring(0, aux.indexOf('nom:'));
-    aux = aux.substring(aux.indexOf('nom:') + 4);
-    nombre = aux.substring(0, aux.indexOf('ape:'))
-    aux = aux.substring(aux.indexOf('ape:') + 4);
-    apellido = aux;
-
-    if (!bandera)
-    {
-        bandera = true;
-        document.getElementById("btnVerMascotas").classList.remove("d-none");
-        document.getElementById("btnModificarClave").classList.remove("d-none");
+    if (idSeleccionado != ""){
+        document.getElementById('list-mascota:' + idSeleccionado).classList.remove('show');
+        document.getElementById('list-mascota:' + idSeleccionado).classList.remove('active');
     }
+    
+    idSeleccionado = fila.id.replace('idMascota:', '');
+
+    document.getElementById('list-mascota:' + idSeleccionado).classList.add('show');
+    document.getElementById('list-mascota:' + idSeleccionado).classList.add('active');
 }
 
 function mostrarModal(boton){
@@ -42,11 +36,6 @@ function mostrarModal(boton){
             contenedor.querySelector('[name=telefono]').value = fila.getElementsByTagName('p')[3].textContent.replace('Teléfono: ', '');
             
             myModal = new bootstrap.Modal(contenedor, {});
-        }
-        else if (boton.id == "btnModificarClave")
-        {
-            document.getElementById("idModificarClave").value = idSeleccionado;
-            myModal = new bootstrap.Modal(document.getElementById("modalModificarClave"), {});           
         }
         
         myModal.show();
