@@ -12,57 +12,59 @@
     <link rel="stylesheet" href="styles.css" type="text/css">
     <link rel="icon" href="Recursos/logoVeterinaria.png">
 </head>
-<body id="principal">
-    
+<body>
     <?php include_once 'menuSuperior.php';?>
-
-    <div>
-        <h1 class="tituloNuestraEmpresa">¿Quienes Somos?</h1>
-        <p class="parrafoNuestraEmpresa">San Antón es una clínica veterinaria dedicada a brindar atención médica integral de la más alta calidad para sus mascotas.
-        Nuestro equipo de profesionales altamente calificados y experimentados está comprometido a ofrecer un servicio personalizado y compasivo a cada uno de nuestros clientes.</p>
-    </div>
-    <div>
-        <h1 class="tituloNuestraEmpresa">Nuestra Misión</h1>
-        <p class="parrafoNuestraEmpresa">
-            <ul class="listaNuestraEmpresa">
-                <li>Brindar atención médica de calidad y accesible para sus mascotas.</li>
-                <li>Promover el bienestar animal a través del cuidado y la prevención.</li>
-                <li>Construir relaciones de confianza y respeto con nuestros clientes.</li>
-            </ul>
-        
-        </p>
-    </div>
-    <div>
-        <h1 class="tituloNuestraEmpresa">Nuestra Visión</h1>
-        <p class="parrafoNuestraEmpresa">En San Antón, nuestra visión es ser la clínica veterinaria líder en la región, reconocida por la excelencia en la atención médica que brindamos a las mascotas y por nuestro compromiso con el bienestar animal.</p>
-        
-        <p class="parrafoNuestraEmpresa">Aspiramos a:</p>
-            
-                <ul class="listaNuestraEmpresa">
-                    <li>Ser la primera opción para los propietarios de mascotas que buscan atención médica de alta calidad y un servicio compasivo.</li>
-                    <li>Convertirnos en un centro de referencia para la medicina veterinaria especializada y de vanguardia.</li>
-                    <li>Ser un empleador de primer nivel que atraiga y retenga a los mejores profesionales veterinarios.</li>
-                </ul>
-            
-        </p>
-        <p class="parrafoNuestraEmpresa">
-        Para alcanzar nuestra visión, nos comprometemos a:<p>
-   
-
-        <ul class="listaNuestraEmpresa">
-            <li>Invertir en la formación continua de nuestro equipo de profesionales.</li>
-            <li>Implementar las últimas tecnologías y avances en medicina veterinaria.</li>
-            <li>Ofrecer un ambiente de trabajo positivo y colaborativo para nuestro equipo.</li>
-            <li>Brindar un servicio excepcional a nuestros clientes y sus mascotas.</li>
-            <li>Ser un actor responsable en la comunidad, promoviendo el bienestar animal y la tenencia responsable de mascotas.</li>
-        </ul>
+    <div class="container-fluid" id="main">
+        <div class="row" id="row1">
+            <div class="col-12">
+                <h1 class="titulos" align="center">Nosotros</h1>
+            </div>
+        </div>
+        <div class="row" id="row2">
+            <div class="col-12" >
+                <h1 class= "titulos" align="center" style="font-size: 50px;">¿Quienes Somos?</h1><br>
+                <p class="textoEmpresa" align="center" >San Antón es una clínica veterinaria dedicada a brindar atención médica integral de la más alta calidad para sus mascotas.
+                Nuestro equipo de profesionales altamente calificados y experimentados está comprometido a ofrecer un servicio personalizado y compasivo a cada uno de nuestros clientes.</p>
+            </div>
+        </div>
 
         
-        </p>
-        <p class="parrafoNuestraEmpresa">
-        Estamos seguros de que, con el trabajo duro y la dedicación de nuestro equipo, 
-        lograremos alcanzar nuestra visión y convertirnos en la clínica veterinaria de referencia en la región
-        </p>
+        <div class="row" id="row3">
+            <div class="col-12">
+                <h1 class="titulos" align="center">Misión y Visión</h1>
+            </div>  
+        </div>
+        <div class="row" id="row2">
+            <div class="col-12">
+                <p class="textoEmpresa">
+                En San Antón, nuestra misión es simple pero fundamental: proporcionar atención médica integral y de la más alta calidad para sus queridas mascotas. Nos impulsa un profundo respeto por el vínculo entre las personas y sus animales, y nos esforzamos por ser una extensión compasiva y confiable de ese vínculo.
+                Creemos que todas las mascotas merecen una vida saludable y feliz. Por eso, nuestro equipo altamente calificado se dedica a ofrecer un servicio personalizado y preventivo, atendiendo tanto las necesidades físicas como emocionales de sus compañeros peludos.
+                Nos comprometemos a estar a la vanguardia de la medicina veterinaria, invirtiendo en formación continua y en la implementación de las últimas tecnologías. De esta manera, podemos garantizar diagnósticos precisos, tratamientos eficaces y opciones para el cuidado preventivo que mantengan a sus mascotas sanas y llenas de vida.
+                Junto a ustedes, queremos construir un mundo mejor para los animales. Un mundo donde la atención médica de calidad, el amor y el respeto sean parte esencial de la vida de cada mascota.
+                </p>       
+                <p class="textoEmpresa">En San Antón, nuestra visión es ser la clínica veterinaria líder en la región, 
+                reconocida por la excelencia en la atención médica que brindamos a las mascotas y por nuestro compromiso con el bienestar animal.</p>
+                <p class="textoEmpresa">Aspiramos a:</p>
+                    <ul class="textoEmpresa">
+                        <li>Ser la primera opción para los propietarios de mascotas que buscan atención médica de alta calidad y un servicio compasivo.</li>
+                        <li>Convertirnos en un centro de referencia para la medicina veterinaria especializada y de vanguardia.</li>
+                        <li>Ser un empleador de primer nivel que atraiga y retenga a los mejores profesionales veterinarios.</li>
+                    </ul>    
+                </p>
+                <p class="textoEmpresa">Para alcanzar nuestra visión, nos comprometemos a:</p>
+                    <ul class="textoEmpresa">
+                        <li>Invertir en la formación continua de nuestro equipo de profesionales.</li>
+                        <li>Implementar las últimas tecnologías y avances en medicina veterinaria.</li>
+                        <li>Ofrecer un ambiente de trabajo positivo y colaborativo para nuestro equipo.</li>
+                        <li>Brindar un servicio excepcional a nuestros clientes y sus mascotas.</li>
+                        <li>Ser un actor responsable en la comunidad, promoviendo el bienestar animal y la tenencia responsable de mascotas.</li>
+                    </ul>
+                <p class="textoEmpresa">"Estamos seguros de que, con el trabajo duro y la dedicación de nuestro equipo, 
+                    lograremos alcanzar nuestra visión y convertirnos en la clínica veterinaria de referencia en la región".</p>
+            </div>
+        </div>  
     </div>
+
+    
 </body>
 </html>
