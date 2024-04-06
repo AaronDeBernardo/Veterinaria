@@ -46,7 +46,7 @@
         <link rel="icon" href="Recursos/logoVeterinaria.png">
     </head>
 
-    <body id="principal">
+    <body class="bg-secondary">
         
 <?php
     include_once 'menuSuperior.php';
@@ -54,37 +54,29 @@
 
         <div class="container">
             <div class="row">
-<?php
-    $files = glob('Recursos/Publicidad/*.{jpg,png}', GLOB_BRACE);
-    if (count($files) > 0){
-?>
 
-                <div class="col-12 col-md-6 col-lg-8">
-                    <div id="carouselPublicidad" class="carousel slide">
+                <div class="col-12 col-lg-8 mb-3 mt-2">
+                    <div id="carouselExample" class="carousel slide">
                         <div class="carousel-inner">
-                            
-<?php   foreach($files as $file){ ?>
-    
                             <div class="carousel-item active">
-                                <img src= <?php echo $rutaInicio . $file ?> class="d-block w-100" alt= ''>
+                                <img src="Recursos/Publicidad/atencion247.png" class="d-block w-100 " alt="Publicidad Veterinaria">
                             </div>
-<?php   }   ?>
+                            <div class="carousel-item active">
+                                <img src="Recursos/Publicidad/publicidad2.png" class="d-block w-100" alt="Publicidad Veterinaria">
+                            </div>
                         </div>
-                        
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselPublicidad" data-bs-slide="prev">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Anterior</span>
+                            <span class="visually-hidden">Previous</span>
                         </button>
-                        
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselPublicidad" data-bs-slide="next">
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Siguiente</span>
+                            <span class="visually-hidden">Next</span>
                         </button>
                     </div>
                 </div>
-<?php } ?>
-                
-                <div class="col-12 col-md-6 col-lg-4 formulario h-100">
+
+                <div class="col-12 col-lg-4 formulario pt-5 mb-3 mt-4">
 <?php
     if (isset($_POST['email'])){
 ?>
@@ -101,5 +93,6 @@
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <?php include_once 'footer.php';?> 
     </body>
 </html>

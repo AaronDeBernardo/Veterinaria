@@ -1,7 +1,3 @@
-
-
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,12 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nuestra Empresa</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="styles.css?v=" type="text/css">
     <link rel="icon" href="Recursos/logoVeterinaria.png">
 </head>
 <body>
-    <?php include_once 'menuSuperior.php';?>
-    <div class="container-fluid" id="main">
+    <?php 
+        include_once 'menuSuperior.php';
+    ?>
+    <div class="container-fluid px-0">
         <div class="row" id="row1">
             <div class="col-12">
                 <h1 class="titulos" align="center">Nosotros</h1>
@@ -65,6 +65,6 @@
         </div>  
     </div>
 
-    
+<?php include_once 'footer.php';?> 
 </body>
 </html>
