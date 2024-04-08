@@ -5,7 +5,7 @@
 
 <link rel="stylesheet" href="stylesMenuSuperior.css" type="text/css">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="index.php">
             <img src="Recursos/logoVeterinaria.png" id="logoVeterinaria" class="d-inline-block align-top" alt="Logo veterinaria. Click para ir al inicio">
