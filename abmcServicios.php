@@ -5,7 +5,8 @@
         die();
     }
     include_once 'connection.php';
-    $query = "SELECT servicios.id, servicios.nombre, servicios.tipo_servicio_id, tipos_servicios.nombre AS tipo, servicios.precio FROM servicios INNER JOIN tipos_servicios ON servicios.tipo_servicio_id = tipos_servicios.id WHERE baja = 0";
+    $query = "SELECT servicios.id, servicios.nombre, servicios.tipo_servicio_id, servicios.rango_fechas, tipos_servicios.nombre AS tipo, servicios.precio 
+        FROM servicios INNER JOIN tipos_servicios ON servicios.tipo_servicio_id = tipos_servicios.id WHERE baja = 0 ORDER BY servicios.nombre";
     $resultados = consultaSQL($query);
     $query = "SELECT id, nombre FROM tipos_servicios;";
     $tipos_servicios = consultaSQL($query);
@@ -34,6 +35,7 @@
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Tipo</th>
                                 <th scope="col">Precio</th>
+                                <th scope="col">Rango de fechas</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,6 +46,7 @@
                                 <td><?php echo $row['nombre'] ?></th>
                                 <td name="tipo" <?php echo "id=idTipo:$row[tipo_servicio_id]>$row[tipo]" ?></td>
                                 <td><?php echo $row['precio'] ?></td>
+                                <td><?php echo $row['rango_fechas'] ? 'Sí' : 'No' ?></td>
                             </tr>
 <?php } ?>
                             
@@ -88,6 +91,7 @@
                                 <label>Precio</label>
                                 <input type="number" name="precio" class="form-control" step="0.01" min="0" required>
                             </div>
+
                             <div class="form-group">    
                                 <label>Tipo de servicio</label>
                                 <select name="tipo_servicio_id" class="form-control" required>
@@ -99,6 +103,11 @@
                                 ?>
 
                                 </select>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="rango_fechas" id="checkFechas" value="150">
+                                <label class="form-check-label" for="checkFechas">Con rango de fechas</label>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -140,6 +149,11 @@
                                 ?>
 
                                 </select>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="rango_fechas" id="checkMod">
+                                <label class="form-check-label" for="checkMod">Con rango de fechas</label>
                             </div>
                         </div>
                         <div class="modal-footer">

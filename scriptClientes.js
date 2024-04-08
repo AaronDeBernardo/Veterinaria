@@ -58,7 +58,7 @@ function mostrarModal(boton){
 
 function verMascotas(){
     if (idSeleccionado != ""){
-        window.location.href= 'abmcClientes.php?id_cliente=' + idSeleccionado;
+        window.location.href = 'abmcMascotas.php?idCliente=' + idSeleccionado;
     }
 }
 

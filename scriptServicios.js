@@ -25,7 +25,10 @@ function mostrarModal(boton){
             contenedor.querySelector('[name=nombre]').value = fila.getElementsByTagName('td')[0].textContent;
             contenedor.querySelector('[name=tipo_servicio_id]').value = fila.getElementsByTagName('td')[1].id.replace('idTipo:', '');
             contenedor.querySelector('[name=precio]').value = fila.getElementsByTagName('td')[2].textContent;
-            
+
+            if (fila.getElementsByTagName('td')[3].textContent == 'Sí')
+                document.getElementById('checkMod').checked = true;
+
             myModal = new bootstrap.Modal(contenedor, {});
         }
         

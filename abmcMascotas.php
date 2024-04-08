@@ -13,7 +13,7 @@
         $filtro = "AND cliente_id = '$_GET[idCliente]'";
     if (isset($_GET['filtro']))
         $filtro = $filtro . " AND mascotas.nombre LIKE '%$_GET[filtro]%'";
-    if (isset($_GET['estadoMascota']) && $_GET['estadoMascota'] == 'vivas')
+    if (isset($_GET['estadoMascota']))
         $filtro = $filtro . " AND ISNULL(fecha_muerte)";
     
     $query = "SELECT mascotas.id, mascotas.cliente_id, CONCAT(clientes.apellido, ' ', clientes.nombre) AS duenio, mascotas.nombre, mascotas.foto, 
@@ -59,12 +59,12 @@
                             <option selected value="todos"> -- Todos los clientes -- </option>
                             <?php
                                 while ($c = mysqli_fetch_array($clientes))
-                                    echo "<option value=$c[id]>$c[nomyape]</option>";
+                                    echo "<option " . (isset($_GET['idCliente']) && $_GET['idCliente'] == $c['id'] ? "selected " : "") . "value=$c[id]>$c[nomyape]</option>";
                             ?>
                         </select>
                     </div>
                     <div class="form-group">
-                        <input type="checkbox" name="estadoMascota" value="vivas" id="checkMascotas">
+                        <input type="checkbox" name="estadoMascota" value="vivas" id="checkMascotas" <?php echo isset($_GET['estadoMascota']) ? "checked" : "" ?>>
                         <label for="checkMascotas">Sólo mascotas vivas</label>
                     </div>
                     <button type="submit" class="btn btn-secondary">Aceptar</button>

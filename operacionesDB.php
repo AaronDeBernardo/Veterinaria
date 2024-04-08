@@ -44,7 +44,10 @@
         {
             if (isset($_POST['nombre']) && isset($_POST['tipo_servicio_id']) && isset($_POST['precio']))
             {
-                $query = "INSERT INTO servicios (nombre, tipo_servicio_id, precio) VALUES ('$_POST[nombre]', '$_POST[tipo_servicio_id]', '$_POST[precio]');";
+                $rangoFechas = false;
+                if (isset($_POST['rango_fechas']))
+                    $rangoFechas = true;
+                $query = "INSERT INTO servicios (nombre, tipo_servicio_id, precio, rango_fechas) VALUES ('$_POST[nombre]', '$_POST[tipo_servicio_id]', '$_POST[precio]', '$rangoFechas');";
             }
             $destino = 'abmcServicios.php';
         }
@@ -52,7 +55,10 @@
         {
             if (!empty($_POST['idModificar']) && isset($_POST['nombre']) && isset($_POST['tipo_servicio_id']) && isset($_POST['precio']))
             {
-                $query = "UPDATE servicios SET nombre = '$_POST[nombre]', tipo_servicio_id = '$_POST[tipo_servicio_id]', precio = '$_POST[precio]' WHERE id = '$_POST[idModificar]';";
+                $rangoFechas = false;
+                if (isset($_POST['rango_fechas']))
+                    $rangoFechas = true;
+                $query = "UPDATE servicios SET nombre = '$_POST[nombre]', tipo_servicio_id = '$_POST[tipo_servicio_id]', precio = '$_POST[precio]', rango_fechas = '$rangoFechas' WHERE id = '$_POST[idModificar]';";
             }
             $destino = 'abmcServicios.php';
         }
