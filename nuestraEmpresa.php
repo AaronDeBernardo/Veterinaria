@@ -1,7 +1,3 @@
-
-
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,6 +6,7 @@
     <title>Nuestra Empresa</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css" type="text/css">
+    <link rel="stylesheet" href="stylesNuestraEmpresa.css" type="text/css">
     <link rel="icon" href="Recursos/logoVeterinaria.png">
 </head>
 <body>

@@ -5,8 +5,11 @@ function getId(fila)
     if (idSeleccionado != ""){
         document.getElementById('list-mascota:' + idSeleccionado).classList.remove('show');
         document.getElementById('list-mascota:' + idSeleccionado).classList.remove('active');
+        document.getElementById('idMascota:' + idSeleccionado).classList.remove("table-secondary");
     }
     
+    document.getElementById(fila.id).classList.add("table-secondary");
+
     idSeleccionado = fila.id.replace('idMascota:', '');
 
     document.getElementById('list-mascota:' + idSeleccionado).classList.add('show');
@@ -16,42 +19,62 @@ function getId(fila)
 function mostrarModal(boton){
     if (idSeleccionado != ""){
         var myModal;
-        if (boton.id == "btnEliminarCliente")
+        if (boton.id == "btnEliminarMascota")
         {
             document.getElementById("idEliminar").value = idSeleccionado;
-            myModal = new bootstrap.Modal(document.getElementById("modalEliminarCliente"), {});
+            myModal = new bootstrap.Modal(document.getElementById("modalEliminarMascota"), {});
         }
-        else if (boton.id == "btnModificarCliente")
+        else if (boton.id == "btnModificarMascota")
         {
-            var contenedor = document.getElementById("modalModificarCliente");
-            var fila = document.getElementById("list-cliente:" + idSeleccionado);
+            var contenedor = document.getElementById("modalModificarMascota");
+            
+            
+            
+            
+            var fila = document.getElementById("idMascota:" + idSeleccionado);
 
             document.getElementById('idModificar').value = idSeleccionado;
 
-            contenedor.querySelector('[name=nombre]').value = nombre;
-            contenedor.querySelector('[name=apellido]').value = apellido;
-            contenedor.querySelector('[name=email]').value = fila.getElementsByTagName('p')[0].textContent.replace('Correo electrónico: ', '');
-            contenedor.querySelector('[name=ciudad]').value = fila.getElementsByTagName('p')[1].textContent.replace('Ciudad: ', '');
-            contenedor.querySelector('[name=direccion]').value = fila.getElementsByTagName('p')[2].textContent.replace('Dirección: ', '');
-            contenedor.querySelector('[name=telefono]').value = fila.getElementsByTagName('p')[3].textContent.replace('Teléfono: ', '');
+            contenedor.querySelector('[name=cliente_id]').value = fila.getElementsByTagName('td')[0].id.replace('idCliente:', '');
+            contenedor.querySelector('[name=nombre]').value = fila.getElementsByTagName('td')[1].textContent;
+            contenedor.querySelector('[name=raza]').value = fila.getElementsByTagName('td')[2].textContent;
+            contenedor.querySelector('[name=color]').value = fila.getElementsByTagName('td')[3].textContent;
             
+            var tarjeta = document.getElementById('list-mascota:' + idSeleccionado);
+            contenedor.querySelector('[name=fecha_de_nac]').value = tarjeta.querySelector("p[name='fecha_de_nac']").textContent.replace('Fecha de nacimiento: ', '');
+            
+            try{
+                contenedor.querySelector('[name=fecha_muerte]').value = tarjeta.querySelector("p[name='fecha_muerte']").textContent.replace('Fecha de muerte: ', '');
+            }
+            catch{
+                contenedor.querySelector('[name=fecha_muerte]').value = null;
+            }
+            
+
+
+
+            /*try{
+                contenedor.querySelector('[name=foto_existente]').src = tarjeta.getElementsByTagName('img')[0].src;    
+            }
+            catch{
+                document.getElementById('foto_existente').classList.add('')
+            }*/
+
+
+
+
+
             myModal = new bootstrap.Modal(contenedor, {});
         }
         
         myModal.show();
     }
     else{
-        alert("Por favor, seleccione una fila de la lista");
+        alert("Por favor, seleccione una fila de la tabla");
     }
 }
 
-function verMascotas(){
-    if (idSeleccionado != ""){
-        window.location.href= 'abmcClientes.php?id_cliente=' + idSeleccionado;
-    }
-}
-
-function handler(input){
-    if (input.value == '')
-        window.location.href= 'abmcClientes.php';
+function borrarFiltros()
+{
+    window.location.replace(location.pathname);
 }

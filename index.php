@@ -95,7 +95,7 @@
                         <div class="ingreso"><input type="email" name="email" placeholder="Correo electrónico" required></div>
                         <div class="ingreso"><input type="password" name="password" placeholder="Contraseña" required></div>
                         <div class="reestablecer"><a href="">¿Olvidó su contraseña?</a></div>
-                        <input type="submit" value="Iniciar Sesión" class="boton1">
+                        <input type="submit" value="Iniciar Sesión" class="boton">
                     </form>
                 </div>
             </div>

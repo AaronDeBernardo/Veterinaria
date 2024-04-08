@@ -9,16 +9,16 @@
     include_once 'connection.php';
     $filtro = '';
     
-    if (isset($_GET['id_cliente']))
-        $filtro = "AND cliente_id = '$_GET[id_cliente]'";
+    if (isset($_GET['idCliente']) && $_GET['idCliente'] != 'todos')
+        $filtro = "AND cliente_id = '$_GET[idCliente]'";
     if (isset($_GET['filtro']))
         $filtro = $filtro . " AND mascotas.nombre LIKE '%$_GET[filtro]%'";
     if (isset($_GET['estadoMascota']) && $_GET['estadoMascota'] == 'vivas')
         $filtro = $filtro . " AND ISNULL(fecha_muerte)";
     
     $query = "SELECT mascotas.id, mascotas.cliente_id, CONCAT(clientes.apellido, ' ', clientes.nombre) AS duenio, mascotas.nombre, mascotas.foto, 
-    mascotas.raza, mascotas.color, mascotas.fecha_de_nac, mascotas.fecha_muerte FROM mascotas 
-    INNER JOIN clientes ON mascotas.cliente_id = clientes.id WHERE mascotas.baja = 0 $filtro ORDER BY duenio";
+        mascotas.raza, mascotas.color, mascotas.fecha_de_nac, mascotas.fecha_muerte FROM mascotas 
+        INNER JOIN clientes ON mascotas.cliente_id = clientes.id WHERE mascotas.baja = 0 $filtro ORDER BY duenio";
     $mascotas = consultaSQL($query);
 
     $query = "SELECT id, CONCAT(apellido, ' ', nombre) AS nomyape FROM clientes ORDER BY nomyape";
@@ -41,23 +41,22 @@
     <div class="container-fluid">
         <div class="row">
             <?php include 'menuLateral.php' ?>
-            <div class="col-12 col-md-4 col-lg-4 col-xl-4">
+            <div class="col-12 col-md-4 col-lg-5 col-xl-4">
                 
-            
                 <div>
                     <button type="button" class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#formFiltro">Filtrar resultados</button>
                 </div>
 
-
                 <form action="" method="GET" class="collapse" id="formFiltro">
                     <div class="form-group">
                         <label>Buscar mascota</label>
-                        <input type="search" name="filtro" onsearch="handler(this)" class="form-control" value=<?php echo $var = $_GET['filtro'] ?? '';?>>
+                        <input type="search" name="filtro" class="form-control" value=<?php echo $var = $_GET['filtro'] ?? '';?>>
                         <small class="form-text text-muted">Presione enter para filtrar las mascotas.</small>
                     </div>
                     <div class="form-group">
                         <label>Dueño de la mascota</label>
                         <select name="idCliente" class="form-control">
+                            <option selected value="todos"> -- Todos los clientes -- </option>
                             <?php
                                 while ($c = mysqli_fetch_array($clientes))
                                     echo "<option value=$c[id]>$c[nomyape]</option>";
@@ -65,9 +64,11 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <input type="checkbox" name="estadoMascota" value="vivas" id="checkTodas">
-                        <label for="checkTodas">Sólo mascotas vivas</label>
+                        <input type="checkbox" name="estadoMascota" value="vivas" id="checkMascotas">
+                        <label for="checkMascotas">Sólo mascotas vivas</label>
                     </div>
+                    <button type="submit" class="btn btn-secondary">Aceptar</button>
+                    <button type="button" class="btn btn-secondary" onclick="borrarFiltros()">Borrar los filtros</button>
                 </form>
 
                 <table class="table">
@@ -94,25 +95,29 @@
                 </table>
                 
                 <div class="colBotones" style="margin-top:25px;">
-                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#">Nueva mascota</button>
+                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalAnadirMascota">Nueva mascota</button>
                     <button type="button" class="btn btn-outline-primary" id="btnModificarMascota" onclick="mostrarModal(this)">Modificar</button>
                     <button type="button" class="btn btn-outline-danger" id="btnEliminarMascota" onclick="mostrarModal(this)">Baja</button>
                 </div>
             </div>
 
-            <div class="col-12 col-md-4 col-lg-5 col-xl-6">
+            <div class="col-12 col-md-4 col-lg-4 col-xl-6">
                 <div class="tab-content" id="nav-tabContent">
                 <?php
                 mysqli_data_seek($mascotas, 0);
                 while($m = mysqli_fetch_array($mascotas)){
-                    echo "<div class=tab-pane fade id=list-mascota:$m[id] role=tabpanel aria-labelledby=list-profile-list>";
+                    echo "<div class='tab-pane fade' id=list-mascota:$m[id] role=tabpanel aria-labelledby=list-profile-list>";
                         echo "<div class=card>";
-                        echo "<img src=data:image/jpeg;base64," . base64_encode($m['foto']) . " class=card-img-top alt=Foto de $m[nombre]>";
+                        if (!empty($m['foto']))
+                            echo "<img src=data:image/jpeg;base64," . base64_encode($m['foto']) . " class=card-img-top alt='Foto de $m[nombre]'>";
 
                             echo "<div class=card-body>";
-                                echo "<p class=card-text>Fecha de nacimiento: $m[fecha_de_nac]</p>";
+                                if (empty($m['foto']))
+                                    echo "<p class=card-text>La mascota no tiene foto</p>";
+
+                                echo "<p class=card-text name=fecha_de_nac>Fecha de nacimiento: $m[fecha_de_nac]</p>";
                                 if (!empty($m['fecha_muerte']))
-                                    echo "<p class=card-text>Fecha muerte: $m[fecha_muerte]</p>";
+                                    echo "<p class=card-text name=fecha_muerte>Fecha de muerte: $m[fecha_muerte]</p>";
 
                             echo "</div>";
                         echo "</div>";
@@ -134,42 +139,50 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5">Nuevo cliente</h1>
+                    <h1 class="modal-title fs-5">Nueva mascota</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="operacionesDB.php" method="POST">
-                    <input type="hidden" name="operacion" value="insertarCliente">
+                <form action="operacionesDB.php" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="operacion" value="insertarMascota">
                     <div class="modal-body">
                         
                         <div class="form-group">    
                             <label>Nombre</label>
                             <input type="text" name="nombre" class="form-control" required>
                         </div>
-                        <div class="form-group">    
-                            <label>Apellido</label>
-                            <input type="text" name="apellido" class="form-control" required>
-                        </div>
-                        <div class="form-group">    
-                            <label>Correo electrónico</label>
-                            <input type="email" name="email" class="form-control" required>
-                        </div>
+
                         <div class="form-group">
-                            <label>Contraseña</label>
-                            <input type="password" name="clave" id="clave" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Teléfono</label>
-                            <input type="text" name="telefono" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Ciudad</label>
-                            <input type="text" name="ciudad" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label>Dirección</label>
-                            <input type="text" name="direccion" class="form-control">
+                            <label>Dueño</label>
+                            <select name="cliente_id" class="form-control" required>
+                                <option disabled selected> -- Selecciona un cliente -- </option>
+
+                            <?php
+                                foreach ($clientes as $c){
+                                    echo "<option value=$c[id]>$c[nomyape]</option>";
+                                }
+                            ?>
+
+                            </select>
                         </div>
 
+                        <div class="form-group">    
+                            <label>Raza</label>
+                            <input type="text" name="raza" class="form-control" required>
+                        </div>
+                        <div class="form-group">    
+                            <label>Color</label>
+                            <input type="text" name="color" class="form-control" required>
+                        </div>
+                        <div class="form-group">    
+                            <label>Fecha de nacimiento</label>
+                            <input type="date" name="fecha_de_nac" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Foto</label>
+                            <input type="file" name="foto" accept="image/png, image/jpeg, image/jpg"><br>
+                            <small class="form-text text-muted">El tamaño máximo es de 16MB</small>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -191,30 +204,62 @@
                     <input type="hidden" name="operacion" value="modificarCliente">
                     <input type="hidden" id="idModificar" name="idModificar" value="0">    
                     <div class="modal-body">
+                        
                         <div class="form-group">    
                             <label>Nombre</label>
                             <input type="text" name="nombre" class="form-control" required>
                         </div>
+
+                        <div class="form-group">
+                            <label>Dueño</label>
+                            <select name="cliente_id" class="form-control" required>
+                                <option disabled selected> -- Selecciona un cliente -- </option>
+
+                            <?php
+                                foreach ($clientes as $c){
+                                    echo "<option value=$c[id]>$c[nomyape]</option>";
+                                }
+                            ?>
+
+                            </select>
+                        </div>
+
                         <div class="form-group">    
-                            <label>Apellido</label>
-                            <input type="text" name="apellido" class="form-control" required>
+                            <label>Raza</label>
+                            <input type="text" name="raza" class="form-control" required>
                         </div>
                         <div class="form-group">    
-                            <label>Correo electrónico</label>
-                            <input type="email" name="email" class="form-control" required>
+                            <label>Color</label>
+                            <input type="text" name="color" class="form-control" required>
                         </div>
+                        <div class="form-group">    
+                            <label>Fecha de nacimiento</label>
+                            <input type="date" name="fecha_de_nac" class="form-control" required>
+                        </div>
+                        <div class="form-group">    
+                            <label>Fecha de muerte</label>
+                            <input type="date" name="fecha_muerte" class="form-control">
+                        </div>
+                        
                         <div class="form-group">
-                            <label>Teléfono</label>
-                            <input type="text" name="telefono" class="form-control" required>
+                            <label>Foto</label>
+                            <input type="file" name="foto" accept="image/png, image/jpeg, image/jpg"><br>
+                            <small class="form-text text-muted">El tamaño máximo es de 16MB</small>
                         </div>
-                        <div class="form-group">
-                            <label>Ciudad</label>
-                            <input type="text" name="ciudad" class="form-control">
+
+
+
+
+                        <div class="form-group" id="foto_existente">
+                            <label>Foto existente</label>
+                            <img name="foto_existente" src="" alt="" >
                         </div>
-                        <div class="form-group">
-                            <label>Dirección</label>
-                            <input type="text" name="direccion" class="form-control">
-                        </div>
+
+
+
+
+
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -229,21 +274,21 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5">Eliminar cliente</h1>
+                        <h1 class="modal-title fs-5">Eliminar mascota</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
                     <form action="operacionesDB.php" method="POST">
                         <div class="modal-body">
-                            <input type="hidden" name="operacion" value="eliminarCliente">
+                            <input type="hidden" name="operacion" value="eliminarMascota">
                             <input type="hidden" id="idEliminar" name="idEliminar" value="0">
                             <div class="form-group">
-                                <label>¿Está seguro que desea eliminar el cliente seleccionado?<br>También se eliminarán sus mascotas.</label>
+                                <label>¿Está seguro que desea eliminar la mascota seleccionada?</label>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-danger">Eliminar cliente y mascotas</button>
+                            <button type="submit" class="btn btn-danger">Eliminar mascota</button>
                         </div>
                     </form>
                 </div>
