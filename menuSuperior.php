@@ -37,12 +37,12 @@
                 </ul>
             </div>
         </div>
+
+<?php if (isset($_SESSION['rol'])){?>
         <div class="collapse navbar-collapse justify-content-end mx-5">
-    <?php
-        if (isset($_SESSION['rol'])){?>
             <a href="cerrarSesion.php"><button id="btn-cerrarSesion">Salir</button></a>
-    <?php } ?>
-        
         </div>
+<?php } ?>
+
     </div>
 </nav>

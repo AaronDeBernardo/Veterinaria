@@ -35,7 +35,7 @@
             <?php include 'menuLateral.php' ?>
             <div class="col-12 col-md-4 col-lg-4 col-xl-4">
                 <form action="" method="GET">
-                    <div class="form-group">
+                    <div class="form-group" id="div-filtro">
                         <label>Buscar cliente</label>
                         <input type="search" name="filtro" onsearch="handler(this)" class="form-control" value=<?php echo $var = $_GET['filtro'] ?? '';?>>
                         <small class="form-text text-muted">Presione enter para filtrar los clientes.</small>
@@ -59,6 +59,7 @@
             </div>
 
             <div class="col-12 col-md-4 col-lg-5 col-xl-6">
+                <div id="div-separacion">&nbsp</div>
                 <div class="tab-content" id="nav-tabContent">
                 <?php
                 mysqli_data_seek($clientes, 0);

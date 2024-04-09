@@ -10,7 +10,7 @@
     
     include_once 'connection.php';
     
-    if (isset($_POST['email'])){
+    if (isset($_POST['email']) && isset($_POST['password'])){
         $query = "SELECT personal.id, roles.nombre FROM personal INNER JOIN roles ON personal.rol_id = roles.id WHERE email = '$_POST[email]' AND clave = '" . md5($_POST['password']) . "'";      
         $resultados = consultaSQL($query);
         
@@ -88,11 +88,11 @@
                     <form action="" method="POST">
                         <h1 class="text-secondary border-bottom border-warning border-5">Iniciar Sesión</h1>
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control ingreso" id="floatingInput" placeholder="Correo Electronico" required>
+                            <input name="email" class="form-control ingreso" id="floatingInput" placeholder="Correo Electronico" required>
                             <label for="floatingInput">Correo electrónico</label>
                         </div>
                         <div class="form-floating">
-                            <input type="password" class="form-control ingreso" id="floatingPassword" placeholder="Password" required>
+                            <input name="password" type="password" class="form-control ingreso" id="floatingPassword" placeholder="Password" required>
                             <label for="floatingPassword">Contraseña</label>
                         </div>
                         <p><a href="#" class="link-secondary link-offset-2 link-underline-opacity-25 mb-2 link-underline-opacity-100-hover reestablecer">¿Olvidó su contraseña?</a></p>

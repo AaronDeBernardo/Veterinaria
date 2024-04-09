@@ -7,16 +7,20 @@ function getId(fila)
     var aux = fila.id.replace('idCliente:', '');
     idSeleccionado = aux.substring(0, aux.indexOf('nom:'));
     aux = aux.substring(aux.indexOf('nom:') + 4);
-    nombre = aux.substring(0, aux.indexOf('ape:'))
+    nombre = aux.substring(0, aux.indexOf('ape:'));
     aux = aux.substring(aux.indexOf('ape:') + 4);
     apellido = aux;
 
     if (!bandera)
     {
         bandera = true;
-        document.getElementById("btnVerMascotas").classList.remove("d-none");
         document.getElementById("btnModificarClave").classList.remove("d-none");
     }
+    var tarjeta = document.getElementById("list-cliente:" + idSeleccionado);
+    if (tarjeta.getElementsByTagName('p')[4].textContent == "Mascotas: el cliente no tiene ninguna mascota")
+        document.getElementById("btnVerMascotas").classList.add("d-none");
+    else
+        document.getElementById("btnVerMascotas").classList.remove("d-none");
 }
 
 function mostrarModal(boton){
@@ -66,3 +70,12 @@ function handler(input){
     if (input.value == '')
         window.location.href= 'abmcClientes.php';
 }
+
+function posicionarDiv() {
+    var div = document.getElementById('div-filtro');
+    var alto = div.offsetHeight + 20;
+    var div2 = document.getElementById('div-separacion');
+    div2.style.height = alto + 'px';
+}
+
+window.onload = posicionarDiv;
