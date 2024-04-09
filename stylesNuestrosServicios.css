@@ -1,3 +1,8 @@
+body{
+    background-image: url(Recursos/fondoOficial.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 #titulo{
     top: 50%;
     left: 50%;
@@ -8,13 +13,25 @@
     font-style: italic;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: rgb(224, 196, 119);
+    text-shadow: 1px 1px 3px black;
+
 }
 
+.card-body h5{
+    font-size: 30px;
+    padding: 0 0 15px 0;
+    text-shadow: 1px 1px 2px black;
+}
+.card-body p, li{
+    font-size: 20px;
+
+}
 .cardImage{
-    max-height: 250px;
+    max-height: 300px;
+
 
 }
 
 .cardServicios{
-    min-height: 626px;
+    min-height: 753px;
 }

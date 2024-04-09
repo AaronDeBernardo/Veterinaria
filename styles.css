@@ -1,11 +1,13 @@
 body {
     margin: 0;
     padding: 0;
+    background-image: url(Recursos/fondoOficial.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-.formulario {
-    /*margin-top: 20px;
-    margin-bottom: 20px;*/
+/*.formulario {
+
     background-color: rgba(255, 255, 255, 0.856);
     border-radius: 15px;
     border-style: solid;
@@ -14,18 +16,32 @@ body {
 
 .formulario h1 {
     text-align: center;
-    padding: 0 0 20px 0;
+    padding: 0 0 50px 0;
+    margin-bottom: 10px;
     border-bottom: 1px solid silver;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 25px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 40px;
     color: rgba(94, 92, 91, 0.842);
 }
 
 .formulario form {
     padding: 0 40px;
     box-sizing: border-box;
+}*/
+#main{
+    min-height: 800px;
+}
+form{
+    padding: 0px 20px;
+    box-sizing: border-box;
 }
 
+form h1{
+    font-size: 40px;
+    text-align: center;
+    padding: 0 0 15px 0;
+    text-shadow: 1px 1px 2px black;
+}
 form .ingreso {
     position: relative;
     border-bottom: 2px solid silver;
@@ -42,10 +58,10 @@ form .ingreso {
     background: none;
     outline: none;
 }
-
+/*
 .reestablecer {
     margin: -5px 0 20px 5px;
-    color: rgb(53, 99, 168);
+
     cursor: pointer;
 }
 
@@ -61,7 +77,7 @@ form .ingreso {
     color: white;
     cursor: pointer;
     outline: none;
-}
+}*/
 
 .registro {
     margin: 30px 0;

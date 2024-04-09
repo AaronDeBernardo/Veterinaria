@@ -1,12 +1,20 @@
 body{
     padding: 0;
     margin: 0;
+    background-image: url(Recursos/fondoOficial.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
 }
 
 .map{
-    position: relative;
-    width:100%; 
-    min-height: 400px;
-    border: 5px solid orange; 
-    border-radius: 20px;
+    width:100%;
+    min-height: 520px;     
+}
+
+form h1{
+    font-size: 40px;
+    text-align: center;
+    padding: 0 0 15px 0;
+    text-shadow: 1px 1px 2px black;
 }

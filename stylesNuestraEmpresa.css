@@ -1,3 +1,10 @@
+body{
+    background-image: url(Recursos/fondoOficial.jpg);
+    background-image: contain;
+
+}
+
+
 #row1{
     margin: 0;
     color: white;
@@ -9,12 +16,17 @@
     height: 90vh;
     min-height: 670px;
     background-image: url(Recursos/nuestraEmpresa/medica.jpg);
+    
     background-size: cover;
     background-position: 50%;
+
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+
 }
 
 #row2{
-    margin:80px;
+    margin:40px;
 }
 
 #row3{
@@ -30,6 +42,13 @@
     background-image: url(Recursos/nuestraEmpresa/veterinario.jpg);
     background-size: cover;
     background-position: 50%;
+    
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+
 }
 
 .titulos{    
@@ -40,6 +59,7 @@
     font-weight: 600;
     font-size: 120px;
     color: rgb(224, 196, 119);
+    text-shadow: 1px 1px 3px black;
 }
 
 .textoEmpresa{

@@ -16,29 +16,23 @@
         
         <div class="collapse navbar-collapse" id="navbarScroll">
             <div class="secciones d-flex flex-wrap">
-                <ul class="navbar-nav mr-auto mx-3 px-4">
-                    <li class="nav-item active ">
-                        <img class="logo" src="Recursos/logoNuestraEmpresa.png" alt="Nuestra Empresa">
-                        <a class="nav-link text-black" id="seccionesNavegacion" href="nuestraEmpresa.php">NUESTRA EMPRESA</a>
+                <ul class="navbar-nav mr-auto ms-3 ps-4">
+                    <li class="nav-item active ps-1 seccionesNavegacion">
+                        <a class="nav-link text-black"  href="nuestraEmpresa.php"><img class="logo" src="Recursos/logoNuestraEmpresa.png" alt="Nuestra Empresa">NUESTRA EMPRESA</a>
                     </li>
                 </ul>
             </div>
-        
             <div class="secciones d-flex flex-wrap ">
-                <ul class="navbar-nav mr-auto mx-3 px-4">
-                    <li class="nav-item active">
-                        <img class="logo" src="Recursos/logoServicios.png" alt="Servicios">
-                        <a class="nav-link text-black" id="seccionesNavegacion" href="nuestrosServicios.php">SERVICIOS</a>
+                <ul class="navbar-nav mr-auto ms-3 ps-4">
+                    <li class="nav-item active ps-1 seccionesNavegacion" >         
+                        <a class="nav-link text-black"  href="nuestrosServicios.php"><img class="logo" src="Recursos/logoServicios.png" alt="Servicios">SERVICIOS</a>
                     </li>
                 </ul>
             </div>
-                
-
             <div class="secciones d-flex flex-wrap">
-                <ul class="navbar-nav mr-auto mx-3 px-4">
-                    <li class="nav-item active">
-                        <img class="logo" src="recursos/logoUbicacion.png" alt="Ubicacion">
-                        <a class="nav-link text-black" id="seccionesNavegacion"  href="nuestraUbicacion.php">UBICACIÓN</a>
+                <ul class="navbar-nav mr-auto ms-3 ps-4">
+                    <li class="nav-item active ps-1 seccionesNavegacion">
+                        <a class="nav-link text-black"   href="nuestraUbicacion.php"><img class="logo" src="recursos/logoUbicacion.png" alt="Ubicacion">UBICACIÓN</a>
                     </li>
                 </ul>
             </div>

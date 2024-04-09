@@ -14,7 +14,7 @@
     <?php
         include_once 'menuSuperior.php';
     ?>
-    <div class="container-fluid bg-secondary px-5 pb-4">
+    <div class="container-fluid px-5 pb-4">
         <div class="row">
             <div class="col-12 d-flex justify-content-center ">
                 <h1 class="py-3" id="titulo">
@@ -24,10 +24,10 @@
         </div>
         <div class="row row-cols-1 row-cols-md-2 g-4">
             <div class="col">
-                <div class="card cardServicios">
+                <div class="card cardServicios rounded-5" >
                     <img src="Recursos/Servicios/cuidadoDeAnimales.jpg" class="card-img-top rounded-top cardImage" alt="Cuidado de Animales">
                     <div class="card-body">
-                        <h5 class="card-title text-decoration-underline">Cuidado de animales</h5>
+                        <h5 class="card-title text-secondary border-bottom border-warning border-4">Cuidado de animales</h5>
                         <p class="card-text">En San Antón queremos que tu mascota tenga una vida larga y saludable. Por eso, ofrecemos una amplia gama de servicios veterinarios de alta calidad, incluyendo:</p>
                         <ul>
                             <li>Examenes Fisicos Completos</li>
@@ -73,10 +73,10 @@
                 </div>
             </div>
             <div class="col">
-                <div class="card cardServicios">
+                <div class="card cardServicios rounded-5" >
                     <img src="Recursos/Servicios/cuidadosMedicinales.jpg" class="card-img-top rounded-top cardImage" alt="Cuidados Medicinales">
                     <div class="card-body">
-                        <h5 class="card-title text-decoration-underline">Cuidados Medicinales</h5>
+                        <h5 class="card-title text-secondary border-bottom border-warning border-4">Cuidados Medicinales</h5>
                         <p class="card-text">
                             <p class="card-text">¡Tu mejor amigo esta en las mejores manos!</p>
                             <p class="card-text">San Antón ofrece una atención integral con los más altos estándares de calidad médica, incluyendo:</p>
@@ -157,10 +157,10 @@
                 </div>
             </div>
             <div class="col">
-                <div class="card cardServicios">
+                <div class="card cardServicios rounded-5" >
                     <img src="Recursos/Servicios/cuidadosEsteticos.jpg" class="card-img-top rounded-top cardImage" alt="Cuidados Estéticos">
                     <div class="card-body">
-                        <h5 class="card-title text-decoration-underline">Cudados Estéticos</h5>
+                        <h5 class="card-title text-secondary border-bottom border-warning border-4">Cuidados Estéticos</h5>
                         <p class="card-text">¡Tu mejor amigo, radiante por dentro y por fuera!</p>
                         <p class="card-text">San Antón quiere que tu mascota no solo se sienta bien, sino que también se vea fabulosa. Por eso, ofrecemos:</p>
                         <ul>
@@ -256,11 +256,10 @@
                 </div>
             </div>
             <div class="col">
-                <div class="card cardServicios">
-
+                <div class="card cardServicios rounded-5">
                     <img src="Recursos/Servicios/arriendoJaulas.jpg" class="card-img-top rounded-top cardImage" alt="Otros Servicios">
                     <div class="card-body">
-                        <h5 class="card-title text-decoration-underline">Otros</h5>
+                        <h5 class="card-title text-secondary border-bottom border-warning border-4">Otros</h5>
                         <p class="card-text">¡Tu peludo se merece lo mejor!</p>
                         <p class="card-text">Por eso, ofrecemos una amplia gama de servicios adicionales que te facilitarán la vida y te ayudarán a cuidar de tu mejor amigo:</p>
                         <ul>

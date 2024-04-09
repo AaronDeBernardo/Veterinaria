@@ -46,7 +46,7 @@
         <link rel="icon" href="Recursos/logoVeterinaria.png">
     </head>
 
-    <body class="bg-secondary">
+    <body>
         
 <?php
     include_once 'menuSuperior.php';
@@ -55,40 +55,57 @@
         <div class="container">
             <div class="row">
 
-                <div class="col-12 col-lg-8 mb-3 mt-2">
-                    <div id="carouselExample" class="carousel slide">
+                <div class="col-12 col-lg-7 mb-4 mt-4">
+                    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="Recursos/Publicidad/atencion247.png" class="d-block w-100 " alt="Publicidad Veterinaria">
+                            <img src="Recursos/Publicidad/atencion247.png" class="d-block w-100" alt="Publicidad Veterinaria">
                             </div>
-                            <div class="carousel-item active">
-                                <img src="Recursos/Publicidad/publicidad2.png" class="d-block w-100" alt="Publicidad Veterinaria">
+                            <div class="carousel-item">
+                            <img src="Recursos/Publicidad/publicidad2.png" class="d-block w-100" alt="Publicidad Veterinaria">
                             </div>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
+                            <span class="visually-hidden">Anterior</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
+                            <span class="visually-hidden">Siguiente</span>
                         </button>
                     </div>
-                </div>
 
-                <div class="col-12 col-lg-4 formulario pt-5 mb-3 mt-4">
+                </div>
+                <div class="col-lg-1 d-none d-md-block">
+
+                </div>
+                <div class="col-12 col-lg-4 bg-light rounded-5 pt-4 mb-5 mt-5 flex-wrap border border-warning border-4 ">
 <?php
     if (isset($_POST['email'])){
 ?>
                     <div class="alert alert-danger" role="alert">El usuario y/o la contraseña no son correctos</div>
 <?php } ?>                
-                    <h1>Iniciar Sesión</h1>
                     <form action="" method="POST">
+                        <h1 class="text-secondary border-bottom border-warning border-5">Iniciar Sesión</h1>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control ingreso" id="floatingInput" placeholder="Correo Electronico" required>
+                            <label for="floatingInput">Correo electrónico</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="password" class="form-control ingreso" id="floatingPassword" placeholder="Password" required>
+                            <label for="floatingPassword">Contraseña</label>
+                        </div>
+                        <p><a href="#" class="link-secondary link-offset-2 link-underline-opacity-25 mb-2 link-underline-opacity-100-hover reestablecer">¿Olvidó su contraseña?</a></p>
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <button class="btn btn-warning mb-4 mt-2" type="submit">Iniciar Sesión</button>
+                        </div>
+                    </form>
+                    <!--<form action="" method="POST">
                         <div class="ingreso"><input type="email" name="email" placeholder="Correo electrónico" required></div>
                         <div class="ingreso"><input type="password" name="password" placeholder="Contraseña" required></div>
                         <div class="reestablecer"><a href="">¿Olvidó su contraseña?</a></div>
                         <input type="submit" value="Iniciar Sesión" class="boton">
-                    </form>
+                    </form>-->
                 </div>
             </div>
         </div>
