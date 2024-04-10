@@ -16,7 +16,7 @@
     ?>
     <div class="container-fluid px-5 pb-4">
         <div class="row">
-            <div class="col-12 d-flex justify-content-center ">
+            <div class="col-12 d-flex justify-content-center">
                 <h1 class="py-3" id="titulo">
                     Nuestros Servicios
                 </h1>

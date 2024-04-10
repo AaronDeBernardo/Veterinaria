@@ -15,23 +15,15 @@
         </button>
         
         <div class="collapse navbar-collapse" id="navbarScroll">
-            <div class="secciones d-flex flex-wrap">
-                <ul class="navbar-nav mr-auto ms-3 ps-4">
-                    <li class="nav-item active ps-1 seccionesNavegacion">
+            <div class="d-flex flex-wrap">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active ps-2 me-3 seccionesNavegacion">
                         <a class="nav-link text-black"  href="nuestraEmpresa.php"><img class="logo" src="Recursos/logoNuestraEmpresa.png" alt="Nuestra Empresa">NUESTRA EMPRESA</a>
                     </li>
-                </ul>
-            </div>
-            <div class="secciones d-flex flex-wrap ">
-                <ul class="navbar-nav mr-auto ms-3 ps-4">
-                    <li class="nav-item active ps-1 seccionesNavegacion" >         
+                    <li class="nav-item active ps-2 me-3 seccionesNavegacion" >         
                         <a class="nav-link text-black"  href="nuestrosServicios.php"><img class="logo" src="Recursos/logoServicios.png" alt="Servicios">SERVICIOS</a>
                     </li>
-                </ul>
-            </div>
-            <div class="secciones d-flex flex-wrap">
-                <ul class="navbar-nav mr-auto ms-3 ps-4">
-                    <li class="nav-item active ps-1 seccionesNavegacion">
+                    <li class="nav-item active ps-2 me-3 seccionesNavegacion">
                         <a class="nav-link text-black"   href="nuestraUbicacion.php"><img class="logo" src="recursos/logoUbicacion.png" alt="Ubicacion">UBICACIÓN</a>
                     </li>
                 </ul>
