@@ -10,7 +10,7 @@
     
     if (empty($op))
     {
-        header('Location: principal.php');
+        header('Location: index.php');
         die();
     }
     else

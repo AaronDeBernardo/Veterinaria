@@ -3,7 +3,7 @@
         session_start();
     if (!empty($_SESSION['rol']))
     {
-        header('Location: principal.php');
+        header('Location: atenciones.php');
         die();
     }
         
@@ -18,7 +18,7 @@
             $aux = mysqli_fetch_array($resultados);
             $_SESSION['personal_id'] = $aux[0];
             $_SESSION['rol'] = $aux[1];
-            header('Location: principal.php');
+            header('Location: atenciones.php');
             die();
         }
         
@@ -29,7 +29,7 @@
         if (!empty($aux[0])){
             $_SESSION['cliente_id'] = $aux[0];
             $_SESSION['rol'] = 'cliente';
-            header('Location: principal.php');
+            header('Location: atenciones.php');
             die();
         }
     }

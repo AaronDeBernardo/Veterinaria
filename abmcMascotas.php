@@ -40,7 +40,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <?php include 'menuLateral.php' ?>
+            <?php $_SESSION['item'] = 'mascotas'; include_once 'menuLateral.php'; ?>
             <div class="col-12 col-md-4 col-lg-5 col-xl-4">
                 
                 <div>

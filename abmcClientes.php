@@ -32,7 +32,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <?php include 'menuLateral.php' ?>
+            <?php  $_SESSION['item'] = 'clientes'; include_once 'menuLateral.php'; ?>
             <div class="col-12 col-md-4 col-lg-4 col-xl-4">
                 <form action="" method="GET">
                     <div class="form-group" id="div-filtro">
@@ -43,7 +43,7 @@
                 </form>
 
 
-                <div class="list-group" id="list-tab" role="tablist" style="max-height: 300px; line-height: 1em; overflow-y: auto;">
+                <div class="list-group" id="list-tab" role="tablist" style="line-height: 1em; overflow-y: auto;">
                 <?php
                 while($row = mysqli_fetch_array($clientes)){
                     echo "<a class=list-group-item list-group-item-action id=idCliente:$row[id]nom:$row[nombre]ape:$row[apellido] data-bs-toggle=list href=#list-cliente:$row[id] role=tab 
