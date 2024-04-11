@@ -30,11 +30,11 @@
             </div>
         </div>
 
-<?php if (isset($_SESSION['rol'])){?>
-        <div class="collapse navbar-collapse justify-content-end mx-5">
-            <a href="cerrarSesion.php"><button id="btn-cerrarSesion">Salir</button></a>
-        </div>
-<?php } ?>
+        <?php if (isset($_SESSION['rol'])){?>
+            <div class="justify-content-end mx-5">
+                <a href="cerrarSesion.php"><button id="btn-cerrarSesion">Salir</button></a>
+            </div>
+        <?php } ?>
 
     </div>
 </nav>

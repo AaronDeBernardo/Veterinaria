@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     background-image: url(Recursos/fondoOficial.jpg);
-    background-repeat: no-repeat;
+    background-repeat: repeat-y;
     background-size: cover;
 }
 
