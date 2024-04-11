@@ -32,7 +32,7 @@
             CERRAR MENÚ (imagen)
         </button>
 
-        <a href="atenciones.php" <?php echo $item == 'atenciones' ? 'id = itemSeleccionado' : null ?>>Atenciones</a>
+        <a href="abmcAtenciones.php" <?php echo $item == 'atenciones' ? 'id = itemSeleccionado' : null ?>>Atenciones</a>
         <a href="abmcMascotas.php" <?php echo $item == 'mascotas' ? 'id = itemSeleccionado' : null ?>>Mascotas</a>
             
 <?php

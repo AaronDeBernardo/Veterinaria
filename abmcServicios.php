@@ -44,7 +44,7 @@
         ?>
                             <tr <?php echo "id=idServicio:$row[id]" ?> onclick='getId(this)'>
                                 <td><?php echo $row['nombre'] ?></th>
-                                <td name="tipo" <?php echo "id=idTipo:$row[tipo_servicio_id]>$row[tipo]" ?></td>
+                                <?php echo "<td name=tipo id=idTipo:$row[tipo_servicio_id]>$row[tipo]" ?></td>
                                 <td><?php echo $row['precio'] ?></td>
                                 <td><?php echo $row['rango_fechas'] ? 'Sí' : 'No' ?></td>
                             </tr>

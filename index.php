@@ -3,7 +3,7 @@
         session_start();
     if (!empty($_SESSION['rol']))
     {
-        header('Location: atenciones.php');
+        header('Location: abmcAtenciones.php');
         die();
     }
         
@@ -11,14 +11,15 @@
     include_once 'connection.php';
     
     if (isset($_POST['email']) && isset($_POST['password'])){
-        $query = "SELECT personal.id, roles.nombre FROM personal INNER JOIN roles ON personal.rol_id = roles.id WHERE email = '$_POST[email]' AND clave = '" . md5($_POST['password']) . "'";      
+        $query = "SELECT personal.id, roles.nombre, roles.id FROM personal INNER JOIN roles ON personal.rol_id = roles.id WHERE email = '$_POST[email]' AND clave = '" . md5($_POST['password']) . "'";      
         $resultados = consultaSQL($query);
         
         if (mysqli_num_rows($resultados) != 0){
             $aux = mysqli_fetch_array($resultados);
             $_SESSION['personal_id'] = $aux[0];
             $_SESSION['rol'] = $aux[1];
-            header('Location: atenciones.php');
+            $_SESSION['rol_id'] = $aux[2];
+            header('Location: abmcAtenciones.php');
             die();
         }
         
@@ -29,7 +30,7 @@
         if (!empty($aux[0])){
             $_SESSION['cliente_id'] = $aux[0];
             $_SESSION['rol'] = 'cliente';
-            header('Location: atenciones.php');
+            header('Location: abmcAtenciones.php');
             die();
         }
     }
