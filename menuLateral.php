@@ -20,7 +20,7 @@
 
 <link rel="stylesheet" href="stylesMenuLateral.css">
 
-<div class="col-12 col-md-4 col-lg-3 col-xl-2">
+<div class="col-12 col-md-4 col-lg-3 col-xl-2 ">
     <div class="d-flex d-md-none">
         <button class="btnSidebar" type="button" onclick="abrirSidebar()">
             EXPANDIR MENÚ (poner imagen)
@@ -49,7 +49,8 @@
 
     if($rol == 'cliente'){
 ?>
-        <a href="#" <?php echo $item == 'misdatos' ? 'id = itemSeleccionado' : null ?>>Mis datos</a>
+        <a href="abmcDatos.php" <?php echo $item == 'misDatos' ? 'id = itemSeleccionado' : null ?>>Mis datos</a>
+        <a href="abmcTurnos.php" <?php echo $item == 'misTurnos' ? 'id = itemSeleccionado' : null ?>>Turnos</a>
 <?php } ?>
 
     </div>

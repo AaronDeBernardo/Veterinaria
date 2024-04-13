@@ -30,7 +30,7 @@
         if (!empty($aux[0])){
             $_SESSION['cliente_id'] = $aux[0];
             $_SESSION['rol'] = 'cliente';
-            header('Location: abmcAtenciones.php');
+            header('Location: abmcTurnos.php');
             die();
         }
     }
@@ -55,16 +55,19 @@
 
         <div class="container">
             <div class="row">
+            <?php
+                $files = glob('Recursos/Publicidad/*.{jpg,png}', GLOB_BRACE);
+                if (count($files) > 0){
+            ?>
 
                 <div class="col-12 col-lg-7 mb-4 mt-4">
                     <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                            <img src="Recursos/Publicidad/atencion247.png" class="d-block w-100" alt="Publicidad Veterinaria">
-                            </div>
-                            <div class="carousel-item">
-                            <img src="Recursos/Publicidad/publicidad2.png" class="d-block w-100" alt="Publicidad Veterinaria">
-                            </div>
+                            <?php foreach ($files as $file){ ?>
+                                <div class="carousel-item active">
+                                    <img src=<?php echo $rutaInicio . $file ?> class="d-block w-100" alt="Publicidad Veterinaria">
+                                </div>
+                            <?php } ?>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -77,6 +80,7 @@
                     </div>
 
                 </div>
+                <?php } ?>
                 <div class="col-lg-1 d-none d-md-block">
 
                 </div>
@@ -84,7 +88,9 @@
 <?php
     if (isset($_POST['email'])){
 ?>
-                    <div class="alert alert-danger" role="alert">El usuario y/o la contraseña no son correctos</div>
+                    <div class="alert alert-danger pt-2" role="alert">El usuario y/o la contraseña no son correctos
+                    <button type="button" class="btn-close ms-4" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
 <?php } ?>                
                     <form action="" method="POST">
                         <h1 class="text-secondary border-bottom border-warning border-5">Iniciar Sesión</h1>
@@ -101,12 +107,7 @@
                             <button class="btn btn-warning mb-4 mt-2" type="submit">Iniciar Sesión</button>
                         </div>
                     </form>
-                    <!--<form action="" method="POST">
-                        <div class="ingreso"><input type="email" name="email" placeholder="Correo electrónico" required></div>
-                        <div class="ingreso"><input type="password" name="password" placeholder="Contraseña" required></div>
-                        <div class="reestablecer"><a href="">¿Olvidó su contraseña?</a></div>
-                        <input type="submit" value="Iniciar Sesión" class="boton">
-                    </form>-->
+
                 </div>
             </div>
         </div>
