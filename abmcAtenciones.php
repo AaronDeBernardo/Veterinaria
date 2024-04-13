@@ -33,6 +33,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="styles.css" type="text/css">
         <link rel="stylesheet" href="stylesAtenciones.css" type="text/css">
+        <link rel="stylesheet" href="plugins/chosen/chosen.css">
         <link rel="icon" href="Recursos/logoVeterinaria.png">
     </head>
     <body id="body-secretaria">
@@ -72,9 +73,9 @@
                         </tbody>
                     </table>
                     <div class="colBotones" style="margin-top:25px;">
-                        <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalAnadirAtencion">Nueva mascota</button>
-                        <button type="button" class="btn btn-outline-primary" id="btnModificarMascota" onclick="mostrarModal(this)">Modificar</button>
-                        <button type="button" class="btn btn-outline-danger" id="btnEliminarMascota" onclick="mostrarModal(this)">Baja</button>
+                        <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalAnadirAtencion">Nueva atención</button>
+                        <button type="button" class="btn btn-outline-primary" id="btnModificarAtencion" onclick="mostrarModal(this)">Modificar</button>
+                        <button type="button" class="btn btn-outline-danger" id="btnEliminarAtencion" onclick="mostrarModal(this)">Baja</button>
                     </div>
                 </div>
             </div>
@@ -89,64 +90,50 @@
                         <h1 class="modal-title fs-5">Nueva atención</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="operacionesDB.php" method="POST">
-                        <input type="hidden" name="operacion" value="insertarAtencion">
+                    <form action="consultasdb/atencion.php" method="POST">
+                        <input type="hidden" name="operacion" value="insertar">
                         <div class="modal-body">
                             
-
-
-
                             <div class="form-group">
                                 <label>Dueño</label>
-                                <input type="text" placeholder="Buscar..." class="form-control" onkeyup="filtrarDuenios(this)">
-                                <div id="dropdownClientes" class="form-group dropdown-content">
+                                <select id="select_cliente" name="cliente_id" class="form-control chosen-select" required>
+                                    <option disabled selected value=""> -- Selecciona un cliente -- </option>
                                     <?php
                                         foreach ($clientes as $c){
-                                            echo "<a href=# onclick=clickCliente(this) value=$c[id]>$c[apeynom]</a>";
+                                            echo "<option value=$c[id]>$c[apeynom]</option>";
                                         }
                                     ?>
-                                </div>
+                                </select>
                             </div>
-
-
-                            
-                            
-
-
-
-
-
-
-
-
-
-
 
                             <div class="form-group">
                                 <label>Mascota</label>
-                                <select name="mascota_id" class="form-control" required>
+                                <select id="select_mascota" name="mascota_id" class="form-control chosen-select" required>
                                     <option disabled selected value=""> -- Selecciona una mascota -- </option>
-                                <?php
-                                    foreach ($mascotas as $m){
-                                        echo "<option value=$m[id]>$m[nombre]</option>";
-                                    }
-                                ?>
+                                    <?php
+                                        foreach ($mascotas as $m){
+                                            echo "<option id=cliente_id:$m[cliente_id] value=$m[id]>$m[nombre]</option>";
+                                        }
+                                    ?>
                                 </select>
                             </div>
+
                             <div class="form-group">
                                 <label>Servicio</label>
-                                <select name="servicio_id" class="form-control" required>
+                                <select id="select_servicio" name="servicio_id" class="form-control chosen-select" required>
                                     <option disabled selected value=""> -- Selecciona un servicio -- </option>
-                                <?php
-                                    foreach ($servicios as $s){
-                                        echo "<option value=$s[id]>$s[nombre]</option>";
-                                    }
-                                ?>
+                                    <?php
+                                        foreach ($servicios as $s){
+                                            echo "<option id=fec_salida:$s[rango_fechas] value=$s[id]>$s[nombre]</option>";
+                                        }
+                                    ?>
                                 </select>
                             </div>
 
-<!-- ver lo del rango de fechas para precio y poner rango fechas -->
-
+                            <div id="cont_dt_agregar" class="form-group" style="display:none;">
+                                <label>Fecha y hora de salida</label>
+                                <input id="dt_agregar" type="datetime-local" name="fecha_hora_salida" class="form-control">
+                            </div>
 
                             <div class="form-group">
                                 <label>Título</label>
@@ -174,8 +161,8 @@
                         <h1 class="modal-title fs-5">Modificar cliente</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="operacionesDB.php" method="POST">
-                        <input type="hidden" name="operacion" value="modificarCliente">
+                    <form action="consultasdb/atencion.php" method="POST">
+                        <input type="hidden" name="operacion" value="modificar">
                         <input type="hidden" id="idModificar" name="idModificar" value="0">    
                         <div class="modal-body">
                             
@@ -203,10 +190,10 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
 
-                        <form action="operacionesDB.php" method="POST">
+                        <form action="consultasdb/atencion.php" method="POST">
                             <div class="modal-body">
-                                <input type="hidden" name="operacion" value="eliminarAtencion">
-                                <input type="hidden" id="idEliminar" name="idEliminar" value="0">
+                                <input type="hidden" name="operacion" value="eliminar">
+                                <input type="hidden" id="id_eliminar" name="id_eliminar" value="0">
                                 <div class="form-group">
                                     <label>¿Está seguro que desea eliminar la atención seleccionada?</label>
                                 </div>
@@ -221,8 +208,10 @@
             </div>
         </div>
 
-        <script src="./scriptAtenciones.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+        <script src="plugins/jquery/jquery-3.7.1.min.js"></script>
+        <script src="plugins/chosen/chosen.jquery.js"></script>
+        <script src="./scriptAtenciones.js"></script>
     </body>
 </html>
