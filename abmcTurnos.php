@@ -6,7 +6,7 @@
         die();
     }
 
-    include_once 'connection.php';
+    include_once 'consultasdb/connection.php';
     $query = "SELECT turnos.id, mascotas.nombre, servicios.nombre, turnos.fecha_hora,   /*Faltaria ver como relacionar turnos.emisor_id si es alguien del personal o es propio*/
         turnos.fecha_hora_turno, turnos.emisor_id, turnos.estado FROM turnos
         INNER JOIN mascotas ON turnos.mascota_id = mascotas.id 

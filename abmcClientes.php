@@ -5,7 +5,7 @@
         header('Location: index.php');
         die();
     }
-    include_once 'connection.php';
+    include_once 'consultasdb/connection.php';
     $filtro = '';
     if (isset($_GET['filtro']))
         $filtro = "HAVING nomyape LIKE '%$_GET[filtro]%'";
@@ -115,8 +115,8 @@
                     <h1 class="modal-title fs-5">Nuevo cliente</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="operacionesDB.php" method="POST">
-                    <input type="hidden" name="operacion" value="insertarCliente">
+                <form action="consultasdb/cliente.php" method="POST">
+                    <input type="hidden" name="operacion" value="insertar">
                     <div class="modal-body">
                         
                         <div class="form-group">    
@@ -165,8 +165,8 @@
                     <h1 class="modal-title fs-5">Modificar cliente</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="operacionesDB.php" method="POST">
-                    <input type="hidden" name="operacion" value="modificarCliente">
+                <form action="consultasdb/cliente.php" method="POST">
+                    <input type="hidden" name="operacion" value="modificar">
                     <input type="hidden" id="idModificar" name="idModificar" value="0">    
                     <div class="modal-body">
                         <div class="form-group">    
@@ -211,9 +211,9 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
-                    <form action="operacionesDB.php" method="POST">
+                    <form action="consultasdb/cliente.php" method="POST">
                         <div class="modal-body">
-                            <input type="hidden" name="operacion" value="eliminarCliente">
+                            <input type="hidden" name="operacion" value="eliminar">
                             <input type="hidden" id="idEliminar" name="idEliminar" value="0">
                             <div class="form-group">
                                 <label>¿Está seguro que desea eliminar el cliente seleccionado?<br>También se eliminarán sus mascotas.</label>
@@ -236,8 +236,8 @@
                     <h1 class="modal-title fs-5">Modificar contraseña</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="operacionesDB.php" method="POST">
-                    <input type="hidden" name="operacion" value="modificarClaveCliente">
+                <form action="consultasdb/cliente.php" method="POST">
+                    <input type="hidden" name="operacion" value="modificarClave">
                     <input type="hidden" id="idModificarClave" name="idModificar" value="0">
                     <div class="modal-body">
                         <div class="form-group">

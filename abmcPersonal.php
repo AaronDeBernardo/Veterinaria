@@ -4,7 +4,7 @@
         header('Location: index.php');
         die();
     }
-    include_once 'connection.php';
+    include_once 'consultasdb/connection.php';
     $query = "SELECT personal.id, personal.nombre, personal.apellido, personal.email, personal.rol_id, roles.nombre AS nombre_rol FROM personal INNER JOIN roles ON personal.rol_id = roles.id WHERE personal.baja = 0";
     $personal = consultaSQL($query);
     $query = "SELECT id, nombre FROM roles";
@@ -78,8 +78,8 @@
                         <h1 class="modal-title fs-5">Nuevo personal</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="operacionesDB.php" method="POST">
-                        <input type="hidden" name="operacion" value="insertarPers">
+                    <form action="consultasdb/personal.php" method="POST">
+                        <input type="hidden" name="operacion" value="insertar">
                         <div class="modal-body">
                                 <div class="form-group">    
                                     <label>Nombre</label>
@@ -126,8 +126,8 @@
                         <h1 class="modal-title fs-5">Modificar personal</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="operacionesDB.php" method="POST">
-                        <input type="hidden" name="operacion" value="modificarPers">
+                    <form action="consultasdb/personal.php" method="POST">
+                        <input type="hidden" name="operacion" value="modificar">
                         <input type="hidden" id="idModificar" name="idModificar" value="0">    
                         <div class="modal-body">
                             <div class="form-group">    
@@ -172,9 +172,9 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
-                    <form action="operacionesDB.php" method="POST">
+                    <form action="consultasdb/personal.php" method="POST">
                         <div class="modal-body">
-                            <input type="hidden" name="operacion" value="eliminarPers">
+                            <input type="hidden" name="operacion" value="eliminar">
                             <input type="hidden" id="idEliminar" name="idEliminar" value="0">
                             <div class="form-group">
                                 <label>¿Está seguro que desea eliminar el personal seleccionado?</label>

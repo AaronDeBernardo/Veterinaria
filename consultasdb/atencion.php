@@ -13,18 +13,12 @@
     }
 
 
-    session_start();
-    $tipoUsuario = $_SESSION['rol'];
-    $op = $_POST['operacion'];
-    include_once 'connection.php';
-    $multiQuery = false;
-    $query;
-    $resultados;
-    $destino = 'http://localhost/veterinaria/abmcAtenciones.php';
+    require_once 'iniciarConsulta.php';
+    $destino = '../abmcAtenciones.php';
     
     if (empty($op) || ($tipoUsuario != 'admin' && $tipoUsuario != 'veterinario' && $tipoUsuario != 'peluquero'))
     {
-        header($destino);
+        header('Location: ' . $destino);
         die();
     }
     
@@ -34,7 +28,7 @@
         if (!empty($_POST['id_eliminar']))
             $query = "DELETE FROM atenciones WHERE id = '$_POST[id_eliminar]'";
     }
-    else if (isset($_POST['mascota_id']) && isset($_POST['servicio_id']) && isset($_POST['titulo']))
+    elseif (isset($_POST['mascota_id']) && isset($_POST['servicio_id']) && isset($_POST['titulo']))
     {
         $continuar = true;
         $q = "SELECT rango_fechas FROM servicios WHERE id = '$_POST[servicio_id]'";
@@ -61,42 +55,22 @@
                     '$_POST[titulo]', NULLIF('$_POST[descripcion]',''), $dias * (SELECT precio FROM servicios WHERE id = '$_POST[servicio_id]'));";
                 $multiQuery = true;
             }
-            elseif ($op == 'modificar')
+            elseif ($op == 'modificar' && !empty($_POST['idModificar']))
             {
-                if (!empty($_POST['idModificar']))
-                {
-                    $q = "SELECT fecha_hora FROM atenciones WHERE id = '$_POST[idModificar]";
-                    $r = consultaSQL($q);
-                    $fecha = mysqli_fetch_array($r)[0];
-                    $dias = 1;
-                    if ($rango_fechas)
-                        $dias = calcularDias($fecha, $_POST['fecha_hora_salida']);
-                    
-                    $query = "UPDATE atenciones SET mascota_id = '$_POST[mascota_id]', servicio_id = '$_POST[servicio_id]', fecha_hora_salida = NULLIF('$_POST[fecha_hora_salida]',''), 
-                        titulo = '$_POST[titulo], descripcion = NULLIF('$_POST[descripcion]',''), precio = $dias * (SELECT precio FROM servicios WHERE id = '$_POST[servicio_id]') 
-                        WHERE id = '$_POST[idModificar]';";
-                    $multiQuery = true;
-                }
+                $q = "SELECT fecha_hora FROM atenciones WHERE id = '$_POST[idModificar]";
+                $r = consultaSQL($q);
+                $fecha = mysqli_fetch_array($r)[0];
+                $dias = 1;
+                if ($rango_fechas)
+                    $dias = calcularDias($fecha, $_POST['fecha_hora_salida']);
+                
+                $query = "UPDATE atenciones SET mascota_id = '$_POST[mascota_id]', servicio_id = '$_POST[servicio_id]', fecha_hora_salida = NULLIF('$_POST[fecha_hora_salida]',''), 
+                    titulo = '$_POST[titulo], descripcion = NULLIF('$_POST[descripcion]',''), precio = $dias * (SELECT precio FROM servicios WHERE id = '$_POST[servicio_id]') 
+                    WHERE id = '$_POST[idModificar]';";
+                $multiQuery = true;
             }
         }
     }
 
-    
-
-    if (!empty($query) && $multiQuery)
-        $resultados = multiplesConsultas($query);
-    elseif (!empty($query))
-        $resultados = consultaSQL($query);
-    
-    if (empty($resultados)){
-        echo "<script>
-        alert('Error al realizar la operación solicitada');
-        window.location.href='" . $destino . "';
-        </script>";
-        die();
-    }
-    else{
-        header('Location: ' . $destino);
-        die();
-    }
+    require_once 'finalizarConsulta.php';
 ?>

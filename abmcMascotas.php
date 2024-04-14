@@ -6,7 +6,7 @@
         die();
     }
 
-    include_once 'connection.php';
+    include_once 'consultasdb/connection.php';
     $filtro = '';
     
     if (isset($_GET['idCliente']) && $_GET['idCliente'] != 'todos')
@@ -142,8 +142,8 @@
                     <h1 class="modal-title fs-5">Nueva mascota</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="operacionesDB.php" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="operacion" value="insertarMascota">
+                <form action="consultasdb/mascota.php" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="operacion" value="insertar">
                     <div class="modal-body">
                         
                         <div class="form-group">    
@@ -200,8 +200,8 @@
                     <h1 class="modal-title fs-5">Modificar cliente</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="operacionesDB.php" method="POST">
-                    <input type="hidden" name="operacion" value="modificarCliente">
+                <form action="consultasdb/mascota.php" method="POST">
+                    <input type="hidden" name="operacion" value="modificar">
                     <input type="hidden" id="idModificar" name="idModificar" value="0">    
                     <div class="modal-body">
                         
@@ -278,9 +278,9 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
-                    <form action="operacionesDB.php" method="POST">
+                    <form action="consultasdb/mascota.php" method="POST">
                         <div class="modal-body">
-                            <input type="hidden" name="operacion" value="eliminarMascota">
+                            <input type="hidden" name="operacion" value="eliminar">
                             <input type="hidden" id="idEliminar" name="idEliminar" value="0">
                             <div class="form-group">
                                 <label>¿Está seguro que desea eliminar la mascota seleccionada?</label>

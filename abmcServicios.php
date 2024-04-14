@@ -4,7 +4,7 @@
         header('Location: index.php');
         die();
     }
-    include_once 'connection.php';
+    include_once 'consultasdb/connection.php';
     $query = "SELECT servicios.id, servicios.nombre, servicios.tipo_servicio_id, servicios.rango_fechas, tipos_servicios.nombre AS tipo, servicios.precio 
         FROM servicios INNER JOIN tipos_servicios ON servicios.tipo_servicio_id = tipos_servicios.id WHERE baja = 0 ORDER BY servicios.nombre";
     $resultados = consultaSQL($query);
@@ -80,8 +80,8 @@
                         <h1 class="modal-title fs-5">Nuevo servicio</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="operacionesDB.php" method="POST">
-                        <input type="hidden" name="operacion" value="insertarServ">
+                    <form action="consultasdb/servicio.php" method="POST">
+                        <input type="hidden" name="operacion" value="insertar">
                         <div class="modal-body">
                             <div class="form-group">    
                                 <label>Nombre</label>
@@ -126,8 +126,8 @@
                         <h1 class="modal-title fs-5">Modificar servicio</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="operacionesDB.php" method="POST">
-                        <input type="hidden" name="operacion" value="modificarServ">
+                    <form action="consultasdb/servicio.php" method="POST">
+                        <input type="hidden" name="operacion" value="modificar">
                         <input type="hidden" id="idModificar" name="idModificar" value="0">    
                         <div class="modal-body">
                             <div class="form-group">    
@@ -173,9 +173,9 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
 
-                        <form action="operacionesDB.php" method="POST">
+                        <form action="consultasdb/servicio.php" method="POST">
                             <div class="modal-body">
-                                <input type="hidden" name="operacion" value="eliminarServ">
+                                <input type="hidden" name="operacion" value="eliminar">
                                 <input type="hidden" id="idEliminar" name="idEliminar" value="0">
                                 <div class="form-group">
                                     <label>¿Está seguro que desea eliminar el servicio seleccionado?</label>

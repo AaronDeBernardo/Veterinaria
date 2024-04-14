@@ -6,7 +6,7 @@
         die();
     }
 
-    include_once 'connection.php';
+    include_once 'consultasdb/connection.php';
     $query = "SELECT servicios.id, servicios.nombre, servicios.rango_fechas FROM servicios INNER JOIN roles_tiposservicios 
         ON servicios.tipo_servicio_id = roles_tiposservicios.tipo_servicio_id WHERE roles_tiposservicios.rol_id = '$_SESSION[rol_id]' AND baja = 0 ORDER BY servicios.nombre";
     $servicios = consultaSQL($query);

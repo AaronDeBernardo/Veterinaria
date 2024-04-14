@@ -8,7 +8,7 @@
     }
         
     
-    include_once 'connection.php';
+    include_once 'consultasdb/connection.php';
     
     if (isset($_POST['email']) && isset($_POST['password'])){
         $query = "SELECT personal.id, roles.nombre, roles.id FROM personal INNER JOIN roles ON personal.rol_id = roles.id WHERE email = '$_POST[email]' AND clave = '" . md5($_POST['password']) . "'";      

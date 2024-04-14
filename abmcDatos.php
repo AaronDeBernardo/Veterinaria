@@ -6,7 +6,7 @@
         die();
     }
 
-    include_once 'connection.php';
+    include_once 'consultasdb/connection.php';
     $query = "SELECT clientes.id, clientes.nombre, clientes.apellido, clientes.email,   /*Faltaria ver como relacionar turnos.emisor_id si es alguien del personal o es propio*/
         clientes.clave, clientes.ciudad, clientes.direccion, clientes.telefono FROM clientes
         WHERE clientes.id = '$_SESSION[cliente_id]'";
