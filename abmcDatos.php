@@ -8,7 +8,7 @@
 
     include_once 'consultasdb/connection.php';
     $query = "SELECT clientes.id, clientes.nombre, clientes.apellido, clientes.email,   /*Faltaria ver como relacionar turnos.emisor_id si es alguien del personal o es propio*/
-        clientes.clave, clientes.ciudad, clientes.direccion, clientes.telefono FROM clientes
+        clientes.ciudad, clientes.direccion, clientes.telefono FROM clientes
         WHERE clientes.id = '$_SESSION[cliente_id]'";
     $datosPersonales = consultaSQL($query);
 
@@ -41,46 +41,111 @@
                     <h1 class="text-secondary border-bottom border-warning border-5">Mis Datos</h1>
                     <div class="col-md-6">
                         <label for="name">Nombre</label>
-                        <input type="text" class="form-control" id="name" placeholder="Nombre" value="<?php echo $row['nombre'] ?>">
+                        <input type="text" class="form-control" id="name" placeholder="Nombre" value="<?php echo $row['nombre'] ?>" disabled>
                     </div>
                     <div class="col-md-6">
                         <label for="surname">Apellido</label>
-                        <input type="text" class="form-control" id="surname" placeholder="Apellido" value="<?php echo $row['apellido'] ?>">
+                        <input type="text" class="form-control" id="surname" placeholder="Apellido" value="<?php echo $row['apellido'] ?>" disabled>
                     </div>
                     <div class="col-md-6">
-                        <label for="ciudad">Ciudad</label>
-                        <input type="text" class="form-control" id="ciudad" placeholder="Ciudad" value="<?php echo $row['ciudad'] ?>">
+                        <label for="city">Ciudad</label>
+                        <input type="text" class="form-control" id="city" placeholder="Ciudad" value="<?php echo $row['ciudad'] ?>" disabled>
                     </div>
 
                     <div class="col-md-6">
-                        <label for="direccion">Dirección</label>
-                        <input type="text" class="form-control" id="direccion" placeholder="Dirección" value="<?php echo $row['direccion'] ?>">
+                        <label for="address">Dirección</label>
+                        <input type="text" class="form-control" id="address" placeholder="Dirección" value="<?php echo $row['direccion'] ?>" disabled>
                     </div>
                     <div class="col-md-6">
                         <label for="mail">Email</label>
-                        <input type="email" class="form-control" id="mail" placeholder="Email" value="<?php echo $row['email'] ?>">
+                        <input type="email" class="form-control" id="mail" placeholder="Email" value="<?php echo $row['email'] ?>"disabled>
                     </div>
-
                     <div class="col-md-6">
                         <label for="cel">Teléfono</label>
-                        <input type="number" class="form-control" id="cel" placeholder="Teléfono" value="<?php echo $row['telefono'] ?>">
+                        <input type="number" class="form-control" id="cel" placeholder="Teléfono" value="<?php echo $row['telefono'] ?>"disabled>
                     </div>
-                    <div class="col-md-6">
-                        <label for="pass">Contraseña</label>
-                        <input type="password" class="form-control" id="pass" placeholder="Contraseña" value="<?php echo $row['clave'] ?>"> <!-- MANDA LA CONTRASEÑA ENCRIPTADA-->
-                    </div>
-
-
                     <div class="d-grid gap-2 col-12 mx-auto">
-                        <button type="submit" class="btn btn-warning mb-4 mt-2">Modificar Datos</button>
+                        <button type="button" class="btn btn-secondary mt-2" data-bs-toggle="modal" data-bs-target="#modalModificarContraseña">Cambiar Contraseña</button>
+                    </div>
+                    <div class="d-grid gap-2 col-12 mx-auto">
+                        <button type="button" class="btn btn-warning mb-4 mt-2" data-bs-toggle="modal" data-bs-target="#modalModificarDatos">Modificar Datos</button>
                     </div>
                 </form>
+            </div> 
+            <div class="modal fade" id="modalModificarDatos" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5">Modificar Datos</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form action="consultasdb/misDatos.php" method="POST">
+                            <input type="hidden" name="operacion" value="modificar">
+                            <input type="hidden" id="idModificar" name="idModificar" value="<?php echo $_SESSION['cliente_id']?>">    
+                            <div class="modal-body">
+                                <div class="form-group">    
+                                    <label>Ciudad</label>
+                                    <input type="text" name="ciudad" class="form-control" value="<?php echo $row['ciudad'] ?>"  required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Dirección</label>
+                                    <input type="text" name="direccion" class="form-control" value="<?php echo $row['direccion'] ?>"  required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" name="email" class="form-control" value="<?php echo $row['email'] ?>" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Telefono</label>
+                                    <input type="text" name="telefono" class="form-control" value="<?php echo $row['telefono'] ?>" required>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-warning">Modificar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            
 
-            
+
+            <div class="modal fade" id="modalModificarContraseña" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5">Modificar Contraseña</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form action="consultasdb/misDatos.php" id="formularioContraseña" onsubmit="return validarClave()" method="POST">
+                            <input type="hidden" name="operacion" value="modificarClave">
+                            <input type="hidden" id="idModificar" name="idModificar" value="<?php echo $_SESSION['cliente_id']?>"> 
+                            <div class="modal-body">
+                                <div class="form-group">  
+                                    <label>Contraseña Actual</label>
+                                    <input type="password" name="claveActual" id="claveActual"class="form-control" required>
+                                </div>
+                                <div class="form-group">  
+                                    <label>Nueva Contraseña</label>
+                                    <input type="password" name="claveNueva" id="claveNueva" class="form-control" required>
+                                </div>
+                                <div class="form-group">  
+                                    <label>Repetir Nueva Contraseña</label>
+                                    <input type="password" name="claveRepetida" id="claveRepetida" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-warning">Modificar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <script src="misDatos.js"></script>
 </body>
 </html>
