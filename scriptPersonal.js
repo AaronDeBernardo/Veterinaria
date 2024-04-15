@@ -1,36 +1,76 @@
-var idSeleccionado = "";
+var idSeleccionado;
             
-function getId(fila){
-    if(idSeleccionado != "")
-        document.getElementById(idSeleccionado).classList.remove("table-secondary");
+function getId(personal)
+{
+    if(idSeleccionado)
+        document.getElementById('personal_id:' + idSeleccionado).classList.remove("table-secondary");
 
-    document.getElementById(fila.id).classList.add("table-secondary");
-    idSeleccionado = fila.id;
+    document.getElementById(personal.id).classList.add("table-secondary");
+    idSeleccionado = personal.id.replace('personal_id:', '');
 }
 
-function mostrarModal(boton){
-    if (idSeleccionado != ""){
-        var myModal;
-        if (boton.id == "btnEliminarPers"){
-            document.getElementById("idEliminar").value = idSeleccionado.replace('idPersonal:', '');
-            myModal = new bootstrap.Modal(document.getElementById("modalEliminarPers"), {});
-        }
-        else //btnModificarPers
-        {
-            var fila = document.getElementById(idSeleccionado);
-            var contenedor = document.getElementById("modalModificarPers");
+function mostrarModalPersonal(boton)
+{
+    if (boton.id == "btnAnadirPers")
+    {
+        var modal = document.getElementById('modalPersonal');
 
-            document.getElementById('idModificar').value = idSeleccionado.replace('idPersonal:', '');
-            
-            contenedor.querySelector('[name=nombre]').value = fila.getElementsByTagName('td')[0].textContent;
-            contenedor.querySelector('[name=apellido]').value = fila.getElementsByTagName('td')[1].textContent;
-            contenedor.querySelector('[name=email]').value = fila.getElementsByTagName('td')[2].textContent;
-            contenedor.querySelector('[name=rol_id]').value = fila.getElementsByTagName('td')[3].id.replace('idRol:', '');
-            
-            myModal = new bootstrap.Modal(contenedor, {});
-        }
+        modal.querySelector('[name=operacion').value = 'insertar';
+        modal.querySelector('[name=id_modificar]').value = null;
+
+        modal.querySelector('[name=nombre]').value = null;
+        modal.querySelector('[name=apellido]').value = null;
+        modal.querySelector('[name=email]').value = null;
+        modal.getElementsByClassName('div_clave')[0].style.display = 'block';
+        modal.querySelector('[name=clave]').value = null;
+        modal.querySelector('[name=rol_id]').value = "";
         
+        modal.querySelector('[name=btn_enviar').classList.remove('btn-primary');
+        modal.querySelector('[name=btn_enviar').classList.add('btn-success');
+        modal.querySelector('[name=btn_enviar').textContent = 'Guardar';
+        document.getElementById('labelModalPersonal').textContent = 'Nuevo personal';
+        
+        var myModal = new bootstrap.Modal(modal, {});
         myModal.show();
+    }
+    else if (boton.id == "btnModificarPers")
+    {
+        if (idSeleccionado)
+        {
+            var personal = document.getElementById('personal_id:' + idSeleccionado).getElementsByTagName('td');
+            var modal = document.getElementById('modalPersonal');
+            
+            modal.querySelector('[name=nombre]').value = personal[0].textContent;
+            modal.querySelector('[name=apellido]').value = personal[1].textContent;
+            modal.querySelector('[name=email]').value = personal[2].textContent;
+            modal.querySelector('[name=rol_id]').value = personal[3].getAttribute('data-rol_id');
+            modal.getElementsByClassName('div_clave')[0].style.display = 'none';
+            modal.querySelector('[name=clave]').value = null;
+            
+            
+            modal.querySelector('[name=btn_enviar').classList.add('btn-primary');
+            modal.querySelector('[name=btn_enviar').classList.remove('btn-success');
+            modal.querySelector('[name=btn_enviar').textContent = 'Modificar';
+            document.getElementById('labelModalPersonal').textContent = 'Modificar personal';
+
+            myModal = new bootstrap.Modal(modal, {});
+            myModal.show();
+        }
+        else{
+            alert("Por favor, seleccione una fila de la tabla");
+        }
+    }
+}
+
+function mostrarModalEliminar(boton){
+    if (idSeleccionado)
+    {
+        if (boton.id == "btnEliminarPers")
+        {
+            document.getElementById("id_eliminar").value = idSeleccionado;
+            myModal = new bootstrap.Modal(document.getElementById("modalEliminar"), {});
+            myModal.show();
+        }
     }
     else{
         alert("Por favor, seleccione una fila de la tabla");

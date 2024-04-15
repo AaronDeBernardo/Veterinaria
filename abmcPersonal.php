@@ -41,11 +41,11 @@
 <?php
     while($row = mysqli_fetch_array($personal)){
         ?>
-                            <tr id=<?php echo "idPersonal:$row[id]"?> onclick='getId(this)'>
-                                <td name="nombre"><?php echo $row['nombre'] ?></th>
-                                <td name="apellido"><?php echo $row['apellido'] ?></td>
-                                <td name="email" class="d-none d-sm-table-cell"><?php echo $row['email'] ?></td>
-                                <td name="rol_id" id=<?php echo "idRol:$row[rol_id]>$row[nombre_rol]" ?></td>
+                            <tr id=<?php echo "personal_id:$row[id]"?> onclick='getId(this)'>
+                                <td><?php echo $row['nombre'] ?></td>
+                                <td><?php echo $row['apellido'] ?></td>
+                                <td class="d-none d-sm-table-cell"><?php echo $row['email'] ?></td>
+                                <?php echo "<td data-rol_id=$row[rol_id]>$row[nombre_rol]</td>" ?>
                             </tr>
 <?php } ?>
                         </tbody>
@@ -53,13 +53,13 @@
 
                     <div class="row colBotones" align="right">
                         <div class="col-12">
-                            <button type="button" id="btnAnadirPers" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalAnadirPers">
+                            <button type="button" id="btnAnadirPers" class="btn btn-outline-success" onclick="mostrarModalPersonal(this)">
                                 Nuevo personal
                             </button>
-                            <button type="button" id="btnModificarPers" class="btn btn-outline-primary" onclick="mostrarModal(this)">
+                            <button type="button" id="btnModificarPers" class="btn btn-outline-primary" onclick="mostrarModalPersonal(this)">
                                 Modificar
                             </button>
-                            <button type="button" id="btnEliminarPers" class="btn btn-outline-danger" onclick="mostrarModal(this)">
+                            <button type="button" id="btnEliminarPers" class="btn btn-outline-danger" onclick="mostrarModalEliminar(this)">
                                 Baja
                             </button>
                         </div>
@@ -71,15 +71,16 @@
 
 
         <!-- Modals -->
-        <div class="modal fade" id="modalAnadirPers" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="modalPersonal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="labelModalPersonal" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5">Nuevo personal</h1>
+                        <h1 id="labelModalPersonal" class="modal-title fs-5">Personal</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form action="consultasdb/personal.php" method="POST">
-                        <input type="hidden" name="operacion" value="insertar">
+                        <input type="hidden" name="operacion">
+                        <input type="hidden" name="id_modificar">    
                         <div class="modal-body">
                                 <div class="form-group">    
                                     <label>Nombre</label>
@@ -93,14 +94,14 @@
                                     <label>Correo electrónico</label>
                                     <input type="text" name="email" class="form-control" required>
                                 </div>
-                                <div class="form-group">    
+                                <div class="form-group div_clave">    
                                     <label>Contraseña</label>
                                     <input type="password" name="clave" class="form-control" required>
                                 </div>
                                 <div class="form-group">    
                                     <label>Rol</label>
-                                    <select name="rol_id" class="form-control" required>
-
+                                    <select name="rol_id" class="form-select" required>
+                                        <option disabled value=""> -- Seleccione un rol -- </option>
                                     <?php
                                         foreach ($roles as $r){
                                             echo "<option value=$r[id]>$r[nombre]</option>";
@@ -112,70 +113,25 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-success">Guardar</button>
+                            <button type="submit" class="btn btn-success" name="btn_enviar">Enviar</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
 
-        <div class="modal fade" id="modalModificarPers" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="modalEliminar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="labelModalEliminar" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5">Modificar personal</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form action="consultasdb/personal.php" method="POST">
-                        <input type="hidden" name="operacion" value="modificar">
-                        <input type="hidden" id="idModificar" name="idModificar" value="0">    
-                        <div class="modal-body">
-                            <div class="form-group">    
-                                <label>Nombre</label>
-                                <input type="text" name="nombre" class="form-control" required>
-                            </div>
-                            <div class="form-group">    
-                                <label>Apellido</label>
-                                <input type="text" name="apellido" class="form-control" required>
-                            </div>
-                            <div class="form-group">    
-                                <label>Correo electrónico</label>
-                                <input type="text" name="email" class="form-control" required>
-                            </div>
-                            <div class="form-group">    
-                                <label>Rol</label>
-                                <select name="rol_id" class="form-control" required>
-
-                                <?php
-                                    foreach ($roles as $r){
-                                        echo "<option value=$r[id]>$r[nombre]</option>";
-                                    }
-                                ?>
-
-                                </select>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-primary">Modificar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="modalEliminarPers" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5">Eliminar personal</h1>
+                        <h1 id="labelModalEliminar" class="modal-title fs-5">Eliminar personal</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
                     <form action="consultasdb/personal.php" method="POST">
                         <div class="modal-body">
                             <input type="hidden" name="operacion" value="eliminar">
-                            <input type="hidden" id="idEliminar" name="idEliminar" value="0">
+                            <input type="hidden" id="id_eliminar" name="id_eliminar" value="0">
                             <div class="form-group">
                                 <label>¿Está seguro que desea eliminar el personal seleccionado?</label>
                             </div>
