@@ -8,9 +8,9 @@
     include_once 'consultasdb/connection.php';
     $filtro = '';
     if (isset($_GET['filtro']))
-        $filtro = "HAVING nomyape LIKE '%$_GET[filtro]%'";
+        $filtro = "HAVING apeynom LIKE '%$_GET[filtro]%'";
 
-    $query = "SELECT id, CONCAT(apellido, ' ', nombre) AS nomyape, nombre, apellido, email, ciudad, direccion, telefono FROM clientes WHERE baja = 0 $filtro ORDER BY apellido";
+    $query = "SELECT id, CONCAT(apellido, ' ', nombre) AS apeynom, nombre, apellido, email, ciudad, direccion, telefono FROM clientes WHERE baja = 0 $filtro ORDER BY apellido";
     $clientes = consultaSQL($query);
 
     $query = "SELECT cliente_id, nombre FROM mascotas WHERE ISNULL(fecha_muerte) AND baja = 0";
@@ -25,6 +25,7 @@
     <title>Veterinaria San Antón</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css" type="text/css">
+    <link rel="stylesheet" href="stylesClientes.css" type="text/css">
     <link rel="icon" href="Recursos/logoVeterinaria.png">
 </head>
 <body id="body-secretaria">
@@ -43,13 +44,14 @@
                 </form>
 
 
-                <div class="list-group" id="list-tab" role="tablist" style="line-height: 1em; overflow-y: auto;">
-                <?php
-                while($row = mysqli_fetch_array($clientes)){
-                    echo "<a class=list-group-item list-group-item-action id=idCliente:$row[id]nom:$row[nombre]ape:$row[apellido] data-bs-toggle=list href=#list-cliente:$row[id] role=tab 
-                    aria-controls=list-home onclick='getId(this)'>$row[nomyape]</a>";
-                }
-                ?>
+                <div class="list-group" id="list-clientes" role="tablist">
+<?php
+                foreach ($clientes as $c)
+                    echo "<a class=list-group-item list-group-item-action id=idCliente:$c[id]nom:$c[nombre]ape:$c[apellido] data-bs-toggle=list href=#list-cliente:$c[id] role=tab 
+                    aria-controls=list-home onclick='getId(this)'>$c[apeynom]</a>";
+                if (mysqli_num_rows($clientes) == 0)
+                    echo "<a class=list-group-item list-group-item-action>No se encontró ningún cliente</a>";
+?>
                 </div>
                 <div class="colBotones" style="margin-top:25px;">
                     <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalAnadirCliente">Nuevo cliente</button>
@@ -64,7 +66,7 @@
                 <?php
                 mysqli_data_seek($clientes, 0);
                 while($cliente = mysqli_fetch_array($clientes)){
-                    echo "<div class=tab-pane fade id=list-cliente:$cliente[id] role=tabpanel aria-labelledby=list-profile-list>";
+                    echo "<div class='tab-pane fade' id=list-cliente:$cliente[id] role=tabpanel aria-labelledby=list-profile-list>";
                         echo "<div class=card>";
                             echo "<div class=card-body>";
                                 echo "<p class=card-text>Correo electrónico: $cliente[email]</p>";

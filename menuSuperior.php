@@ -32,7 +32,9 @@
 
         <?php if (isset($_SESSION['rol'])){?>
             <div class="justify-content-end mx-5">
-                <a href="cerrarSesion.php"><button id="btn-cerrarSesion">Salir</button></a>
+                <form style="display: inline" action="cerrarSesion.php" method="POST">
+                    <button id="btn-cerrarSesion">Salir</button>
+                </form>
             </div>
         <?php } ?>
 

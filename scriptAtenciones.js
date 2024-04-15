@@ -9,21 +9,11 @@ function getId(fila)
     idSeleccionado = fila.id.replace('idAtencion:', '');
 }
 
+function mostrarModalEliminar(boton){
+    if (boton.id == "btnEliminarAtencion" && idSeleccionado){
+        document.getElementById("id_eliminar").value = idSeleccionado;
 
-function mostrarModal(boton)
-{
-    if (idSeleccionado != null)
-    {
-        var myModal;
-        if (boton.id == 'btnEliminarAtencion')
-        {
-            document.getElementById("id_eliminar").value = idSeleccionado;
-            myModal = new bootstrap.Modal(document.getElementById("modalEliminarAtencion"), {});
-        }
-        else if (boton.id == 'btnModificarAtencion')
-        {
-
-        }
+        var myModal = new bootstrap.Modal(document.getElementById("modalEliminarAtencion"), {});
         myModal.show();
     }
     else{
@@ -31,8 +21,99 @@ function mostrarModal(boton)
     }
 }
 
+function mostrarModalAtencion(boton)
+{
+    if (boton.id == 'btnAnadirAtencion')
+    {
+        var modal = document.getElementById('modalAtencion');
+        
+        modal.querySelector('[name=operacion').value = 'insertar';
+        modal.querySelector('[name=id_modificar]').value = null;
 
-$('#modalAnadirAtencion').on('shown.bs.modal', function () {
+        modal.querySelector('[name=cliente_id]').value = "";
+        modal.querySelector('[name=mascota_id]').value = "";
+        modal.querySelector('[name=servicio_id]').value = "";
+        modal.getElementsByClassName('contenedor_dt')[0].style.display = 'none';
+        modal.querySelector('[name=titulo]').value = null;
+        modal.querySelector('[name=descripcion]').value = null;
+
+        modal.querySelector('[name=btn_enviar').classList.remove('btn-primary');
+        modal.querySelector('[name=btn_enviar').classList.add('btn-success');
+        modal.querySelector('[name=btn_enviar').textContent = 'Guardar';
+        document.getElementById('labelModalAtencion').textContent = 'Nueva atención';
+
+        $('#select_mascota').trigger("chosen:updated");
+        $('#select_servicio').trigger("chosen:updated");
+        document.getElementById('select_mascota').dispatchEvent(new Event('change'));
+
+
+
+
+
+
+
+
+//habilitar todos los items de mascotas
+
+
+
+
+
+
+
+
+
+        var myModal = new bootstrap.Modal(modal, {});
+        myModal.show();
+    }
+    else if (boton.id == 'btnModificarAtencion' && idSeleccionado)
+    {
+        var atencion = document.getElementById('idAtencion:' + idSeleccionado).getElementsByTagName('td');
+        var modal = document.getElementById('modalAtencion');
+        
+        modal.querySelector('[name=operacion').value = 'modificar';
+        modal.querySelector('[name=id_modificar]').value = idSeleccionado;
+        
+        modal.querySelector('[name=mascota_id]').value = atencion[1].getAttribute('data-mascota_id');
+        modal.querySelector('[name=servicio_id]').value = atencion[3].getAttribute('data-servicio_id');
+        modal.querySelector('[name=titulo]').value = atencion[5].textContent;
+        modal.querySelector('[name=descripcion]').value = atencion[6].textContent;
+
+        fec_hora_salida = atencion[7].textContent;
+        
+        if (fec_hora_salida)
+        {
+            modal.getElementsByClassName('contenedor_dt')[0].style.display = 'block';
+            modal.querySelector('[name=fecha_hora_salida]').required = true;
+            modal.querySelector('[name=fecha_hora_salida]').value = fec_hora_salida;
+        }
+        else
+        {
+            modal.getElementsByClassName('contenedor_dt')[0].style.display = 'none';
+            modal.querySelector('[name=fecha_hora_salida]').required = false;
+            modal.querySelector('[name=fecha_hora_salida]').value = '';
+        }
+
+        modal.querySelector('[name=btn_enviar').classList.add('btn-primary');
+        modal.querySelector('[name=btn_enviar').classList.remove('btn-success');
+        modal.querySelector('[name=btn_enviar').textContent = 'Modificar';
+        document.getElementById('labelModalAtencion').textContent = 'Modificar atención';
+
+        $('#select_mascota').trigger("chosen:updated");
+        $('#select_servicio').trigger("chosen:updated");
+        document.getElementById('select_mascota').dispatchEvent(new Event('change'));
+
+        var myModal = new bootstrap.Modal(modal, {});
+        myModal.show();
+    }
+    else
+    {
+        alert("Por favor, seleccione una fila de la tabla");
+    }
+}
+
+
+$('#modalAtencion').on('shown.bs.modal', function () {
     $('.chosen-select', this).chosen();
 });
 
@@ -44,14 +125,14 @@ $('#select_cliente').on('change', function(e) {
 
     for (i = 0; i < option.length; i++)
     {
-        if (option[i].value == valor_seleccionado && option[i].id.replace('cliente_id:', '') != cliente_id){
+        if (option[i].value == valor_seleccionado && option[i].getAttribute('data-cliente_id') != cliente_id){
             document.getElementById('select_mascota').value = "";
         }
 
-        if (option[i].id.replace('cliente_id:', '') != cliente_id)
-            option[i].style.display = "none";
+        if (option[i].getAttribute('data-cliente_id') != cliente_id)
+            option[i].style.display = 'none';
         else
-            option[i].style.display = "";
+            option[i].style.display = '';
     }
 
     $('#select_mascota').trigger("chosen:updated");
@@ -65,7 +146,7 @@ $('#select_mascota').on('change', function(e) {
     for (i = 0; i < option.length; i++)
     {    
         if (option[i].value == mascota_id){
-            cliente_id = option[i].id.replace('cliente_id:', '');
+            cliente_id = option[i].getAttribute('data-cliente_id');
             document.getElementById('select_cliente').value = cliente_id;
             break;
         }
@@ -82,19 +163,60 @@ $('#select_servicio').on('change', function(e) {
     {
         if (option[i].value == servicio_id)
         {
-            if (option[i].id.replace('fec_salida:', '') == true)
+            modal = document.getElementById('modalAtencion');
+            if (option[i].getAttribute('data-fec_salida') == true)
             {
-                document.getElementById('cont_dt_agregar').style.display = "block";
-                document.getElementById('dt_agregar').required = true;
-                document.getElementById('dt_agregar').value = '';
+                modal.getElementsByClassName('contenedor_dt')[0].style.display = 'block';
+                modal.querySelector('[name=fecha_hora_salida]').required = true;
+                modal.querySelector('[name=fecha_hora_salida]').value = fec_hora_salida;
             }
             else
             {
-                document.getElementById('cont_dt_agregar').style.display = "none";
-                document.getElementById('dt_agregar').required = false;
-                document.getElementById('dt_agregar').value = '';
+                modal.getElementsByClassName('contenedor_dt')[0].style.display = 'none';
+                modal.querySelector('[name=fecha_hora_salida]').required = false;
+                modal.querySelector('[name=fecha_hora_salida]').value = '';
             }
-
         }
     }
 });
+
+
+$('#formFiltro').on('shown.bs.collapse', function(e){
+    $('.chosen-select', this).chosen();
+});
+
+function borrarFiltros(){
+    window.location.replace(location.pathname);
+}
+
+
+function mostrarAtencion(fila)
+{
+    var atencion = fila.getElementsByTagName('td');
+    var modal = document.getElementById('modalDatos');
+ 
+    modal.querySelector('[name=fecha_hora]').value = atencion[0].textContent;
+    modal.querySelector('[name=mascota]').value = atencion[1].textContent;
+    modal.querySelector('[name=cliente]').value = atencion[2].textContent;
+    modal.querySelector('[name=servicio]').value = atencion[3].textContent;
+    modal.querySelector('[name=personal]').value = atencion[4].textContent;
+    modal.querySelector('[name=titulo]').value = atencion[5].textContent;
+    modal.querySelector('[name=descripcion]').value = atencion[6].textContent;
+    modal.querySelector('[name=precio]').value = atencion[8].textContent;
+
+    fec_hora_salida = atencion[7].textContent;
+    
+    if (fec_hora_salida)
+    {
+        modal.getElementsByClassName('contenedor_dt')[0].style.display = 'block';
+        modal.querySelector('[name=fecha_hora_salida]').value = fec_hora_salida;
+    }
+    else
+    {
+        modal.getElementsByClassName('contenedor_dt')[0].style.display = 'none';
+        modal.querySelector('[name=fecha_hora_salida]').value = '';
+    }
+
+    var myModal = new bootstrap.Modal(modal, {});
+    myModal.show();
+}

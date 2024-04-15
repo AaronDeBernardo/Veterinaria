@@ -1,0 +1,16 @@
+#div_tabla{
+    overflow-y: auto;
+    max-height: 65vh;
+}
+
+.tarjeta_mascota{
+    border:1000px;
+}
+
+.tarjeta_mascota img{
+    max-width:50vh;
+    height:auto;
+    margin-left:auto;
+    margin-right:auto;
+    display:block;
+}
