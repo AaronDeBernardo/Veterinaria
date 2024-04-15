@@ -57,15 +57,15 @@
             }
             elseif ($op == 'modificar' && !empty($_POST['idModificar']))
             {
-                $q = "SELECT fecha_hora FROM atenciones WHERE id = '$_POST[idModificar]";
+                $q = "SELECT fecha_hora FROM atenciones WHERE id = '$_POST[idModificar]'";
                 $r = consultaSQL($q);
                 $fecha = mysqli_fetch_array($r)[0];
                 $dias = 1;
                 if ($rango_fechas)
-                    $dias = calcularDias($fecha, $_POST['fecha_hora_salida']);
+                    $dias = calcularDias(new DateTime($fecha), new DateTime($_POST['fecha_hora_salida']));
                 
                 $query = "UPDATE atenciones SET mascota_id = '$_POST[mascota_id]', servicio_id = '$_POST[servicio_id]', fecha_hora_salida = NULLIF('$_POST[fecha_hora_salida]',''), 
-                    titulo = '$_POST[titulo], descripcion = NULLIF('$_POST[descripcion]',''), precio = $dias * (SELECT precio FROM servicios WHERE id = '$_POST[servicio_id]') 
+                    titulo = '$_POST[titulo]', descripcion = NULLIF('$_POST[descripcion]',''), precio = $dias * (SELECT precio FROM servicios WHERE id = '$_POST[servicio_id]') 
                     WHERE id = '$_POST[idModificar]';";
                 $multiQuery = true;
             }

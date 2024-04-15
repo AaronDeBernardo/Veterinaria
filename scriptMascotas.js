@@ -1,8 +1,8 @@
-var idSeleccionado = "";
+var idSeleccionado;
             
 function getId(fila)
 {
-    if (idSeleccionado != ""){
+    if (idSeleccionado){
         document.getElementById('list-mascota:' + idSeleccionado).classList.remove('show');
         document.getElementById('list-mascota:' + idSeleccionado).classList.remove('active');
         document.getElementById('idMascota:' + idSeleccionado).classList.remove("table-secondary");
@@ -16,57 +16,11 @@ function getId(fila)
     document.getElementById('list-mascota:' + idSeleccionado).classList.add('active');
 }
 
-function mostrarModal(boton){
-    if (idSeleccionado != ""){
-        var myModal;
-        if (boton.id == "btnEliminarMascota")
-        {
-            document.getElementById("idEliminar").value = idSeleccionado;
-            myModal = new bootstrap.Modal(document.getElementById("modalEliminarMascota"), {});
-        }
-        else if (boton.id == "btnModificarMascota")
-        {
-            var contenedor = document.getElementById("modalModificarMascota");
-            
-            
-            
-            
-            var fila = document.getElementById("idMascota:" + idSeleccionado);
+function mostrarModalEliminar(boton){
+    if (boton.id == "btnEliminarMascota" && idSeleccionado){
+        document.getElementById("id_eliminar").value = idSeleccionado;
 
-            document.getElementById('idModificar').value = idSeleccionado;
-
-            contenedor.querySelector('[name=cliente_id]').value = fila.getElementsByTagName('td')[0].id.replace('idCliente:', '');
-            contenedor.querySelector('[name=nombre]').value = fila.getElementsByTagName('td')[1].textContent;
-            contenedor.querySelector('[name=raza]').value = fila.getElementsByTagName('td')[2].textContent;
-            contenedor.querySelector('[name=color]').value = fila.getElementsByTagName('td')[3].textContent;
-            
-            var tarjeta = document.getElementById('list-mascota:' + idSeleccionado);
-            contenedor.querySelector('[name=fecha_de_nac]').value = tarjeta.querySelector("p[name='fecha_de_nac']").textContent.replace('Fecha de nacimiento: ', '');
-            
-            try{
-                contenedor.querySelector('[name=fecha_muerte]').value = tarjeta.querySelector("p[name='fecha_muerte']").textContent.replace('Fecha de muerte: ', '');
-            }
-            catch{
-                contenedor.querySelector('[name=fecha_muerte]').value = null;
-            }
-            
-
-
-
-            /*try{
-                contenedor.querySelector('[name=foto_existente]').src = tarjeta.getElementsByTagName('img')[0].src;    
-            }
-            catch{
-                document.getElementById('foto_existente').classList.add('')
-            }*/
-
-
-
-
-
-            myModal = new bootstrap.Modal(contenedor, {});
-        }
-        
+        var myModal = new bootstrap.Modal(document.getElementById("modalEliminarMascota"), {});
         myModal.show();
     }
     else{
@@ -74,7 +28,91 @@ function mostrarModal(boton){
     }
 }
 
-function borrarFiltros()
+function mostrarModalMascota(boton)
 {
+    if (boton.id == 'btnAnadirMascota')
+    {
+        var modal = document.getElementById('modalMascota');
+        modal.querySelector('[name=operacion').value = 'insertar';
+        modal.querySelector('[name=id_modificar]').value = null;
+        modal.querySelector('[name=cliente_id]').value = "";
+        modal.querySelector('[name=nombre]').value = null;
+        modal.querySelector('[name=raza]').value = null;
+        modal.querySelector('[name=color]').value = null;
+        modal.querySelector('[name=fecha_de_nac]').value = null;
+        modal.querySelector('[name=foto]').value = null;
+        modal.querySelector('[name=fecha_muerte]').value = null;
+        document.getElementById('label_foto_modal').textContent = 'Foto';
+        document.getElementById('div_fecha_muerte').style.display = 'none';
+
+        modal.querySelector('[name=btn_enviar').classList.remove('btn-primary');
+        modal.querySelector('[name=btn_enviar').classList.add('btn-success');
+        modal.querySelector('[name=btn_enviar').textContent = 'Guardar';
+        document.getElementById('labelModalMascota').textContent = 'Nueva mascota';
+
+        var myModal = new bootstrap.Modal(modal, {});
+        myModal.show();
+    }
+    else if (boton.id == 'btnModificarMascota' && idSeleccionado)
+    {
+        var modal = document.getElementById('modalMascota');
+        var mascota = document.getElementById("idMascota:" + idSeleccionado).getElementsByTagName('td');
+        var tarjeta = document.getElementById('list-mascota:' + idSeleccionado);
+
+        modal.querySelector('[name=operacion').value = 'modificar';
+        modal.querySelector('[name=id_modificar]').value = idSeleccionado;
+        modal.querySelector('[name=cliente_id]').value = mascota[0].getAttribute('data-cliente_id');
+        modal.querySelector('[name=nombre]').value = mascota[1].textContent;
+        modal.querySelector('[name=raza]').value = mascota[2].textContent;
+        modal.querySelector('[name=color]').value = mascota[3].textContent;
+      
+        modal.querySelector('[name=fecha_de_nac]').value = tarjeta.getAttribute('data-fecha_de_nac');
+        document.getElementById('div_fecha_muerte').style.display = 'block';
+
+        if (tarjeta.getAttribute('data-fecha_muerte'))
+            modal.querySelector('[name=fecha_muerte]').value = tarjeta.getAttribute('data-fecha_muerte');
+        else
+            modal.querySelector('[name=fecha_muerte]').value = null;
+
+        
+        if (tarjeta.getElementsByTagName('img').length)
+            document.getElementById('label_foto_modal').textContent = 'La mascota ya tiene una foto';
+        else
+            document.getElementById('label_foto_modal').textContent = 'Foto';
+
+        modal.querySelector('[name=btn_enviar').classList.add('btn-primary');
+        modal.querySelector('[name=btn_enviar').classList.remove('btn-success');
+        modal.querySelector('[name=btn_enviar').textContent = 'Modificar';
+        document.getElementById('labelModalMascota').textContent = 'Modificar mascota';
+
+        var myModal = new bootstrap.Modal(modal, {});
+        myModal.show();
+    }
+    else
+    {
+        alert("Por favor, seleccione una fila de la tabla");
+    }
+}
+
+function borrarFiltros(){
     window.location.replace(location.pathname);
 }
+
+$('#formFiltro').on('shown.bs.collapse', function(e){
+    $('.chosen-select', this).chosen();
+});
+
+
+$('#modalMascota').on('shown.bs.modal', function(e){
+    $('.chosen-select').trigger("chosen:updated");
+    $('.chosen-select', this).chosen();
+});
+
+function posicionarDiv() {
+    var div = document.getElementById('div-filtro');
+    var alto = div.offsetHeight;
+    var div2 = document.getElementById('div-separacion');
+    div2.style.height = alto + 'px';
+}
+
+window.onload = posicionarDiv;

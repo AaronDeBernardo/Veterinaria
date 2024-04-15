@@ -7,6 +7,7 @@
     }
 
     include_once 'consultasdb/connection.php';
+
     $query = "SELECT servicios.id, servicios.nombre, servicios.rango_fechas FROM servicios INNER JOIN roles_tiposservicios 
         ON servicios.tipo_servicio_id = roles_tiposservicios.tipo_servicio_id WHERE roles_tiposservicios.rol_id = '$_SESSION[rol_id]' AND baja = 0 ORDER BY servicios.nombre";
     $servicios = consultaSQL($query);
@@ -17,10 +18,23 @@
     $query = "SELECT id, cliente_id, nombre FROM mascotas WHERE ISNULL(fecha_muerte) AND baja = 0 ORDER BY nombre";
     $mascotas = consultaSQL($query);
 
-    $query = "SELECT atenciones.id, atenciones.mascota_id, mascotas.nombre AS mascota_nombre, mascotas.cliente_id, CONCAT(clientes.apellido, ' ', clientes.nombre) AS duenio, atenciones.servicio_id, 
-        servicios.nombre, atenciones.personal_id, CONCAT(personal.apellido, ' ', personal.nombre) AS personal, atenciones.fecha_hora, atenciones.fecha_hora_salida, 
-        atenciones.titulo, atenciones.precio FROM atenciones INNER JOIN mascotas ON mascotas.id = atenciones.mascota_id INNER JOIN servicios ON servicios.id = atenciones.servicio_id 
-        INNER JOIN personal ON personal.id = atenciones.personal_id INNER JOIN clientes ON mascotas.cliente_id = clientes.id ORDER BY atenciones.fecha_hora DESC";
+
+    $filtro = '';
+    if (isset($_GET['mascota_id']) && $_GET['mascota_id'] != 'todos')
+        $filtro = $filtro . "AND mascotas.id = '$_GET[mascota_id]' ";
+    if (isset($_GET['cliente_id']) && $_GET['cliente_id'] != 'todos')
+        $filtro = $filtro . "AND clientes.id = '$_GET[cliente_id]' ";
+    if (!empty($_GET['fecha_desde']))
+        $filtro = $filtro . "AND DATE(atenciones.fecha_hora) >= '$_GET[fecha_desde]' ";
+    if (!empty($_GET['fecha_hasta']))
+        $filtro = $filtro . "AND DATE(atenciones.fecha_hora) <= '$_GET[fecha_hasta]' ";
+        
+
+    $query = "SELECT atenciones.id, atenciones.mascota_id, mascotas.nombre AS mascota_nombre, mascotas.cliente_id, CONCAT(clientes.apellido, ' ', clientes.nombre) AS duenio, 
+        atenciones.servicio_id, servicios.nombre, atenciones.personal_id, CONCAT(personal.apellido, ' ', personal.nombre) AS personal, atenciones.fecha_hora, 
+        atenciones.fecha_hora_salida, atenciones.titulo, atenciones.precio, atenciones.descripcion FROM atenciones INNER JOIN mascotas ON mascotas.id = atenciones.mascota_id 
+        INNER JOIN servicios ON servicios.id = atenciones.servicio_id INNER JOIN personal ON personal.id = atenciones.personal_id 
+        INNER JOIN clientes ON mascotas.cliente_id = clientes.id WHERE 1 = 1 $filtro ORDER BY atenciones.fecha_hora DESC";
     $atenciones = consultaSQL($query);
 ?>
 
@@ -32,7 +46,6 @@
         <title>Veterinaria San Antón</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="styles.css" type="text/css">
-        <link rel="stylesheet" href="stylesAtenciones.css" type="text/css">
         <link rel="stylesheet" href="plugins/chosen/chosen.css">
         <link rel="icon" href="Recursos/logoVeterinaria.png">
     </head>
@@ -44,6 +57,48 @@
                 <?php  $_SESSION['item'] = 'atenciones'; include_once 'menuLateral.php'; ?>
                 
                 <div class="col-12 col-md-8 col-lg-9 col-xl-10">
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-4">
+                        <div>
+                            <button type="button" class="btn btn-secondary" style="margin-bottom:10px" data-bs-toggle="collapse" data-bs-target="#formFiltro">Filtrar</button>
+                            <?php echo $filtro ? "<button type=button class='btn btn-secondary' style=margin-bottom:10px onclick=borrarFiltros()>Borrar filtros</button>" : null ?>
+                        </div>
+
+                        <form action="#" method="GET" id="formFiltro" class="collapse bg-light rounded-5 pt-4 mt-2 flex-wrap border border-warning border-4" style="margin-bottom:20px">
+                            <div class="form-group">
+                                <label>Mascota</label>
+                                <select id="select_mascota_filtro" name="mascota_id" class="form-control chosen-select">
+                                    <option selected value="todos"> -- Todas las mascotas -- </option>
+                                    <?php
+                                        foreach ($mascotas as $m)
+                                            echo "<option " . (isset($_GET['mascota_id']) && $_GET['mascota_id'] == $m['id'] ? "selected " : "") . "value=$m[id]>$m[nombre]</option>";
+                                    ?>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Dueño de la mascota</label>
+                                <select id="select_cliente_filtro" name="cliente_id" class="form-control chosen-select">
+                                    <option selected value="todos"> -- Todos los clientes -- </option>
+                                    <?php
+                                        foreach ($clientes as $c)
+                                            echo "<option " . (isset($_GET['cliente_id']) && $_GET['cliente_id'] == $c['id'] ? "selected " : "") . "value=$c[id]>$c[apeynom]</option>";
+                                    ?>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Fecha desde</label>
+                                <input type="date" name="fecha_desde" class="form-control" <?php echo (isset($_GET['fecha_desde']) ? "value=$_GET[fecha_desde]" : "")?>>
+                                <label>Fecha hasta</label>
+                                <input type="date" name="fecha_hasta" class="form-control" <?php echo (isset($_GET['fecha_hasta']) ? "value=$_GET[fecha_hasta]" : "")?>>
+                            </div>
+
+                            <div style="text-align:center; margin-bottom:10px;">
+                                <button type="submit" class="btn btn-secondary">Aceptar</button>
+                            </div>
+                        </form>
+                    </div>
+
                     <table class="table">
                         <thead>
                             <tr>
@@ -51,21 +106,27 @@
                                 <th scope="col">Mascota</th>
                                 <th scope="col">Dueño</th>
                                 <th scope="col">Servicio</th>
-                                <th scope="col">Personal</th>
-                                <th scope="col">Título</th>
+                                <th scope="col" class="d-none d-sm-table-cell">Personal</th>
+                                <th scope="col" class="d-none d-sm-table-cell">Título</th>
+                                <th style=display:none;></th>
+                                <th style=display:none;></th>
+                                <th style=display:none;></th>
                             </tr>
                         </thead>
                         <tbody>
 
 <?php
-                        while($a = mysqli_fetch_array($atenciones)){
-                            echo "<tr id=idAtencion:$a[id] onclick=getId(this)>";
-                                echo "<td name=fechaHora>$a[fecha_hora]</td>";
-                                echo "<td id=idMascota:$a[mascota_id]>$a[mascota_nombre]</td>";
-                                echo "<td id=idDuenio:$a[cliente_id]>$a[duenio]</td>";
-                                echo "<td id=idServicio:$a[servicio_id]>$a[nombre]</td>";
-                                echo "<td id=idPersonal:$a[personal_id]>$a[personal]</td>";
-                                echo "<td name=titulo>$a[titulo]</a>";
+                        foreach ($atenciones as $a){
+                            echo "<tr id=idAtencion:$a[id] onclick=getId(this) ondblclick=mostrarAtencion(this)>";
+                                echo "<td>$a[fecha_hora]</td>";
+                                echo "<td data-mascota_id=$a[mascota_id]>$a[mascota_nombre]</td>";
+                                echo "<td data-cliente_id=$a[cliente_id]>$a[duenio]</td>";
+                                echo "<td data-servicio_id=$a[servicio_id]>$a[nombre]</td>";
+                                echo "<td data-personal_id=$a[personal_id] class='d-none d-sm-table-cell'>$a[personal]</td>";
+                                echo "<td class='d-none d-sm-table-cell'>$a[titulo]</td>";
+                                echo "<td style=display:none;>$a[descripcion]</td>";
+                                echo "<td style=display:none;>$a[fecha_hora_salida]</td>";
+                                echo "<td style=display:none;>$a[precio]</td>";
                             echo "</tr>";
                         }
 ?>
@@ -73,9 +134,9 @@
                         </tbody>
                     </table>
                     <div class="colBotones" style="margin-top:25px;">
-                        <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalAnadirAtencion">Nueva atención</button>
-                        <button type="button" class="btn btn-outline-primary" id="btnModificarAtencion" onclick="mostrarModal(this)">Modificar</button>
-                        <button type="button" class="btn btn-outline-danger" id="btnEliminarAtencion" onclick="mostrarModal(this)">Baja</button>
+                        <button type="button" class="btn btn-outline-success" id="btnAnadirAtencion" onclick="mostrarModalAtencion(this)">Nueva atención</button>
+                        <button type="button" class="btn btn-outline-primary" id="btnModificarAtencion" onclick="mostrarModalAtencion(this)">Modificar</button>
+                        <button type="button" class="btn btn-outline-danger" id="btnEliminarAtencion" onclick="mostrarModalEliminar(this)">Baja</button>
                     </div>
                 </div>
             </div>
@@ -83,21 +144,22 @@
 
 
         <!-- Modals -->
-        <div class="modal fade" id="modalAnadirAtencion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="modalAtencion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="labelModalAtencion" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5">Nueva atención</h1>
+                        <h1 class="modal-title fs-5" id="labelModalAtencion">Atención</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form action="consultasdb/atencion.php" method="POST">
-                        <input type="hidden" name="operacion" value="insertar">
+                        <input type="hidden" name="operacion">
+                        <input type="hidden" name="id_modificar">    
                         <div class="modal-body">
                             
                             <div class="form-group">
                                 <label>Dueño</label>
                                 <select id="select_cliente" name="cliente_id" class="form-control chosen-select" required>
-                                    <option disabled selected value=""> -- Selecciona un cliente -- </option>
+                                    <option disabled value=""> -- Selecciona un cliente -- </option>
                                     <?php
                                         foreach ($clientes as $c){
                                             echo "<option value=$c[id]>$c[apeynom]</option>";
@@ -109,10 +171,10 @@
                             <div class="form-group">
                                 <label>Mascota</label>
                                 <select id="select_mascota" name="mascota_id" class="form-control chosen-select" required>
-                                    <option disabled selected value=""> -- Selecciona una mascota -- </option>
+                                    <option disabled value="" data-cliente_id=""> -- Selecciona una mascota -- </option>
                                     <?php
                                         foreach ($mascotas as $m){
-                                            echo "<option id=cliente_id:$m[cliente_id] value=$m[id]>$m[nombre]</option>";
+                                            echo "<option data-cliente_id=$m[cliente_id] value=$m[id]>$m[nombre]</option>";
                                         }
                                     ?>
                                 </select>
@@ -121,18 +183,18 @@
                             <div class="form-group">
                                 <label>Servicio</label>
                                 <select id="select_servicio" name="servicio_id" class="form-control chosen-select" required>
-                                    <option disabled selected value=""> -- Selecciona un servicio -- </option>
+                                    <option disabled value=""> -- Selecciona un servicio -- </option>
                                     <?php
                                         foreach ($servicios as $s){
-                                            echo "<option id=fec_salida:$s[rango_fechas] value=$s[id]>$s[nombre]</option>";
+                                            echo "<option data-fec_salida=$s[rango_fechas] value=$s[id]>$s[nombre]</option>";
                                         }
                                     ?>
                                 </select>
                             </div>
 
-                            <div id="cont_dt_agregar" class="form-group" style="display:none;">
+                            <div class="form-group contenedor_dt">
                                 <label>Fecha y hora de salida</label>
-                                <input id="dt_agregar" type="datetime-local" name="fecha_hora_salida" class="form-control">
+                                <input type="datetime-local" name="fecha_hora_salida" class="form-control">
                             </div>
 
                             <div class="form-group">
@@ -143,67 +205,87 @@
                                 <label>Descripcion</label>
                                 <textarea name="descripcion" rows="5" class="form-control"></textarea>
                             </div>
-
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-success">Guardar</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" name="btn_salir">Cancelar</button>
+                            <button type="submit" class="btn btn-primary" name="btn_enviar">Enviar</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
 
-        <div class="modal fade" id="modalModificarMascota" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="modalDatos" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="labelModalDatos" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5">Modificar cliente</h1>
+                        <h1 class="modal-title fs-5" id="labelModalDatos">Datos atención</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="consultasdb/atencion.php" method="POST">
-                        <input type="hidden" name="operacion" value="modificar">
-                        <input type="hidden" id="idModificar" name="idModificar" value="0">    
-                        <div class="modal-body">
-                            
-                            
-
-
-
-
-
+                    
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Dueño</label>
+                            <input type="text" name="cliente" class="form-control" disabled>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-primary">Modificar</button>
+                        <div class="form-group">
+                            <label>Mascota</label>
+                            <input type="text" name="mascota" class="form-control" disabled>
                         </div>
-                    </form>
+                        <div class="form-group">
+                            <label>Servicio</label>
+                            <input type="text" name="servicio" class="form-control" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Personal</label>
+                            <input type="text" name="personal" class="form-control" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Fecha y hora de atención</label>
+                            <input type="text" name="fecha_hora" class="form-control" disabled>
+                        </div>
+                        <div class="form-group contenedor_dt">
+                            <label>Fecha y hora de salida</label>
+                            <input type="text" name="fecha_hora_salida" class="form-control" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Precio</label>
+                            <input type="text" name="precio" class="form-control" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Título</label>
+                            <input type="text" name="titulo" class="form-control" disabled>
+                        </div>
+                        <div class="form-group">    
+                            <label>Descripcion</label>
+                            <textarea name="descripcion" rows="5" class="form-control" disabled></textarea>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="modal fade" id="modalEliminarAtencion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5">Eliminar atención</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-
-                        <form action="consultasdb/atencion.php" method="POST">
-                            <div class="modal-body">
-                                <input type="hidden" name="operacion" value="eliminar">
-                                <input type="hidden" id="id_eliminar" name="id_eliminar" value="0">
-                                <div class="form-group">
-                                    <label>¿Está seguro que desea eliminar la atención seleccionada?</label>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
-                            </div>
-                        </form>
+        <div class="modal fade" id="modalEliminarAtencion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="labelModalEliminar" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="labelModalEliminar">Eliminar atención</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+
+                    <form action="consultasdb/atencion.php" method="POST">
+                        <div class="modal-body">
+                            <input type="hidden" name="operacion" value="eliminar">
+                            <input type="hidden" id="id_eliminar" name="id_eliminar" value="0">
+                            <div class="form-group">
+                                <label>¿Está seguro que desea eliminar la atención seleccionada?</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

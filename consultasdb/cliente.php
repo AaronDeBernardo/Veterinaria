@@ -1,6 +1,6 @@
 <?php
     require_once 'iniciarConsulta.php';
-    $destino = 'abmcClientes.php';
+    $destino = '../abmcClientes.php';
 
 
     if (empty($op) || ($tipoUsuario != 'admin' && $tipoUsuario != 'veterinario' && $tipoUsuario != 'peluquero'))
@@ -10,7 +10,7 @@
     }
 
 
-    if ($op = 'eliminar')
+    if ($op == 'eliminar')
     {
         if (!empty($_POST['idEliminar']))
         {
@@ -26,9 +26,9 @@
             $query = "UPDATE clientes SET clave = '" . md5($_POST['clave']) . "' WHERE id = '$_POST[idModificar]'";
         }
     }
-    elseif (isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['email']) && isset($_POST['clave']) && isset($_POST['telefono']) && isset($_POST['ciudad']) && isset($_POST['direccion']))
+    elseif (isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['email']) && isset($_POST['telefono']) && isset($_POST['ciudad']) && isset($_POST['direccion']))
     {
-        if ($op == 'insertar')
+        if ($op == 'insertar' && isset($_POST['clave']))
         {
             $query = "INSERT INTO clientes (nombre, apellido, email, clave, telefono, ciudad, direccion) VALUES ('$_POST[nombre]', '$_POST[apellido]', '$_POST[email]', '" . md5($_POST['clave']) . "', '$_POST[telefono]', '$_POST[ciudad]', '$_POST[direccion]');";
         }

@@ -33,7 +33,7 @@
                             <tr>
                                 <th>Nombre</th>
                                 <th>Apellido</th>
-                                <th>Mail</th>
+                                <th class="d-none d-sm-table-cell">Mail</th>
                                 <th>Rol</th>
                             </tr>
                         </thead>
@@ -44,7 +44,7 @@
                             <tr id=<?php echo "idPersonal:$row[id]"?> onclick='getId(this)'>
                                 <td name="nombre"><?php echo $row['nombre'] ?></th>
                                 <td name="apellido"><?php echo $row['apellido'] ?></td>
-                                <td name="email"><?php echo $row['email'] ?></td>
+                                <td name="email" class="d-none d-sm-table-cell"><?php echo $row['email'] ?></td>
                                 <td name="rol_id" id=<?php echo "idRol:$row[rol_id]>$row[nombre_rol]" ?></td>
                             </tr>
 <?php } ?>
