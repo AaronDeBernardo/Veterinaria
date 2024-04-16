@@ -55,9 +55,9 @@
                     '$_POST[titulo]', NULLIF('$_POST[descripcion]',''), $dias * (SELECT precio FROM servicios WHERE id = '$_POST[servicio_id]'));";
                 $multiQuery = true;
             }
-            elseif ($op == 'modificar' && !empty($_POST['idModificar']))
+            elseif ($op == 'modificar' && !empty($_POST['id_modificar']))
             {
-                $q = "SELECT fecha_hora FROM atenciones WHERE id = '$_POST[idModificar]'";
+                $q = "SELECT fecha_hora FROM atenciones WHERE id = '$_POST[id_modificar]'";
                 $r = consultaSQL($q);
                 $fecha = mysqli_fetch_array($r)[0];
                 $dias = 1;
@@ -66,7 +66,7 @@
                 
                 $query = "UPDATE atenciones SET mascota_id = '$_POST[mascota_id]', servicio_id = '$_POST[servicio_id]', fecha_hora_salida = NULLIF('$_POST[fecha_hora_salida]',''), 
                     titulo = '$_POST[titulo]', descripcion = NULLIF('$_POST[descripcion]',''), precio = $dias * (SELECT precio FROM servicios WHERE id = '$_POST[servicio_id]') 
-                    WHERE id = '$_POST[idModificar]';";
+                    WHERE id = '$_POST[id_modificar]';";
                 $multiQuery = true;
             }
         }

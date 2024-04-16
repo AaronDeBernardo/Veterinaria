@@ -11,7 +11,7 @@
     if ($op == 'eliminar')
     {
         if (!empty($_POST['id_eliminar']))
-            $query = "UPDATE personal SET baja = 1 WHERE id = '$_POST[idEliminar]'";
+            $query = "UPDATE personal SET baja = 1 WHERE id = '$_POST[id_eliminar]'";
     }
     else if (isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['email']) && isset($_POST['rol_id']))
     {
@@ -20,10 +20,10 @@
             $query = "INSERT INTO personal (nombre, apellido, email, clave, rol_id) 
                 VALUES ('$_POST[nombre]', '$_POST[apellido]', '$_POST[email]', '" . md5($_POST['clave']) . "', '$_POST[rol_id]');";
         }   
-        else if ($op == 'modificar' && !empty($_POST['idModificar']))
+        else if ($op == 'modificar' && !empty($_POST['id_modificar']))
         {
             $query = "UPDATE personal SET nombre = '$_POST[nombre]', apellido = '$_POST[apellido]', email = '$_POST[email]', 
-            rol_id = '$_POST[rol_id]' WHERE id = '$_POST[idModificar]';";
+            rol_id = '$_POST[rol_id]' WHERE id = '$_POST[id_modificar]';";
         }
     }
 

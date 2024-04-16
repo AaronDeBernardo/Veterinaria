@@ -11,7 +11,7 @@
     if ($op == 'eliminar')
     {
         if (!empty($_POST['id_eliminar']))
-            $query = "UPDATE mascotas SET baja = 1 WHERE id = '$_POST[idEliminar]'";
+            $query = "UPDATE mascotas SET baja = 1 WHERE id = '$_POST[id_eliminar]'";
     }
     elseif (isset($_POST['nombre']) && isset($_POST['cliente_id']) && isset($_POST['raza']) && isset($_POST['color']) && isset($_POST['fecha_de_nac']))
     {

@@ -117,7 +117,7 @@
                 <div class="tab-content" id="nav-tabContent">
                 <?php
                 foreach ($mascotas as $m){
-                    echo "<div class='tab-pane fade tarjeta_mascota' id=list-mascota:$m[id] data-fecha_de_nac=$m[fecha_de_nac] data-fecha_muerte=$m[fecha_muerte] role=tabpanel>";
+                    echo "<div class='tab-pane fade tarjeta_mascota' role=tabpanel id=list-mascota:$m[id] data-fecha_de_nac=$m[fecha_de_nac]" . (!empty($m['fecha_muerte']) ? " data-fecha_muerte=$m[fecha_muerte]>" : ">");
                         echo "<div class=card>";
                         if (!empty($m['foto'])){
                         ?>
@@ -160,11 +160,6 @@
                     <input type="hidden" name="id_modificar">    
                     <div class="modal-body">
                         
-                        <div class="form-group">    
-                            <label>Nombre</label>
-                            <input type="text" name="nombre" class="form-control" required>
-                        </div>
-
                         <div class="form-group">
                             <label>Dueño</label>
                             <select name="cliente_id" class="form-select chosen-select" required>
@@ -175,7 +170,10 @@
                             ?>
                             </select>
                         </div>
-
+                        <div class="form-group">    
+                            <label>Nombre</label>
+                            <input type="text" name="nombre" class="form-control" required>
+                        </div>
                         <div class="form-group">    
                             <label>Raza</label>
                             <input type="text" name="raza" class="form-control" required>

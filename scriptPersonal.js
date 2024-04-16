@@ -23,6 +23,7 @@ function mostrarModalPersonal(boton)
         modal.querySelector('[name=email]').value = null;
         modal.getElementsByClassName('div_clave')[0].style.display = 'block';
         modal.querySelector('[name=clave]').value = null;
+        modal.querySelector('[name=clave]').required = true;
         modal.querySelector('[name=rol_id]').value = "";
         
         modal.querySelector('[name=btn_enviar').classList.remove('btn-primary');
@@ -40,14 +41,17 @@ function mostrarModalPersonal(boton)
             var personal = document.getElementById('personal_id:' + idSeleccionado).getElementsByTagName('td');
             var modal = document.getElementById('modalPersonal');
             
+            modal.querySelector('[name=operacion').value = 'modificar';
+            modal.querySelector('[name=id_modificar]').value = idSeleccionado;
+
             modal.querySelector('[name=nombre]').value = personal[0].textContent;
             modal.querySelector('[name=apellido]').value = personal[1].textContent;
             modal.querySelector('[name=email]').value = personal[2].textContent;
             modal.querySelector('[name=rol_id]').value = personal[3].getAttribute('data-rol_id');
             modal.getElementsByClassName('div_clave')[0].style.display = 'none';
             modal.querySelector('[name=clave]').value = null;
-            
-            
+            modal.querySelector('[name=clave]').required = false;
+
             modal.querySelector('[name=btn_enviar').classList.add('btn-primary');
             modal.querySelector('[name=btn_enviar').classList.remove('btn-success');
             modal.querySelector('[name=btn_enviar').textContent = 'Modificar';

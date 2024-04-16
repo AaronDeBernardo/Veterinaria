@@ -35,10 +35,10 @@
         <div class="row">
             <?php  $_SESSION['item'] = 'clientes'; include_once 'menuLateral.php'; ?>
             <div class="col-12 col-md-4 col-lg-4 col-xl-4">
-                <form action="" method="GET">
+                <form action="#" method="GET">
                     <div class="form-group" id="div-filtro">
                         <label>Buscar cliente</label>
-                        <input type="search" name="filtro" onsearch="handler(this)" class="form-control" value=<?php echo $var = $_GET['filtro'] ?? '';?>>
+                        <input type="search" name="filtro" class="form-control" <?php echo !empty($_GET['filtro']) ? "value=$_GET[filtro]" : "";?>>
                         <small class="form-text text-muted">Presione enter para filtrar los clientes.</small>
                     </div>
                 </form>
@@ -47,49 +47,49 @@
                 <div class="list-group" id="list-clientes" role="tablist">
 <?php
                 foreach ($clientes as $c)
-                    echo "<a class=list-group-item list-group-item-action id=idCliente:$c[id]nom:$c[nombre]ape:$c[apellido] data-bs-toggle=list href=#list-cliente:$c[id] role=tab 
-                    aria-controls=list-home onclick='getId(this)'>$c[apeynom]</a>";
+                    echo "<a id=cliente_id:$c[id] data-nombre='$c[nombre]' data-apellido='$c[apellido]' class='list-group-item list-group-item-action' data-bs-toggle=list 
+                        href=#list-cliente:$c[id] role=tab aria-controls=list-cliente:$c[id] onclick='getId(this)'>$c[apeynom]</a>";
                 if (mysqli_num_rows($clientes) == 0)
-                    echo "<a class=list-group-item list-group-item-action>No se encontró ningún cliente</a>";
+                    echo "<a class='list-group-item list-group-item-action'>No se encontró ningún cliente</a>";
 ?>
                 </div>
                 <div class="colBotones" style="margin-top:25px;">
-                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalAnadirCliente">Nuevo cliente</button>
-                    <button type="button" class="btn btn-outline-primary" id="btnModificarCliente" onclick="mostrarModal(this)">Modificar</button>
-                    <button type="button" class="btn btn-outline-danger" id="btnEliminarCliente" onclick="mostrarModal(this)">Baja</button>
+                    <button type="button" class="btn btn-outline-success" id="btnAnadirCliente" onclick="mostrarModalCliente(this)">Nuevo cliente</button>
+                    <button type="button" class="btn btn-outline-primary" id="btnModificarCliente" onclick="mostrarModalCliente(this)">Modificar</button>
+                    <button type="button" class="btn btn-outline-danger" id="btnEliminarCliente" onclick="mostrarModalEliminar(this)">Baja</button>
                 </div>
             </div>
 
             <div class="col-12 col-md-4 col-lg-5 col-xl-6">
-                <div id="div-separacion">&nbsp</div>
+                <div id="div-separacion">&nbsp;</div>
                 <div class="tab-content" id="nav-tabContent">
-                <?php
-                mysqli_data_seek($clientes, 0);
-                while($cliente = mysqli_fetch_array($clientes)){
-                    echo "<div class='tab-pane fade' id=list-cliente:$cliente[id] role=tabpanel aria-labelledby=list-profile-list>";
+<?php
+                foreach ($clientes as $c)
+                {
+                    echo "<div id=list-cliente:$c[id] class='tab-pane fade' role=tabpanel>";
                         echo "<div class=card>";
                             echo "<div class=card-body>";
-                                echo "<p class=card-text>Correo electrónico: $cliente[email]</p>";
-                                echo "<p class=card-text>Ciudad: $cliente[ciudad]</p>";
-                                echo "<p class=card-text>Dirección: $cliente[direccion]</p>";
-                                echo "<p class=card-text>Teléfono: $cliente[telefono]</p>";
+                                echo "<p data-email='$c[email]' class=card-text>Correo electrónico: $c[email]</p>";
+                                echo "<p data-ciudad='$c[ciudad]' class=card-text>Ciudad: $c[ciudad]</p>"; //opcional
+                                echo "<p data-direccion='$c[direccion]' class=card-text>Dirección: $c[direccion]</p>"; //opcional
+                                echo "<p data-telefono='$c[telefono]' class=card-text>Teléfono: $c[telefono]</p>";
 
-                                mysqli_data_seek($mascotas, 0);    
-                                echo "<p>Mascotas: ";
-                                $bandera = false;
-
-                                while ($m = mysqli_fetch_array($mascotas))
+                                
+                                $stringMascotas = '';
+                                foreach ($mascotas as $m)
                                 {
-                                    if ($m['cliente_id'] == $cliente['id']){
-                                        if ($bandera)
-                                            echo ", ";
-                                        echo "$m[nombre]";
-                                        $bandera = true;
+                                    if ($m['cliente_id'] == $c['id']){
+                                        if ($stringMascotas)
+                                            $stringMascotas = $stringMascotas . ', ';
+                                        $stringMascotas = $stringMascotas . $m['nombre'];
                                     }
-                                }   
-                                if (!$bandera)
-                                    echo "el cliente no tiene ninguna mascota";
-                                echo "</p>";
+                                }
+                                
+                                if ($stringMascotas)
+                                    echo "<p data-tiene_mascotas=1>Mascotas: " . $stringMascotas . "</p>";
+                                else
+                                    echo "<p data-tiene_mascotas=0>Mascotas: el cliente no tiene ninguna mascota</p>";
+                                
                             echo "</div>";
                         echo "</div>";
                     echo "</div>";
@@ -98,27 +98,23 @@
                         </div>
                     
                         <button type="button" class="btn btn-info d-none" id="btnVerMascotas" onclick="verMascotas()">Ver mascotas</button>
-                        <button type="button" class="btn btn-warning d-none" id="btnModificarClave" onclick="mostrarModal(this)">Cambiar contraseña</button>
+                        <button type="button" class="btn btn-warning d-none" id="btnModificarClave" onclick="mostrarModalClave(this)">Cambiar contraseña</button>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-
-
 
 
     <!-- Modals -->
-    <div class="modal fade" id="modalAnadirCliente" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="modalCliente" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="labelModalCliente" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5">Nuevo cliente</h1>
+                    <h1 id="labelModalCliente" class="modal-title fs-5">Cliente</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="consultasdb/cliente.php" method="POST">
-                    <input type="hidden" name="operacion" value="insertar">
+                    <input type="hidden" name="operacion">
+                    <input type="hidden" name="id_modificar">    
                     <div class="modal-body">
                         
                         <div class="form-group">    
@@ -133,9 +129,9 @@
                             <label>Correo electrónico</label>
                             <input type="email" name="email" class="form-control" required>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group cont_clave">
                             <label>Contraseña</label>
-                            <input type="password" name="clave" id="clave" class="form-control" required>
+                            <input type="password" name="clave" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label>Teléfono</label>
@@ -153,94 +149,48 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-success">Guardar</button>
+                        <button type="submit" class="btn btn-success" name="btn_enviar">Enviar</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="modalModificarCliente" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="modalEliminar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="labelModalEliminar" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5">Modificar cliente</h1>
+                    <h1 id="labelModalEliminar" class="modal-title fs-5">Eliminar cliente</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+
                 <form action="consultasdb/cliente.php" method="POST">
-                    <input type="hidden" name="operacion" value="modificar">
-                    <input type="hidden" id="idModificar" name="idModificar" value="0">    
                     <div class="modal-body">
-                        <div class="form-group">    
-                            <label>Nombre</label>
-                            <input type="text" name="nombre" class="form-control" required>
-                        </div>
-                        <div class="form-group">    
-                            <label>Apellido</label>
-                            <input type="text" name="apellido" class="form-control" required>
-                        </div>
-                        <div class="form-group">    
-                            <label>Correo electrónico</label>
-                            <input type="email" name="email" class="form-control" required>
-                        </div>
+                        <input type="hidden" name="operacion" value="eliminar">
+                        <input type="hidden" id="id_eliminar" name="id_eliminar">
                         <div class="form-group">
-                            <label>Teléfono</label>
-                            <input type="text" name="telefono" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Ciudad</label>
-                            <input type="text" name="ciudad" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label>Dirección</label>
-                            <input type="text" name="direccion" class="form-control">
+                            <label>¿Está seguro que desea eliminar el cliente seleccionado?<br>También se eliminarán sus mascotas.</label>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary">Modificar</button>
+                        <button type="submit" class="btn btn-danger">Eliminar cliente y mascotas</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="modalEliminarCliente" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5">Eliminar cliente</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-
-                    <form action="consultasdb/cliente.php" method="POST">
-                        <div class="modal-body">
-                            <input type="hidden" name="operacion" value="eliminar">
-                            <input type="hidden" id="idEliminar" name="idEliminar" value="0">
-                            <div class="form-group">
-                                <label>¿Está seguro que desea eliminar el cliente seleccionado?<br>También se eliminarán sus mascotas.</label>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-danger">Eliminar cliente y mascotas</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="modalModificarClave" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="modalModificarClave" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="labelModalClave" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5">Modificar contraseña</h1>
+                    <h1 id="labelModalClave" class="modal-title fs-5">Modificar contraseña</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="consultasdb/cliente.php" method="POST">
-                    <input type="hidden" name="operacion" value="modificarClave">
-                    <input type="hidden" id="idModificarClave" name="idModificar" value="0">
+                    <input type="hidden" name="operacion" value="modificar_clave">
+                    <input type="hidden" id="id_modificar_clave" name="id_modificar">
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Nueva contraseña</label>

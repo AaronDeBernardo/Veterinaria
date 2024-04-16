@@ -42,27 +42,15 @@ function mostrarModalAtencion(boton)
         modal.querySelector('[name=btn_enviar').textContent = 'Guardar';
         document.getElementById('labelModalAtencion').textContent = 'Nueva atención';
 
+        option = document.getElementById('select_mascota').getElementsByTagName('option');
+        for (i = 0; i < option.length; i++)
+            option[i].style.display = 'block';
+
         $('#select_mascota').trigger("chosen:updated");
         $('#select_servicio').trigger("chosen:updated");
         document.getElementById('select_mascota').dispatchEvent(new Event('change'));
 
-
-
-
-
-
-
-
-//habilitar todos los items de mascotas
-
-
-
-
-
-
-
-
-
+        
         var myModal = new bootstrap.Modal(modal, {});
         myModal.show();
     }
