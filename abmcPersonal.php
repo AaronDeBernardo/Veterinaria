@@ -51,7 +51,7 @@
                         </tbody>
                     </table>
 
-                    <div class="row colBotones" align="right">
+                    <div class="row colBotones">
                         <div class="col-12">
                             <button type="button" id="btnAnadirPers" class="btn btn-outline-success" onclick="mostrarModalPersonal(this)">
                                 Nuevo personal

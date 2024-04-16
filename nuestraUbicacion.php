@@ -25,48 +25,51 @@
 
             </div>
             <div class="col-12 col-md-4 bg-light rounded-5 pt-4 mt-2 flex-wrap border border-warning border-4 ">
-                <form class="row g-2" action="" method="post">
+                <form class="row g-2" action="https://formsubmit.co/0be7fe7fd9fcaaaf56ee408af67cb498" method="POST">
                     <h1 class="text-secondary border-bottom border-warning border-5">Dejanos tu consulta!</h1>
                     <div class="col-md-6">
-                        <input type="text" class="form-control" id="" placeholder="Nombre">
+                        <input type="text" class="form-control" name="Nombre" placeholder="Nombre">
                     </div>
                     <div class="col-md-6">
-                        <input type="text" class="form-control" id="" placeholder="Apellido">
+                        <input type="text" class="form-control" name="Apellido" placeholder="Apellido">
                     </div>
                     <div class="col-md-6">
-                        <input type="text" class="form-control" id="" placeholder="Ciudad">
+                        <input type="text" class="form-control" name="Ciudad" placeholder="Ciudad">
                     </div>
                     <div class="col-6">
-                        <input type="number" class="form-control" id="" placeholder="Codigo Postal">
+                        <input type="number" class="form-control" name="CodPostal" placeholder="Codigo Postal">
                     </div>
 
                     <div class="col-12">
-                        <input type="text" class="form-control" id="" placeholder="Dirección">
+                        <input type="text" class="form-control" name="Direccion" placeholder="Dirección">
                     </div>
                     <div class="col-12">
-                        <input type="email" class="form-control" id="" placeholder="Email">
+                        <input type="email" class="form-control" name="Email" placeholder="Email">
                     </div>
                     <div class="col-md-4">
-                        <input type="number" class="form-control" id="" placeholder="Cod. Area">
+                        <input type="number" class="form-control" name="CodArea" placeholder="Cod. Area">
                     </div>
                     <div class="col-md-8">
-                        <input type="number" class="form-control" id="" placeholder="Teléfono">
+                        <input type="number" class="form-control" name="Telefono" placeholder="Teléfono">
                     </div>
                     <div class="col-12">
-                        <select class="form-select" id="" aria-label="Floating label select example" placeholder="Seleccione el motivo">
-                            <option selected>Seleccione el motivo...</option>
-                            <option value="1">Cuidados Animales</option>
-                            <option value="2">Cuidados Medicinales</option>
-                            <option value="3">Cuidados Estéticos</option>
-                            <option value="4">Otros Servicios</option>
+                        <select class="form-select" name="Motivo" aria-label="Floating label select example" >
+                            <option selected disabled>Seleccione el motivo...</option>
+                            <option value="CuidadosAnimales">Cuidados Animales</option>
+                            <option value="CuidadosMedicinales">Cuidados Medicinales</option>
+                            <option value="CuidadosEsteticos">Cuidados Estéticos</option>
+                            <option value="OtrosServicios">Otros Servicios</option>
                         </select>
                     </div>
                     <div class="form">
-                        <textarea class="form-control" placeholder="Describa su consulta:" id=""></textarea>
+                        <textarea class="form-control" name="Problema" placeholder="Describa su consulta: " ></textarea>
                     </div>
+
                     <div class="d-grid gap-2 col-6 mx-auto">
                         <button type="submit" class="btn btn-warning mb-4 mt-2">Enviar Consulta</button>
                     </div>
+                    <input type="hidden" name="_next" value="http://localhost:8080">
+                    <input type="hidden" name="_captcha" value="false">
                 </form>
             </div>
         </div>

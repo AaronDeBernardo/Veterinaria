@@ -26,7 +26,7 @@ body{
 
 }
 
-#row2{
+.row2{
     margin:40px;
 }
 
@@ -61,6 +61,7 @@ body{
     font-size: 120px;
     color: rgb(224, 196, 119);
     text-shadow: 1px 1px 3px black;
+    text-align: center;
 }
 
 .textoEmpresa{

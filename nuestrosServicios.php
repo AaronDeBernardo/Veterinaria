@@ -37,11 +37,11 @@
                         <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal1">
                             QUIERO SABER MAS!
                         </button>
-                        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-scrollable">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Información</h1>
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel1">Información</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
@@ -77,82 +77,79 @@
                     <img src="Recursos/Servicios/cuidadosMedicinales.jpg" class="card-img-top rounded-top cardImage" alt="Cuidados Medicinales">
                     <div class="card-body">
                         <h5 class="card-title text-secondary border-bottom border-warning border-4">Cuidados Medicinales</h5>
-                        <p class="card-text">
-                            <p class="card-text">¡Tu mejor amigo esta en las mejores manos!</p>
-                            <p class="card-text">San Antón ofrece una atención integral con los más altos estándares de calidad médica, incluyendo:</p>
-                            <ul>
-                                <li>Rayos X</li>
-                                <li>Cirugias</li>
-                                <li>Vacunas</li>
-                                <li>Alimentacion</li>
-
-                            </ul>
-                            <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-                                    QUIERO SABER MAS!
-                            </button>
-                            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-scrollable">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Información</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p class="fw-bold">1. Rayos X:</p>
+                        <p class="card-text">¡Tu mejor amigo esta en las mejores manos!</p>
+                        <p class="card-text">San Antón ofrece una atención integral con los más altos estándares de calidad médica, incluyendo:</p>
+                        <ul>
+                            <li>Rayos X</li>
+                            <li>Cirugias</li>
+                            <li>Vacunas</li>
+                            <li>Alimentacion</li>
+                        </ul>
+                        <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                                QUIERO SABER MAS!
+                        </button>
+                        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel2">Información</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p class="fw-bold">1. Rayos X:</p>
+                                        <ul>
+                                            <li>
+                                            Diagnóstico preciso: Permite obtener imágenes detalladas del interior del cuerpo de tu mascota para diagnosticar problemas de salud como fracturas, enfermedades pulmonares o tumores.
+                                            </li>
+                                            <li>
+                                            Procedimientos seguros: Se utilizan técnicas seguras y de baja radiación para minimizar la exposición de tu mascota
+                                            </li>
+                                            <li>
+                                            Equipo moderno: Contamos con equipos de rayos X modernos y de alta calidad para obtener imágenes precisas.
+                                            </li>
+                                        </ul>
+                                        <p class="fw-bold">2. Cirugías:</p>
+                                        <ul>
+                                            <li>
+                                                Atención especializada: Ofrecemos una amplia gama de cirugías, desde procedimientos simples hasta complejos, por parte de un equipo de veterinarios altamente calificados.
+                                            </li>
+                                            <li>
+                                                Anestesia segura: Utilizamos protocolos de anestesia seguros y monitoreamos a tu mascota durante todo el procedimiento.   
+                                            </li>
+                                            <li>
+                                                Cuidado postoperatorio: Brindamos atención postoperatoria personalizada para que tu mascota se recupere de manera segura y confortable.
+                                            </li>
+                                        </ul>
+                                        <p class="fw-bold">3. Vacunas:</p>
                                             <ul>
                                                 <li>
-                                                Diagnóstico preciso: Permite obtener imágenes detalladas del interior del cuerpo de tu mascota para diagnosticar problemas de salud como fracturas, enfermedades pulmonares o tumores.
+                                                Prevención de enfermedades: Protegemos a tu mascota de enfermedades graves como la rabia, el moquillo y la parvovirosis mediante la vacunación.
                                                 </li>
                                                 <li>
-                                                Procedimientos seguros: Se utilizan técnicas seguras y de baja radiación para minimizar la exposición de tu mascota
+                                                Plan de vacunación personalizado: Creamos un plan de vacunación individualizado que se ajusta a la edad, raza y estilo de vida de tu mascota.
                                                 </li>
                                                 <li>
-                                                Equipo moderno: Contamos con equipos de rayos X modernos y de alta calidad para obtener imágenes precisas.
+                                                Asesoramiento experto: Te brindamos asesoramiento sobre las diferentes opciones de vacunas disponibles y respondemos a todas tus preguntas.  
                                                 </li>
                                             </ul>
-                                            <p class="fw-bold">2. Cirugías:</p>
+                                        <p class="fw-bold">4. Alimentación:</p>
                                             <ul>
                                                 <li>
-                                                    Atención especializada: Ofrecemos una amplia gama de cirugías, desde procedimientos simples hasta complejos, por parte de un equipo de veterinarios altamente calificados.
+                                                Nutrición adecuada: Te ayudamos a elegir la mejor dieta para tu mascota, considerando su edad, raza, actividad física y necesidades especiales.
                                                 </li>
                                                 <li>
-                                                    Anestesia segura: Utilizamos protocolos de anestesia seguros y monitoreamos a tu mascota durante todo el procedimiento.   
-                                                </li>
-                                                <li>
-                                                    Cuidado postoperatorio: Brindamos atención postoperatoria personalizada para que tu mascota se recupere de manera segura y confortable.
+                                                Asesoramiento personalizado: Te brindamos asesoramiento personalizado sobre la alimentación de tu mascota y te ayudamos a resolver cualquier problema que pueda tener.  
                                                 </li>
                                             </ul>
-                                            <p class="fw-bold">3. Vacunas:</p>
-                                                <ul>
-                                                    <li>
-                                                    Prevención de enfermedades: Protegemos a tu mascota de enfermedades graves como la rabia, el moquillo y la parvovirosis mediante la vacunación.
-                                                    </li>
-                                                    <li>
-                                                    Plan de vacunación personalizado: Creamos un plan de vacunación individualizado que se ajusta a la edad, raza y estilo de vida de tu mascota.
-                                                    </li>
-                                                    <li>
-                                                    Asesoramiento experto: Te brindamos asesoramiento sobre las diferentes opciones de vacunas disponibles y respondemos a todas tus preguntas.  
-                                                    </li>
-                                                </ul>
-                                            <p class="fw-bold">4. Alimentación:</p>
-                                                <ul>
-                                                    <li>
-                                                    Nutrición adecuada: Te ayudamos a elegir la mejor dieta para tu mascota, considerando su edad, raza, actividad física y necesidades especiales.
-                                                    </li>
-                                                    <li>
-                                                    Asesoramiento personalizado: Te brindamos asesoramiento personalizado sobre la alimentación de tu mascota y te ayudamos a resolver cualquier problema que pueda tener.  
-                                                    </li>
-                                                </ul>
-                                            <p class="fw-bold">¡En nuestra clínica veterinaria, nos comprometemos a brindar a tu mascota la mejor atención posible. Contamos con un equipo de profesionales altamente calificados y con la tecnología más avanzada para cuidar de la salud de tu amigo peludo.!</p>
+                                        <p class="fw-bold">¡En nuestra clínica veterinaria, nos comprometemos a brindar a tu mascota la mejor atención posible. Contamos con un equipo de profesionales altamente calificados y con la tecnología más avanzada para cuidar de la salud de tu amigo peludo.!</p>
 
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-warning" onclick="location.href='nuestraUbicacion.php'">Contactanos!</button>
-                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-warning" onclick="location.href='nuestraUbicacion.php'">Contactanos!</button>
                                     </div>
                                 </div>
-                            </div>                            
-                        </p>
+                            </div>
+                        </div>                            
                     </div>
                 </div>
             </div>
@@ -174,11 +171,11 @@
                         <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal3">
                                 QUIERO SABER MAS!
                         </button>
-                        <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-scrollable">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Información</h1>
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel3">Información</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
@@ -270,11 +267,11 @@
                         <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal4">
                                 QUIERO SABER MAS!
                         </button>
-                        <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel4" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-scrollable">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Dejanos tus datos!</h1>
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel4">Dejanos tus datos!</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">

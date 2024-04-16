@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nuestra Empresa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 
@@ -17,12 +18,12 @@
     <div class="container-fluid px-0">
         <div class="row" id="row1">
             <div class="col-12">
-                <h1 class="titulos" align="center">Nosotros</h1>
+                <h1 class="titulos">Nosotros</h1>
             </div>
         </div>
-        <div class="row" id="row2">
+        <div class="row row2" >
             <div class="col-12" >
-                <h1 class= "titulos" align="center" style="font-size: 50px;">¿Quienes Somos?</h1><br>
+                <h1 class= "titulos" style="font-size: 50px;">¿Quienes Somos?</h1><br>
                 <p class="textoEmpresa fs-4" >San Antón es una clínica veterinaria dedicada a brindar atención médica integral de la más alta calidad para sus mascotas.
                 Nuestro equipo de profesionales altamente calificados y experimentados está comprometido a ofrecer un servicio personalizado y compasivo a cada uno de nuestros clientes.</p>
             </div>
@@ -31,10 +32,10 @@
         
         <div class="row" id="row3">
             <div class="col-12">
-                <h1 class="titulos" align="center">Misión y Visión</h1>
+                <h1 class="titulos">Misión y Visión</h1>
             </div>  
         </div>
-        <div class="row" id="row2">
+        <div class="row row2" >
             <div class="col-12">
                 <p class="textoEmpresa">
                 En San Antón, nuestra misión es simple pero fundamental: proporcionar atención médica integral y de la más alta calidad para sus queridas mascotas. Nos impulsa un profundo respeto por el vínculo entre las personas y sus animales, y nos esforzamos por ser una extensión compasiva y confiable de ese vínculo.
@@ -50,7 +51,6 @@
                         <li>Convertirnos en un centro de referencia para la medicina veterinaria especializada y de vanguardia.</li>
                         <li>Ser un empleador de primer nivel que atraiga y retenga a los mejores profesionales veterinarios.</li>
                     </ul>    
-                </p>
                 <p class="textoEmpresa">Para alcanzar nuestra visión, nos comprometemos a:</p>
                     <ul class="textoEmpresa">
                         <li>Invertir en la formación continua de nuestro equipo de profesionales.</li>
