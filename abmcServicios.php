@@ -42,7 +42,7 @@
 <?php
     while($row = mysqli_fetch_array($resultados)){
         ?>
-                            <tr <?php echo "id=servicio_id:$row[id]" ?> onclick='getId(this)'>
+                            <tr <?php echo "id=servicio_id:$row[id]" ?> onclick='getId(this)' tabindex="0" onkeydown="if(event.key == 'Enter'){getId(this)}">
                                 <?php echo "<td>$row[nombre]</td>" ?>
                                 <?php echo "<td data-tipo_id=$row[tipo_servicio_id]>$row[tipo]" ?></td>
                                 <?php echo "<td>$row[precio]</td>"?>
@@ -85,17 +85,17 @@
                         <input type="hidden" name="id_modificar">    
                         <div class="modal-body">
                             <div class="form-group">    
-                                <label>Nombre</label>
-                                <input type="text" name="nombre" class="form-control" required>
+                                <label for="nombreServicio">Nombre</label>
+                                <input id="nombreServicio" type="text" name="nombre" class="form-control" required>
                             </div>
                             <div class="form-group">    
-                                <label>Precio</label>
-                                <input type="number" name="precio" class="form-control" step="0.01" min="0" required>
+                                <label for="precioServicio">Precio</label>
+                                <input type="number" name="precio" id="precioServicio" class="form-control" step="0.01" min="0" required>
                             </div>
 
                             <div class="form-group">    
-                                <label>Tipo de servicio</label>
-                                <select name="tipo_servicio_id" class="form-select" required>
+                                <label for="tipoServicio">Tipo de servicio</label>
+                                <select name="tipo_servicio_id" class="form-select" id="tipoServicio" required>
                                     <option value=""> -- Seleccione un tipo -- </option>
                                 <?php
                                     foreach ($tipos_servicios as $t){
@@ -133,7 +133,7 @@
                                 <input type="hidden" name="operacion" value="eliminar">
                                 <input type="hidden" id="id_eliminar" name="id_eliminar">
                                 <div class="form-group">
-                                    <label>¿Está seguro que desea eliminar el servicio seleccionado?</label>
+                                    <p>¿Está seguro que desea eliminar el servicio seleccionado?</p>
                                 </div>
                             </div>
                             <div class="modal-footer">

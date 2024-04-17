@@ -37,8 +37,8 @@
             <div class="col-12 col-md-4 col-lg-4 col-xl-4">
                 <form action="#" method="GET">
                     <div class="form-group" id="div-filtro">
-                        <label>Buscar cliente</label>
-                        <input type="search" name="filtro" class="form-control" <?php echo !empty($_GET['filtro']) ? "value=$_GET[filtro]" : "";?>>
+                        <label for="filtro">Buscar cliente</label>
+                        <input type="search" id="filtro" name="filtro" class="form-control" <?php echo !empty($_GET['filtro']) ? "value=$_GET[filtro]" : "";?>>
                         <small class="form-text text-muted">Presione enter para filtrar los clientes.</small>
                     </div>
                 </form>
@@ -53,7 +53,7 @@
                     echo "<a class='list-group-item list-group-item-action'>No se encontró ningún cliente</a>";
 ?>
                 </div>
-                <div class="colBotones" style="margin-top:25px;">
+                <div class="colBotones" style="margin-top:16px;">
                     <button type="button" class="btn btn-outline-success" id="btnAnadirCliente" onclick="mostrarModalCliente(this)">Nuevo cliente</button>
                     <button type="button" class="btn btn-outline-primary" id="btnModificarCliente" onclick="mostrarModalCliente(this)">Modificar</button>
                     <button type="button" class="btn btn-outline-danger" id="btnEliminarCliente" onclick="mostrarModalEliminar(this)">Baja</button>
@@ -118,32 +118,32 @@
                     <div class="modal-body">
                         
                         <div class="form-group">    
-                            <label>Nombre</label>
-                            <input type="text" name="nombre" class="form-control" required>
+                            <label for="nombreCliente">Nombre</label>
+                            <input type="text" name="nombre" class="form-control" id="nombreCliente" required>
                         </div>
                         <div class="form-group">    
-                            <label>Apellido</label>
-                            <input type="text" name="apellido" class="form-control" required>
+                            <label for="apellidoCliente">Apellido</label>
+                            <input type="text" name="apellido" class="form-control" id="apellidoCliente" required>
                         </div>
                         <div class="form-group">    
-                            <label>Correo electrónico</label>
-                            <input type="email" name="email" class="form-control" required>
+                            <label for="correoCliente">Correo electrónico</label>
+                            <input type="email" name="email" class="form-control" id="correoCliente" required>
                         </div>
                         <div class="form-group cont_clave">
-                            <label>Contraseña</label>
-                            <input type="password" name="clave" class="form-control" required>
+                            <label for="claveCliente">Contraseña</label>
+                            <input type="password" name="clave" class="form-control" id="claveCliente" required>
                         </div>
                         <div class="form-group">
-                            <label>Teléfono</label>
-                            <input type="text" name="telefono" class="form-control" required>
+                            <label for="telCliente">Teléfono</label>
+                            <input type="text" name="telefono" class="form-control" id="telCliente" required>
                         </div>
                         <div class="form-group">
-                            <label>Ciudad</label>
-                            <input type="text" name="ciudad" class="form-control">
+                            <label for="ciudadCliente">Ciudad</label>
+                            <input type="text" name="ciudad" class="form-control" id="ciudadCliente">
                         </div>
                         <div class="form-group">
-                            <label>Dirección</label>
-                            <input type="text" name="direccion" class="form-control">
+                            <label for="dirCliente">Dirección</label>
+                            <input type="text" name="direccion" class="form-control" id="dirCliente">
                         </div>
 
                     </div>
@@ -169,7 +169,7 @@
                         <input type="hidden" name="operacion" value="eliminar">
                         <input type="hidden" id="id_eliminar" name="id_eliminar">
                         <div class="form-group">
-                            <label>¿Está seguro que desea eliminar el cliente seleccionado?<br>También se eliminarán sus mascotas.</label>
+                            <p>¿Está seguro que desea eliminar el cliente seleccionado?<br>También se eliminarán sus mascotas.</p>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -193,8 +193,8 @@
                     <input type="hidden" id="id_modificar_clave" name="id_modificar">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>Nueva contraseña</label>
-                            <input type="password" name="clave" class="form-control" required>
+                            <label for="cambioClave">Nueva contraseña</label>
+                            <input type="password" name="clave" class="form-control" id="cambioClave" required>
                         </div>
                     </div>
                     <div class="modal-footer">

@@ -178,9 +178,9 @@ function borrarFiltros(){
 }
 
 
-function mostrarAtencion(fila)
+function mostrarAtencion()
 {
-    var atencion = fila.getElementsByTagName('td');
+    var atencion = document.getElementById('idAtencion:' + idSeleccionado).getElementsByTagName('td');
     var modal = document.getElementById('modalDatos');
  
     modal.querySelector('[name=fecha_hora]').value = atencion[0].textContent;

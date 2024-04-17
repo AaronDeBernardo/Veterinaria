@@ -65,7 +65,7 @@
 
                         <form action="#" method="GET" id="formFiltro" class="collapse bg-light rounded-5 pt-4 mt-2 flex-wrap border border-warning border-4" style="margin-bottom:20px">
                             <div class="form-group">
-                                <label>Mascota</label>
+                                <label for="select_mascota_filtro">Mascota</label>
                                 <select id="select_mascota_filtro" name="mascota_id" class="form-control chosen-select">
                                     <option selected value="todos"> -- Todas las mascotas -- </option>
                                     <?php
@@ -76,7 +76,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Dueño de la mascota</label>
+                                <label for="select_cliente_filtro">Dueño de la mascota</label>
                                 <select id="select_cliente_filtro" name="cliente_id" class="form-control chosen-select">
                                     <option selected value="todos"> -- Todos los clientes -- </option>
                                     <?php
@@ -87,10 +87,10 @@
                             </div>
                             
                             <div class="form-group">
-                                <label>Fecha desde</label>
-                                <input type="date" name="fecha_desde" class="form-control" <?php echo (isset($_GET['fecha_desde']) ? "value=$_GET[fecha_desde]" : "")?>>
-                                <label>Fecha hasta</label>
-                                <input type="date" name="fecha_hasta" class="form-control" <?php echo (isset($_GET['fecha_hasta']) ? "value=$_GET[fecha_hasta]" : "")?>>
+                                <label for="fecDesde">Fecha desde</label>
+                                <input id="fecDesde" type="date" name="fecha_desde" class="form-control" <?php echo (isset($_GET['fecha_desde']) ? "value=$_GET[fecha_desde]" : "")?>>
+                                <label for="fecHasta">Fecha hasta</label>
+                                <input id="fecHasta" type="date" name="fecha_hasta" class="form-control" <?php echo (isset($_GET['fecha_hasta']) ? "value=$_GET[fecha_hasta]" : "")?>>
                             </div>
 
                             <div style="text-align:center; margin-bottom:10px;">
@@ -108,16 +108,16 @@
                                 <th scope="col">Servicio</th>
                                 <th scope="col" class="d-none d-sm-table-cell">Personal</th>
                                 <th scope="col" class="d-none d-sm-table-cell">Título</th>
-                                <th style=display:none;></th>
-                                <th style=display:none;></th>
-                                <th style=display:none;></th>
+                                <th style=display:none;>Descripción</th>
+                                <th style=display:none;>Fecha y hora de salida</th>
+                                <th style=display:none;>Precio</th>
                             </tr>
                         </thead>
                         <tbody>
 
 <?php
                         foreach ($atenciones as $a){
-                            echo "<tr id=idAtencion:$a[id] onclick=getId(this) ondblclick=mostrarAtencion(this)>";
+                            echo "<tr id=idAtencion:$a[id] onclick=getId(this) ondblclick=mostrarAtencion() tabindex=0 onkeydown=if(event.key=='Enter'){getId(this)}>";
                                 echo "<td>$a[fecha_hora]</td>";
                                 echo "<td data-mascota_id=$a[mascota_id]>$a[mascota_nombre]</td>";
                                 echo "<td data-cliente_id=$a[cliente_id]>$a[duenio]</td>";
@@ -133,7 +133,11 @@
 
                         </tbody>
                     </table>
-                    <div class="colBotones" style="margin-top:25px;">
+
+                    <div style="display: inline-block;">
+                        <button type="button" class="btn btn-outline-secondary" id="btnVerAtencion" onclick="mostrarAtencion()">Ver atención</button>
+                    </div>
+                    <div class="colBotones">
                         <button type="button" class="btn btn-outline-success" id="btnAnadirAtencion" onclick="mostrarModalAtencion(this)">Nueva atención</button>
                         <button type="button" class="btn btn-outline-primary" id="btnModificarAtencion" onclick="mostrarModalAtencion(this)">Modificar</button>
                         <button type="button" class="btn btn-outline-danger" id="btnEliminarAtencion" onclick="mostrarModalEliminar(this)">Baja</button>
@@ -157,7 +161,7 @@
                         <div class="modal-body">
                             
                             <div class="form-group">
-                                <label>Dueño</label>
+                                <label for="select_cliente">Dueño</label>
                                 <select id="select_cliente" name="cliente_id" class="form-control chosen-select" required>
                                     <option disabled value=""> -- Selecciona un cliente -- </option>
                                     <?php
@@ -169,7 +173,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Mascota</label>
+                                <label for="select_mascota">Mascota</label>
                                 <select id="select_mascota" name="mascota_id" class="form-control chosen-select" required>
                                     <option disabled value="" data-cliente_id=""> -- Selecciona una mascota -- </option>
                                     <?php
@@ -181,7 +185,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Servicio</label>
+                                <label for="select_servicio">Servicio</label>
                                 <select id="select_servicio" name="servicio_id" class="form-control chosen-select" required>
                                     <option disabled value=""> -- Selecciona un servicio -- </option>
                                     <?php
@@ -193,17 +197,17 @@
                             </div>
 
                             <div class="form-group contenedor_dt">
-                                <label>Fecha y hora de salida</label>
-                                <input type="datetime-local" name="fecha_hora_salida" class="form-control">
+                                <label for="salidaModal">Fecha y hora de salida</label>
+                                <input type="datetime-local" name="fecha_hora_salida" class="form-control" id="salidaModal">
                             </div>
 
                             <div class="form-group">
-                                <label>Título</label>
-                                <input type="text" name="titulo" class="form-control" required>
+                                <label for="tituloModal">Título</label>
+                                <input type="text" name="titulo" class="form-control" id="tituloModal" required>
                             </div>
                             <div class="form-group">    
-                                <label>Descripcion</label>
-                                <textarea name="descripcion" rows="5" class="form-control"></textarea>
+                                <label for="descModal">Descripcion</label>
+                                <textarea name="descripcion" rows="5" class="form-control" id="descModal"></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -225,40 +229,40 @@
                     
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>Dueño</label>
-                            <input type="text" name="cliente" class="form-control" disabled>
+                            <label for="clienteMD">Dueño</label>
+                            <input type="text" name="cliente" class="form-control" id="clienteMD" disabled>
                         </div>
                         <div class="form-group">
-                            <label>Mascota</label>
-                            <input type="text" name="mascota" class="form-control" disabled>
+                            <label for="mascotaMD">Mascota</label>
+                            <input type="text" name="mascota" class="form-control" id="mascotaMD" disabled>
                         </div>
                         <div class="form-group">
-                            <label>Servicio</label>
-                            <input type="text" name="servicio" class="form-control" disabled>
+                            <label for="servicioMD">Servicio</label>
+                            <input type="text" name="servicio" class="form-control" id="servicioMD" disabled>
                         </div>
                         <div class="form-group">
-                            <label>Personal</label>
-                            <input type="text" name="personal" class="form-control" disabled>
+                            <label for="personalMD">Personal</label>
+                            <input type="text" name="personal" class="form-control" id="personalMD" disabled>
                         </div>
                         <div class="form-group">
-                            <label>Fecha y hora de atención</label>
-                            <input type="text" name="fecha_hora" class="form-control" disabled>
+                            <label for="ateMD">Fecha y hora de atención</label>
+                            <input type="text" name="fecha_hora" class="form-control" id="ateMD" disabled>
                         </div>
                         <div class="form-group contenedor_dt">
-                            <label>Fecha y hora de salida</label>
-                            <input type="text" name="fecha_hora_salida" class="form-control" disabled>
+                            <label for="salidaMD">Fecha y hora de salida</label>
+                            <input type="text" name="fecha_hora_salida" class="form-control" id="salidaMD" disabled>
                         </div>
                         <div class="form-group">
-                            <label>Precio</label>
-                            <input type="text" name="precio" class="form-control" disabled>
+                            <label for="precioMD">Precio</label>
+                            <input type="text" name="precio" class="form-control" id="precioMD" disabled>
                         </div>
                         <div class="form-group">
-                            <label>Título</label>
-                            <input type="text" name="titulo" class="form-control" disabled>
+                            <label for="tituloMD">Título</label>
+                            <input type="text" name="titulo" class="form-control" id="tituloMD" disabled>
                         </div>
                         <div class="form-group">    
-                            <label>Descripcion</label>
-                            <textarea name="descripcion" rows="5" class="form-control" disabled></textarea>
+                            <label for="descMD">Descripcion</label>
+                            <textarea name="descripcion" rows="5" class="form-control" id="descMD" disabled></textarea>
                         </div>
                     </div>
                 </div>
@@ -278,7 +282,7 @@
                             <input type="hidden" name="operacion" value="eliminar">
                             <input type="hidden" id="id_eliminar" name="id_eliminar" value="0">
                             <div class="form-group">
-                                <label>¿Está seguro que desea eliminar la atención seleccionada?</label>
+                                <p>¿Está seguro que desea eliminar la atención seleccionada?</p>
                             </div>
                         </div>
                         <div class="modal-footer">

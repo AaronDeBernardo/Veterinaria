@@ -52,9 +52,9 @@
 
                 <form action="#" method="GET" id="formFiltro" class="collapse bg-light rounded-5 pt-4 mt-2 flex-wrap border border-warning border-4" style="margin-bottom:20px">
                     <div class="form-group">
-                        <label>Mascota</label>
+                        <label for="select_mascota_filtro">Mascota</label>
                         <select id="select_mascota_filtro" name="mascota_id" class="form-control chosen-select">
-                            <option selected value="todos"> -- Todos las mascotas -- </option>
+                            <option selected value="todos"> -- Todas las mascotas -- </option>
                             <?php
                                 foreach ($mascotas as $m)
                                     echo "<option " . (isset($_GET['mascota_id']) && $_GET['mascota_id'] == $m['id'] ? "selected " : "") . "value=$m[id]>$m[nombre]</option>";
@@ -62,7 +62,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Dueño de la mascota</label>
+                        <label for="select_cliente_filtro">Dueño de la mascota</label>
                         <select id="select_cliente_filtro" name="cliente_id" class="form-control chosen-select">
                             <option selected value="todos"> -- Todos los clientes -- </option>
                             <?php
@@ -94,7 +94,7 @@
 <?php
     foreach ($mascotas as $m){
 ?>
-                            <?php echo "<tr id=idMascota:$m[id] onclick=getId(this)>"?>
+                            <?php echo "<tr id=idMascota:$m[id] onclick=getId(this) tabindex=0 onkeydown=if(event.key=='Enter'){getId(this)}>"?>
                                 <?php echo "<td data-cliente_id=$m[cliente_id]>$m[duenio]</td>" ?>
                                 <td><?php echo $m['nombre'] ?></td>
                                 <td><?php echo $m['raza'] ?></td>
@@ -105,7 +105,7 @@
                     </table>
                 </div>
 
-                <div class="colBotones" style="margin-top:25px;">
+                <div class="colBotones" style="margin-top:16px;">
                     <button type="button" class="btn btn-outline-success" id="btnAnadirMascota" onclick="mostrarModalMascota(this)">Nueva mascota</button>
                     <button type="button" class="btn btn-outline-primary" id="btnModificarMascota" onclick="mostrarModalMascota(this)">Modificar</button>
                     <button type="button" class="btn btn-outline-danger" id="btnEliminarMascota" onclick="mostrarModalEliminar(this)">Baja</button>
@@ -161,8 +161,8 @@
                     <div class="modal-body">
                         
                         <div class="form-group">
-                            <label>Dueño</label>
-                            <select name="cliente_id" class="form-select chosen-select" required>
+                            <label for="clienteModal">Dueño</label>
+                            <select name="cliente_id" class="form-select chosen-select" id="clienteModal" required>
                                 <option disabled value=""> -- Selecciona un cliente -- </option>
                             <?php
                                 foreach ($clientes as $c)
@@ -171,30 +171,30 @@
                             </select>
                         </div>
                         <div class="form-group">    
-                            <label>Nombre</label>
-                            <input type="text" name="nombre" class="form-control" required>
+                            <label for="nombreModal">Nombre</label>
+                            <input type="text" name="nombre" class="form-control" id="nombreModal" required>
                         </div>
                         <div class="form-group">    
-                            <label>Raza</label>
-                            <input type="text" name="raza" class="form-control" required>
+                            <label for="razaModal">Raza</label>
+                            <input type="text" name="raza" class="form-control" id="razaModal" required>
                         </div>
                         <div class="form-group">    
-                            <label>Color</label>
-                            <input type="text" name="color" class="form-control" required>
+                            <label for="colorModal">Color</label>
+                            <input type="text" name="color" class="form-control" id="colorModal" required>
                         </div>
                         <div class="form-group">    
-                            <label>Fecha de nacimiento</label>
-                            <input type="date" name="fecha_de_nac" class="form-control" required>
+                            <label for="nacModal">Fecha de nacimiento</label>
+                            <input type="date" name="fecha_de_nac" class="form-control" id="nacModal" required>
                         </div>
 
                         <div class="form-group" id="div_fecha_muerte">    
-                            <label>Fecha de muerte</label>
-                            <input type="date" name="fecha_muerte" class="form-control">
+                            <label for="muerteModal">Fecha de muerte</label>
+                            <input type="date" name="fecha_muerte" class="form-control" id="muerteModal">
                         </div>
 
                         <div class="form-group">
-                            <label id="label_foto_modal">Foto</label><br>
-                            <input type="file" name="foto" accept="image/png, image/jpeg, image/jpg"><br>
+                            <label for="fotoModal" id="label_foto_modal">Foto</label><br>
+                            <input type="file" name="foto" accept="image/png, image/jpeg, image/jpg" id="fotoModal"><br>
                             <small class="form-text text-muted">El tamaño máximo es de 16MB</small>
                         </div>
                     </div>
@@ -220,7 +220,7 @@
                         <input type="hidden" name="operacion" value="eliminar">
                         <input type="hidden" id="id_eliminar" name="id_eliminar" value="0">
                         <div class="form-group">
-                            <label>¿Está seguro que desea eliminar la mascota seleccionada?</label>
+                            <p>¿Está seguro que desea eliminar la mascota seleccionada?</p>
                         </div>
                     </div>
                     <div class="modal-footer">

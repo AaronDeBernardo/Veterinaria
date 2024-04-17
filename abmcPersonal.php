@@ -41,7 +41,7 @@
 <?php
     while($row = mysqli_fetch_array($personal)){
         ?>
-                            <tr id=<?php echo "personal_id:$row[id]"?> onclick='getId(this)'>
+                            <tr id=<?php echo "personal_id:$row[id]"?> onclick='getId(this)' tabindex="0" onkeydown="if(event.key == 'Enter'){getId(this)}">
                                 <td><?php echo $row['nombre'] ?></td>
                                 <td><?php echo $row['apellido'] ?></td>
                                 <td class="d-none d-sm-table-cell"><?php echo $row['email'] ?></td>
@@ -83,24 +83,24 @@
                         <input type="hidden" name="id_modificar">    
                         <div class="modal-body">
                                 <div class="form-group">    
-                                    <label>Nombre</label>
-                                    <input type="text" name="nombre" class="form-control" required>
+                                    <label for="nombrePersonal">Nombre</label>
+                                    <input type="text" name="nombre" class="form-control" id="nombrePersonal" required>
                                 </div>
                                 <div class="form-group">    
-                                    <label>Apellido</label>
-                                    <input type="text" name="apellido" class="form-control" required>
+                                    <label for="apellidoPersonal">Apellido</label>
+                                    <input type="text" name="apellido" class="form-control" id="apellidoPersonal" required>
                                 </div>
                                 <div class="form-group">    
-                                    <label>Correo electrónico</label>
-                                    <input type="email" name="email" class="form-control" required>
+                                    <label for="correoPersonal">Correo electrónico</label>
+                                    <input type="email" name="email" class="form-control" id="correoPersonal" required>
                                 </div>
                                 <div class="form-group div_clave">    
-                                    <label>Contraseña</label>
-                                    <input type="password" name="clave" class="form-control" required>
+                                    <label for="clavePersonal">Contraseña</label>
+                                    <input type="password" name="clave" class="form-control" id="clavePersonal" required>
                                 </div>
                                 <div class="form-group">    
-                                    <label>Rol</label>
-                                    <select name="rol_id" class="form-select" required>
+                                    <label for="selectRol">Rol</label>
+                                    <select name="rol_id" class="form-select" id="selectRol" required>
                                         <option disabled value=""> -- Seleccione un rol -- </option>
                                     <?php
                                         foreach ($roles as $r){
@@ -133,7 +133,7 @@
                             <input type="hidden" name="operacion" value="eliminar">
                             <input type="hidden" id="id_eliminar" name="id_eliminar" value="0">
                             <div class="form-group">
-                                <label>¿Está seguro que desea eliminar el personal seleccionado?</label>
+                                <p>¿Está seguro que desea eliminar el personal seleccionado?</p>
                             </div>
                         </div>
                         <div class="modal-footer">
