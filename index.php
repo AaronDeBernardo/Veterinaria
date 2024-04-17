@@ -43,21 +43,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Veterinaria San Antón</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <link rel="stylesheet" href="styles.css" type="text/css">
-        <link rel="stylesheet" href="stylesIndex.css" type="text/css">
-        <link rel="icon" href="Recursos/logoVeterinaria.png">
+        <link rel="stylesheet" href="styles/styles.css" type="text/css">
+        <link rel="stylesheet" href="styles/stylesIndex.css" type="text/css">
+        <link rel="icon" href="recursos/logoVeterinaria.png">
     </head>
 
     <body>
         
 <?php
-    include_once 'menuSuperior.php';
+    include_once 'snippets/menuSuperior.php';
 ?>
 
         <div class="container">
             <div class="row">
             <?php
-                $files = glob('Recursos/Publicidad/*.{jpg,png}', GLOB_BRACE);
+                $files = glob('recursos/publicidad/*.{jpg,png}', GLOB_BRACE);
                 if (count($files) > 0){
             ?>
 
@@ -66,7 +66,7 @@
                         <div class="carousel-inner">
                             <?php foreach ($files as $file){ ?>
                                 <div class="carousel-item active">
-                                    <img src=<?php echo $rutaInicio . $file ?> class="d-block w-100" alt="Publicidad Veterinaria">
+                                    <img src=<?php echo $rutaInicio . $file ?> class="d-block w-100" alt="publicidad Veterinaria">
                                 </div>
                             <?php } ?>
                         </div>
@@ -93,7 +93,7 @@
                     <button type="button" class="btn-close ms-4" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
 <?php } ?>                
-                    <form action="" method="POST">
+                    <form action="#" method="POST">
                         <h1 class="text-secondary border-bottom border-warning border-5">Iniciar Sesión</h1>
                         <div class="form-floating mb-3">
                             <input name="email" class="form-control ingreso" id="floatingInput" placeholder="Correo Electronico" required>
@@ -113,6 +113,6 @@
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-        <?php include_once 'footer.php';?> 
+        <?php include_once 'snippets/footer.php';?> 
     </body>
 </html>

@@ -8,7 +8,7 @@
     if(isset($_SESSION['rol']))
         $rol = $_SESSION['rol'];
     else{
-        header("Location: index.php");
+        header("Location:../index.php");
         die();
     }
     
@@ -18,7 +18,7 @@
     }
 ?>
 
-<link rel="stylesheet" href="stylesMenuLateral.css">
+<link rel="stylesheet" href="styles/stylesMenuLateral.css">
 
 <div class="col-12 col-md-4 col-lg-3 col-xl-2 ">
     <div class="d-flex d-md-none">

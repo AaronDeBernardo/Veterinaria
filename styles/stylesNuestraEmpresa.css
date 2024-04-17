@@ -1,10 +1,7 @@
 body{
-    background-image: url(Recursos/fondoOficial.jpg);
+    background-image: url(../recursos/fondoOficial.jpg);
     background-size: contain;
-    
-
 }
-
 
 #row1{
     margin: 0;
@@ -16,14 +13,11 @@ body{
     width: 100%;
     height: 90vh;
     min-height: 670px;
-    background-image: url(Recursos/nuestraEmpresa/medica.jpg);
-    
+    background-image: url(../recursos/nuestraEmpresa/medica.jpg);
     background-size: cover;
     background-position: 50%;
-
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
-
 }
 
 .row2{
@@ -40,16 +34,13 @@ body{
     width: 100%;
     height: 90vh;
     min-height: 670px;
-    background-image: url(Recursos/nuestraEmpresa/veterinario.jpg);
+    background-image: url(../recursos/nuestraEmpresa/veterinario.jpg);
     background-size: cover;
     background-position: 50%;
-    
     border-top-left-radius: 50px;
     border-top-right-radius: 50px;
-    
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
-
 }
 
 .titulos{    

@@ -24,16 +24,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Veterinaria San Antón</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css" type="text/css">
-    <link rel="stylesheet" href="stylesClientes.css" type="text/css">
-    <link rel="icon" href="Recursos/logoVeterinaria.png">
+    <link rel="stylesheet" href="styles/styles.css" type="text/css">
+    <link rel="stylesheet" href="styles/stylesClientes.css" type="text/css">
+    <link rel="icon" href="recursos/logoVeterinaria.png">
 </head>
 <body>
-    <?php include_once 'menuSuperior.php' ?>    
+    <?php include_once 'snippets/menuSuperior.php' ?>    
 
     <div class="container-fluid">
         <div class="row">
-            <?php  $_SESSION['item'] = 'clientes'; include_once 'menuLateral.php'; ?>
+            <?php  $_SESSION['item'] = 'clientes'; include_once 'snippets/menuLateral.php'; ?>
             <div class="col-12 col-md-4 col-lg-4 col-xl-4">
                 <form action="#" method="GET">
                     <div class="form-group" id="div-filtro">
@@ -206,10 +206,9 @@
         </div>
     </div>
 
-
-    <script src="./scriptClientes.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-    <?php include_once 'mostrarAlerta.php'?>
+    <script src="scripts/scriptClientes.js"></script>
+    <?php include_once 'snippets/mostrarAlerta.php'?>
 </body>
 </html>

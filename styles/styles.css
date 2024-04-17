@@ -1,7 +1,7 @@
 body{
     margin: 0;
     padding: 0;
-    background-image: url(Recursos/fondoOficial.jpg);
+    background-image: url(../recursos/fondoOficial.jpg);
     background-repeat: repeat-y;
     background-size: cover;
 }

@@ -20,19 +20,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css" type="text/css">
-    <link rel="icon" href="Recursos/logoVeterinaria.png">
+    <link rel="stylesheet" href="styles/styles.css" type="text/css">
+    <link rel="icon" href="recursos/logoVeterinaria.png">
     <title>Mis Datos</title>
 </head>
 <body>
     <?php
-        include_once 'menuSuperior.php';
+        include_once 'snippets/menuSuperior.php';
     ?>
     <div class="container-fluid">
         <div class="row">
             <?php  $_SESSION['item'] = 'misDatos';?>
             
-            <?php include_once 'menuLateral.php';
+            <?php include_once 'snippets/menuLateral.php';
             $row = mysqli_fetch_array($datosPersonales); ?>
             <div class="col-md-1 col-lg-1 col-xl-2 d-none d-md-block"></div>
             <div class="col-12 col-md-5 col-lg-6 col-xl-6 bg-light rounded-5  pt-4 mt-2 flex-wrap border border-warning border-4 "> <!--ACOMODAR MARGIN , CUANDO SE COLOCA EL MISMO SE ENDIABLA LA PAGINA -->
@@ -147,7 +147,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="scriptMisDatos.js"></script>
-    <?php include_once 'mostrarAlerta.php'?>
+    <script src="scripts/scriptMisDatos.js"></script>
+    <?php include_once 'snippets/mostrarAlerta.php'?>
 </body>
 </html>
