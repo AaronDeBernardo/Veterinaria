@@ -13,6 +13,7 @@
         if (isset($_POST['email']) && isset($_POST['telefono']) && isset($_POST['ciudad']) && isset($_POST['direccion']))
         {
             $query = "UPDATE clientes SET email = '$_POST[email]', telefono = '$_POST[telefono]', ciudad = '$_POST[ciudad]', direccion = '$_POST[direccion]' WHERE id = '$_SESSION[cliente_id]';";
+            $_SESSION['alerta'] = 'Datos guardados con éxito';
         }
     }
     elseif ($op == 'modificarClave')
@@ -28,13 +29,13 @@
                 if ($claveActual == md5($_POST['claveActual']))
                 {
                     $query = "UPDATE clientes SET clave = '" . md5($_POST['claveNueva']) . "' WHERE id = '$_SESSION[cliente_id]'";
+                    $_SESSION['alerta'] = 'Su clave ha sido modificada';
                 }
                 else
                 {
-                    echo "<script>
-                    alert('Clave actual erronea!');
-                    window.location.href='" . $destino . "';
-                    </script>";
+                    $_SESSION['alerta'] = 'Clave actual errónea!';
+                    $_SESSION['icono_alerta'] = 'error';
+                    header('Location:' . $destino);
                     die();
                 }
             }

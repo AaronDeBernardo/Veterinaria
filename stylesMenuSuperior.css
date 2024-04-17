@@ -38,3 +38,7 @@
     border-radius: 50px;
     cursor: pointer;
 }
+
+.nav-link{
+    margin-right: 35px;
+}

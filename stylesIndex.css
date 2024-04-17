@@ -1,0 +1,22 @@
+.carousel-inner{
+    text-align: center;
+    margin-top: 20px;
+    margin-right: 20px;
+    padding: 0 5px;
+}
+
+form .ingreso{
+    position: relative;
+    border-bottom: 2px solid silver;
+    margin: 30px 0;
+}
+
+.ingreso input{
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+}

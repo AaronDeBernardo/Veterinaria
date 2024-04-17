@@ -5,10 +5,10 @@ function mostrarFoto(mascota)
     if (idSeleccionado){
         document.getElementById('list-mascota:' + idSeleccionado).classList.remove('show');
         document.getElementById('list-mascota:' + idSeleccionado).classList.remove('active');
-        document.getElementById('mascota_id:' + idSeleccionado).classList.remove("table-secondary");
+        document.getElementById('mascota_id:' + idSeleccionado).classList.remove('fila-seleccionada');
     }
 
-    document.getElementById(mascota.id).classList.add("table-secondary");
+    document.getElementById(mascota.id).classList.add('fila-seleccionada');
     idSeleccionado = mascota.id.replace('mascota_id:', '');
     document.getElementById('list-mascota:' + idSeleccionado).classList.add('show');
     document.getElementById('list-mascota:' + idSeleccionado).classList.add('active');

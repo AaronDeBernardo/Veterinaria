@@ -49,7 +49,7 @@
         <link rel="stylesheet" href="plugins/chosen/chosen.css">
         <link rel="icon" href="Recursos/logoVeterinaria.png">
     </head>
-    <body id="body-secretaria">
+    <body>
         <?php include_once 'menuSuperior.php' ?>    
     
         <div class="container-fluid">
@@ -295,5 +295,6 @@
         <script src="plugins/jquery/jquery-3.7.1.min.js"></script>
         <script src="plugins/chosen/chosen.jquery.js"></script>
         <script src="./scriptAtenciones.js"></script>
+        <?php include_once 'mostrarAlerta.php'?>
     </body>
 </html>

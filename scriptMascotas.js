@@ -5,10 +5,10 @@ function getId(fila)
     if (idSeleccionado){
         document.getElementById('list-mascota:' + idSeleccionado).classList.remove('show');
         document.getElementById('list-mascota:' + idSeleccionado).classList.remove('active');
-        document.getElementById('idMascota:' + idSeleccionado).classList.remove("table-secondary");
+        document.getElementById('idMascota:' + idSeleccionado).classList.remove('fila-seleccionada');
     }
     
-    document.getElementById(fila.id).classList.add("table-secondary");
+    document.getElementById(fila.id).classList.add('fila-seleccionada');
 
     idSeleccionado = fila.id.replace('idMascota:', '');
 

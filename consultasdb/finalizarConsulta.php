@@ -4,15 +4,13 @@
     elseif (!empty($query))
         $resultados = consultaSQL($query);
     
+    $_SESSION['icono_alerta'] = 'success';
+    
     if (empty($resultados)){
-        echo "<script>
-        alert('Error al realizar la operación solicitada');
-        window.location.href='" . $destino . "';
-        </script>";
-        die();
+        $_SESSION['alerta'] = 'Error al ejecutar la operación solicitada';
+        $_SESSION['icono_alerta'] = 'error';
     }
-    else{
-        header('Location: ' . $destino);
-        die();
-    }
+
+    header('Location: ' . $destino);
+    die();
 ?>

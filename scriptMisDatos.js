@@ -8,12 +8,8 @@ function validarClave()
                 title: "Oops...",
                 text: "Las claves nuevas no coinciden!",     
                 confirmButtonColor: "#f0ad4e",           
-              });
-              
-
+            });
             return false
-           
         }
-
     }
 }

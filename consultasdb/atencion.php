@@ -25,8 +25,10 @@
 
     if ($op == 'eliminar')
     {
-        if (!empty($_POST['id_eliminar']))
+        if (!empty($_POST['id_eliminar'])){
             $query = "DELETE FROM atenciones WHERE id = '$_POST[id_eliminar]'";
+            $_SESSION['alerta'] = 'Atención eliminada con éxito';
+        }
     }
     elseif (isset($_POST['mascota_id']) && isset($_POST['servicio_id']) && isset($_POST['titulo']))
     {
@@ -54,6 +56,7 @@
                     VALUES ('$_POST[mascota_id]', '$_POST[servicio_id]', '$_SESSION[personal_id]', '$fecha_hora_atencion', NULLIF('$_POST[fecha_hora_salida]',''), 
                     '$_POST[titulo]', NULLIF('$_POST[descripcion]',''), $dias * (SELECT precio FROM servicios WHERE id = '$_POST[servicio_id]'));";
                 $multiQuery = true;
+                $_SESSION['alerta'] = 'Atención guardada con éxito';
             }
             elseif ($op == 'modificar' && !empty($_POST['id_modificar']))
             {
@@ -68,6 +71,7 @@
                     titulo = '$_POST[titulo]', descripcion = NULLIF('$_POST[descripcion]',''), precio = $dias * (SELECT precio FROM servicios WHERE id = '$_POST[servicio_id]') 
                     WHERE id = '$_POST[id_modificar]';";
                 $multiQuery = true;
+                $_SESSION['alerta'] = 'Atención modificada con éxito';
             }
         }
     }

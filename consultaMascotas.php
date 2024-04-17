@@ -39,7 +39,7 @@
     <link rel="stylesheet" href="stylesMascotas.css" type="text/css">
     <link rel="icon" href="Recursos/logoVeterinaria.png">
 </head>
-<body id="body-secretaria">
+<body>
     <?php include_once 'menuSuperior.php' ?>    
 
     <div class="container-fluid">

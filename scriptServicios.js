@@ -3,9 +3,9 @@ var idSeleccionado;
 function getId(servicio)
 {
     if(idSeleccionado)
-        document.getElementById('servicio_id:' + idSeleccionado).classList.remove("table-secondary");
+        document.getElementById('servicio_id:' + idSeleccionado).classList.remove('fila-seleccionada');
 
-    document.getElementById(servicio.id).classList.add("table-secondary");
+    document.getElementById(servicio.id).classList.add('fila-seleccionada');
     idSeleccionado = servicio.id.replace('servicio_id:', '');
 }
 
