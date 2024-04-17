@@ -24,12 +24,13 @@
     <body>
         <?php include_once 'snippets/menuSuperior.php' ?>    
     
-        <div class="container-fluid">
+        <div class="container-fluid p-0">
             <div class="row">
                 <?php  $_SESSION['item'] = 'personal'; include_once 'snippets/menuLateral.php'; ?>
-                <div class="col-12 col-md-8 col-lg-9 col-xl-10">
+                
+                <div class="col-12 col-md-5 col-lg-8 mt-3 ">
                     <table class="table">
-                        <thead>
+                        <thead class="border-3 border-warning">
                             <tr>
                                 <th>Nombre</th>
                                 <th>Apellido</th>
@@ -37,7 +38,7 @@
                                 <th>Rol</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="border-3 border-warning">
 <?php
     while($row = mysqli_fetch_array($personal)){
         ?>

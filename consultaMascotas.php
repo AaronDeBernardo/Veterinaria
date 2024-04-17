@@ -42,7 +42,7 @@
 <body>
     <?php include_once 'snippets/menuSuperior.php' ?>    
 
-    <div class="container-fluid">
+    <div class="container-fluid p-0'">
         <div class="row">
             <?php $_SESSION['item'] = 'mascotas'; include_once 'snippets/menuLateral.php'; ?>
             <div class="col-12 col-md-4 col-lg-5 col-xl-4">
@@ -64,7 +64,7 @@
 
                 <div id="div_tabla">
                     <table class="table">
-                        <thead>
+                        <thead class="border-3 border-warning">
                             <tr>
                                 <th>Nombre</th>
                                 <th>Raza</th>
@@ -74,7 +74,7 @@
                                     echo "<th>Fecha de muerte</th>"?>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="border-3 border-warning">
 <?php
     foreach ($mascotas as $m){
 ?>
@@ -92,7 +92,7 @@
                 </div>
             </div>
 
-            <div class="col-12 col-md-4 col-lg-4 col-xl-6">
+            <div class="col-12 col-md-4 col-lg-4 col-xl-5">
                 <div id="div-separacion">&nbsp;</div>
                 <div class="tab-content" id="nav-tabContent">
                 <?php

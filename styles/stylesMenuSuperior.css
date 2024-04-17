@@ -21,7 +21,8 @@
     text-decoration-color: #ff9800;
     text-decoration-thickness: 3px;
     font-style:oblique;
-    font-size: 20px;
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .seccionesNavegacion:hover{
@@ -41,4 +42,31 @@
 
 .nav-link{
     margin-right: 35px;
+}
+
+
+.dropdown-toggle {
+
+    font-weight: 700;
+    color: black;
+    padding: 9px 25px;
+    background-color: #ff9800;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.dropdown-toggle:hover {
+  background-color: #ff9900d2;
+}
+
+.dropdown-menu {
+    width:fit-content;
+}
+.dropdown-item {
+max-width: 100%;
+}
+
+.dropdown-item:hover{
+    background-color: #ff9900d2;
 }

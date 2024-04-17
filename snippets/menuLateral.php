@@ -17,16 +17,16 @@
 
 <link rel="stylesheet" href="styles/stylesMenuLateral.css">
 
-<div class="col-12 col-md-4 col-lg-3 col-xl-2 ">
+<div class="col-12 col-md-4 col-lg-3 col-xl-2 mb-3 me-5">
     <div class="d-flex d-md-none">
         <button class="btnSidebar" type="button" onclick="abrirSidebar()">
-            EXPANDIR MENÚ (poner imagen)
+            SECCIONES
         </button>
     </div>
 
     <div id="sidebar" class="sidebar d-none d-md-block">
         <button class="btnSidebar d-md-none" type="button" onclick="cerrarSidebar()">
-            CERRAR MENÚ (imagen)
+            SECCIONES
         </button>
 
             
@@ -36,6 +36,7 @@
         <a href="abmcAtenciones.php" <?php echo $item == 'atenciones' ? 'id = itemSeleccionado' : null ?>>Atenciones</a>
         <a href="abmcMascotas.php" <?php echo $item == 'mascotas' ? 'id = itemSeleccionado' : null ?>>Mascotas</a>
         <a href="abmcClientes.php" <?php echo $item == 'clientes' ? 'id = itemSeleccionado' : null ?>>Clientes</a>
+
 <?php }
     
     if($rol == 'admin'){

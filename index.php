@@ -11,7 +11,7 @@
     include_once 'consultasdb/connection.php';
     
     if (isset($_POST['email']) && isset($_POST['password'])){
-        $query = "SELECT personal.id, roles.nombre, roles.id FROM personal INNER JOIN roles ON personal.rol_id = roles.id WHERE email = '$_POST[email]' AND clave = '" . md5($_POST['password']) . "'";      
+        $query = "SELECT personal.id, roles.nombre, roles.id, personal.nombre, personal.apellido FROM personal INNER JOIN roles ON personal.rol_id = roles.id WHERE email = '$_POST[email]' AND clave = '" . md5($_POST['password']) . "'";      
         $resultados = consultaSQL($query);
         
         if (mysqli_num_rows($resultados) != 0){
@@ -19,17 +19,21 @@
             $_SESSION['personal_id'] = $aux[0];
             $_SESSION['rol'] = $aux[1];
             $_SESSION['rol_id'] = $aux[2];
+            $_SESSION['nombre'] = $aux[3];
+            $_SESSION['apellido'] = $aux[4];
             header('Location: abmcAtenciones.php');
             die();
         }
         
-        $query = "SELECT id FROM clientes WHERE email = '$_POST[email]' AND clave = '" . md5($_POST['password']) . "'";
+        $query = "SELECT id, nombre, apellido FROM clientes WHERE email = '$_POST[email]' AND clave = '" . md5($_POST['password']) . "'";
         $resultados = consultaSQL($query);
         $aux = mysqli_fetch_array($resultados);
 
         if (!empty($aux[0])){
             $_SESSION['cliente_id'] = $aux[0];
             $_SESSION['rol'] = 'cliente';
+            $_SESSION['nombre'] = $aux[1];
+            $_SESSION['apellido'] = $aux[2];
             header('Location: abmcDatos.php');
             die();
         }
@@ -82,9 +86,7 @@
 
                 </div>
                 <?php } ?>
-                <div class="col-lg-1 d-none d-md-block">
-
-                </div>
+                <div class="col-lg-1 d-none d-md-block"></div>
                 <div class="col-12 col-lg-4 bg-light rounded-5 pt-4 mb-5 mt-5 flex-wrap border border-warning border-4 ">
 <?php
     if (isset($_POST['email'])){
@@ -103,7 +105,7 @@
                             <input name="password" type="password" class="form-control ingreso" id="floatingPassword" placeholder="Password" required>
                             <label for="floatingPassword">Contraseña</label>
                         </div>
-                        <p><a href="#" class="link-secondary link-offset-2 link-underline-opacity-25 mb-2 link-underline-opacity-100-hover reestablecer">¿Olvidó su contraseña?</a></p>
+                        <p><a href="#" class="text-black link-offset-2 mb-2 link-underline-opacity-100-hover reestablecer">¿Olvidó su contraseña?</a></p>
                         <div class="d-grid gap-2 col-6 mx-auto">
                             <button class="btn btn-warning mb-4 mt-2" type="submit">Iniciar Sesión</button>
                         </div>

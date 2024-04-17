@@ -13,7 +13,8 @@ body{
     font-style: italic;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: rgb(224, 196, 119);
-    text-shadow: 1px 1px 3px black;
+    text-shadow: 1px 1px 10px black;
+    filter: brightness(0.95);
 }
 
 .card-body h5{

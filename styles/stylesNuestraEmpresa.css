@@ -1,5 +1,6 @@
 body{
     background-image: url(../recursos/fondoOficial.jpg);
+
     background-size: contain;
 }
 
@@ -14,6 +15,7 @@ body{
     height: 90vh;
     min-height: 670px;
     background-image: url(../recursos/nuestraEmpresa/medica.jpg);
+    filter: brightness(0.95);
     background-size: cover;
     background-position: 50%;
     border-bottom-left-radius: 50px;
@@ -41,6 +43,7 @@ body{
     border-top-right-radius: 50px;
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
+    filter: brightness(0.95);
 }
 
 .titulos{    
@@ -50,9 +53,10 @@ body{
     padding: 0;
     font-weight: 600;
     font-size: 120px;
-    color: rgb(224, 196, 119);
-    text-shadow: 1px 1px 3px black;
+    color: rgb(225, 187, 80);
+    text-shadow: 1px 1px 10px black;
     text-align: center;
+    filter: brightness(0.95);
 }
 
 .textoEmpresa{

@@ -28,32 +28,41 @@
                 <form class="row g-2" action="https://formsubmit.co/0be7fe7fd9fcaaaf56ee408af67cb498" method="POST">
                     <h1 class="text-secondary border-bottom border-warning border-5">Dejanos tu consulta!</h1>
                     <div class="col-md-6">
-                        <input type="text" class="form-control" name="Nombre" placeholder="Nombre" title="Nombre">
+                        <label for="Nombre">Nombre</label>
+                        <input type="text" class="form-control" name="Nombre" id="Nombre" >
                     </div>
                     <div class="col-md-6">
-                        <input type="text" class="form-control" name="Apellido" placeholder="Apellido" title="Apellido">
+                        <label for="Apellido">Apellido</label>
+                        <input type="text" class="form-control" name="Apellido" id="Apellido" >
                     </div>
                     <div class="col-md-6">
-                        <input type="text" class="form-control" name="Ciudad" placeholder="Ciudad" title="Ciudad">
+                        <label for="Ciudad">Ciudad</label>
+                        <input type="text" class="form-control" name="Ciudad" id="Ciudad" >
                     </div>
                     <div class="col-6">
-                        <input type="number" class="form-control" name="CodPostal" placeholder="Código Postal" title="Código postal">
+                        <label for="Codigo Postal">Codigo Postal</label>
+                        <input type="number" class="form-control" name="CodPostal" id="Codigo Postal" >
                     </div>
 
                     <div class="col-12">
-                        <input type="text" class="form-control" name="Direccion" placeholder="Dirección" title="Dirección">
+                        <label for="Direccion">Dirección</label>
+                        <input type="text" class="form-control" name="Direccion" id="Direccion">
                     </div>
                     <div class="col-12">
-                        <input type="email" class="form-control" name="Email" placeholder="Email" title="Email">
+                        <label for="Email">Email</label>
+                        <input type="email" class="form-control" name="Email" id="Email" >
                     </div>
                     <div class="col-md-4">
-                        <input type="number" class="form-control" name="CodArea" placeholder="Cód. Área" title="Código de área">
+                        <label for="area">Cod. Área</label>
+                        <input type="number" class="form-control" name="CodArea" id="area" >
                     </div>
                     <div class="col-md-8">
-                        <input type="number" class="form-control" name="Telefono" placeholder="Teléfono" title="Teléfono">
+                        <label for="cel">Teléfono</label>
+                        <input type="number" class="form-control" name="Telefono" id="cel" >
                     </div>
                     <div class="col-12">
-                        <select class="form-select" name="Motivo" aria-label="Floating label select example" title="motivo">
+                        <label for="motivo">Motivo</label>
+                        <select class="form-select" name="Motivo" id="motivo" aria-label="Floating label select example" >
                             <option selected disabled>Seleccione el motivo...</option>
                             <option value="CuidadosAnimales">Cuidados Animales</option>
                             <option value="CuidadosMedicinales">Cuidados Medicinales</option>
@@ -62,7 +71,8 @@
                         </select>
                     </div>
                     <div class="form">
-                        <textarea class="form-control" name="Problema" placeholder="Describa su consulta: " title="Describa su consulta: "></textarea>
+                        <label for="consulta">Consulta</label>
+                        <textarea class="form-control" name="Problema" id="consulta" title="Describa su consulta: "></textarea>
                     </div>
 
                     <div class="d-grid gap-2 col-6 mx-auto">

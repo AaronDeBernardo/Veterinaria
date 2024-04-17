@@ -23,7 +23,7 @@
         </div>
         <div class="row row2" >
             <div class="col-12" >
-                <h1 class= "titulos" style="font-size: 50px;">¿Quienes Somos?</h1><br>
+                <h1 class= "titulos" style="font-size: 50px; filter: brightness(0.95);">¿Quienes Somos?</h1><br>
                 <p class="textoEmpresa fs-4" >San Antón es una clínica veterinaria dedicada a brindar atención médica integral de la más alta calidad para sus mascotas.
                 Nuestro equipo de profesionales altamente calificados y experimentados está comprometido a ofrecer un servicio personalizado y compasivo a cada uno de nuestros clientes.</p>
             </div>

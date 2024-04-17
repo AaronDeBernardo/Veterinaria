@@ -52,11 +52,11 @@
     <body>
         <?php include_once 'snippets/menuSuperior.php' ?>    
     
-        <div class="container-fluid">
+        <div class="container-fluid p-0">
             <div class="row">
                 <?php  $_SESSION['item'] = 'atenciones'; include_once 'snippets/menuLateral.php'; ?>
                 
-                <div class="col-12 col-md-8 col-lg-9 col-xl-10">
+                <div class="col-12 col-md-7 col-lg-8 col-xl-9 mt-3">
                     <div class="col-12 col-md-6 col-lg-4 col-xl-4">
                         <div>
                             <button type="button" class="btn btn-secondary" style="margin-bottom:10px" data-bs-toggle="collapse" data-bs-target="#formFiltro">Filtrar</button>
@@ -100,7 +100,7 @@
                     </div>
 
                     <table class="table">
-                        <thead>
+                        <thead class="border-3 border-warning">
                             <tr>
                                 <th scope="col">Fecha y hora</th>
                                 <th scope="col">Mascota</th>
@@ -113,7 +113,7 @@
                                 <th style=display:none;>Precio</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="border-3 border-warning">
 
 <?php
                         foreach ($atenciones as $a){

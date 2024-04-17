@@ -34,7 +34,7 @@
                             <li>Desparasitación interna y externa</li>
                             <li>Asesoramiento sobre alimentación</li>
                         </ul>
-                        <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal1">
                             QUIERO SABER MAS!
                         </button>
                         <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
@@ -85,7 +85,7 @@
                             <li>Vacunas</li>
                             <li>Alimentacion</li>
                         </ul>
-                        <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal2">
                                 QUIERO SABER MAS!
                         </button>
                         <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
@@ -168,7 +168,7 @@
                             <li>Cepillado corporal</li>
                             <li>Corte de uñas</li>
                         </ul>
-                        <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal3">
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal3">
                                 QUIERO SABER MAS!
                         </button>
                         <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
@@ -264,7 +264,7 @@
                             <li>Viajes largos</li>
                             <li>Hospitalización</li>
                         </ul>
-                        <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal4">
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal4">
                                 QUIERO SABER MAS!
                         </button>
                         <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel4" aria-hidden="true">

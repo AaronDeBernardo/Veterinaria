@@ -28,7 +28,7 @@
     <?php
         include_once 'snippets/menuSuperior.php';
     ?>
-    <div class="container-fluid">
+    <div class="container-fluid p-0">
         <div class="row">
             <?php  $_SESSION['item'] = 'misDatos';?>
             

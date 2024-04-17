@@ -25,12 +25,13 @@
     <body>
         <?php include_once 'snippets/menuSuperior.php' ?>    
     
-        <div class="container-fluid">
+        <div class="container-fluid p-0">
             <div class="row">
                 <?php  $_SESSION['item'] = 'servicios'; include_once 'snippets/menuLateral.php'; ?>
-                <div class="col-12 col-md-8 col-lg-9 col-xl-10">
+                
+                <div class="col-12 col-md-6 col-lg-8  mt-3">
                     <table class="table">
-                        <thead>
+                        <thead class="border-3 border-warning">
                             <tr>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Tipo</th>
@@ -38,7 +39,7 @@
                                 <th scope="col">Rango de fechas</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="border-3 border-warning">
 <?php
     while($row = mysqli_fetch_array($resultados)){
         ?>

@@ -28,7 +28,8 @@
     width: 100%;
     font-size: 20px;
     cursor: pointer;
-    background-color: #111;
+    background: rgb(101,113,111);
+    background: linear-gradient(180deg, rgba(101,113,111,1) 36%, rgba(198,195,180,1) 100%);
     color: white;
     padding: 10px 15px;
     border: none;
