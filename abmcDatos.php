@@ -61,8 +61,8 @@
                         <input type="email" class="form-control" id="mail" placeholder="Email" value="<?php echo $row['email'] ?>"disabled>
                     </div>
                     <div class="col-md-6">
-                        <label for="cel">Teléfono</label>
-                        <input type="number" class="form-control" id="cel" placeholder="Teléfono" value="<?php echo $row['telefono'] ?>"disabled>
+                        <label for="tel">Teléfono</label>
+                        <input type="number" class="form-control" id="tel" placeholder="Teléfono" value="<?php echo $row['telefono'] ?>"disabled>
                     </div>
                     <div class="d-grid gap-2 col-12 mx-auto">
                         <button type="button" class="btn btn-secondary mt-2" data-bs-toggle="modal" data-bs-target="#modalModificarContraseña">Cambiar Contraseña</button>
@@ -84,20 +84,20 @@
                             <input type="hidden" id="idModificar" name="idModificar" value="<?php echo $_SESSION['cliente_id']?>">    
                             <div class="modal-body">
                                 <div class="form-group">    
-                                    <label>Ciudad</label>
-                                    <input type="text" name="ciudad" class="form-control" value="<?php echo $row['ciudad'] ?>"  required>
+                                    <label for="ciudad">Ciudad</label>
+                                    <input type="text" name="ciudad" id="ciudad" class="form-control" value="<?php echo $row['ciudad'] ?>"  required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Dirección</label>
-                                    <input type="text" name="direccion" class="form-control" value="<?php echo $row['direccion'] ?>"  required>
+                                    <label for="direccion">Dirección</label>
+                                    <input type="text" name="direccion" id="direccion" class="form-control" value="<?php echo $row['direccion'] ?>"  required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Email</label>
-                                    <input type="email" name="email" class="form-control" value="<?php echo $row['email'] ?>" required>
+                                    <label for="email">Email</label>
+                                    <input type="email" name="email" id="email" class="form-control" value="<?php echo $row['email'] ?>" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Telefono</label>
-                                    <input type="text" name="telefono" class="form-control" value="<?php echo $row['telefono'] ?>" required>
+                                    <label for="cel">Telefono</label>
+                                    <input type="number" name="telefono" id="cel" class="form-control" value="<?php echo $row['telefono'] ?>" required>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -122,15 +122,15 @@
                             <input type="hidden" id="idModificar" name="idModificar" value="<?php echo $_SESSION['cliente_id']?>"> 
                             <div class="modal-body">
                                 <div class="form-group">  
-                                    <label>Contraseña Actual</label>
-                                    <input type="password" name="claveActual" id="claveActual"class="form-control" required>
+                                    <label for="claveActual">Contraseña Actual</label>
+                                    <input type="password" name="claveActual" id="claveActual" id="claveActual" class="form-control" required>
                                 </div>
                                 <div class="form-group">  
-                                    <label>Nueva Contraseña</label>
-                                    <input type="password" name="claveNueva" id="claveNueva" class="form-control" required>
+                                    <label for="claveNueva">Nueva Contraseña</label>
+                                    <input type="password" name="claveNueva" id="claveNueva"  class="form-control" required>
                                 </div>
                                 <div class="form-group">  
-                                    <label>Repetir Nueva Contraseña</label>
+                                    <label for="claveRepetida">Repetir Nueva Contraseña</label>
                                     <input type="password" name="claveRepetida" id="claveRepetida" class="form-control" required>
                                 </div>
                             </div>

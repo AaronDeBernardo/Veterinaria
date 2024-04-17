@@ -26,18 +26,19 @@
         <div class="collapse navbar-collapse" id="navbarScroll">
             <div class="d-flex flex-wrap">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active  seccionesNavegacion">
-                        <a class="nav-link text-black"  href="nuestraEmpresa.php"><img class="logo" src="recursos/logoNuestraEmpresa.png" alt="">NUESTRA EMPRESA</a>
+                    <li class="nav-item active">
+                        <a class="nav-link seccionesNavegacion"  href="nuestraEmpresa.php"><img class="logo" src="recursos/logoNuestraEmpresa.png" alt="">NUESTRA EMPRESA</a>
                     </li>
-                    <li class="nav-item active  seccionesNavegacion" >         
-                        <a class="nav-link text-black"  href="nuestrosServicios.php"><img class="logo" src="recursos/logoServicios.png" alt="">SERVICIOS</a>
+                    <li class="nav-item active" >         
+                        <a class="nav-link seccionesNavegacion"  href="nuestrosServicios.php"><img class="logo" src="recursos/logoServicios.png" alt="">SERVICIOS</a>
                     </li>
-                    <li class="nav-item active  seccionesNavegacion">
-                        <a class="nav-link text-black"   href="nuestraUbicacion.php"><img class="logo" src="recursos/logoUbicacion.png" alt="">UBICACIÓN</a>
+                    <li class="nav-item active">
+                        <a class="nav-link seccionesNavegacion"   href="nuestraUbicacion.php"><img class="logo" src="recursos/logoUbicacion.png" alt="">UBICACIÓN</a>
                     </li>
-                    <li class="nav-item active  seccionesNavegacion">
-                        <a class="nav-link text-black"   href="faq.php"><img class="logo" src="recursos/faq.png" alt="">PREGUNTAS</a>
+                    <li class="nav-item active">
+                        <a class="nav-link seccionesNavegacion"   href="faq.php"><img class="logo" src="recursos/faq.png" alt="">PREGUNTAS</a>
                     </li>
+                    
                 </ul>
             </div>
         </div>
@@ -49,7 +50,6 @@
                             <?php echo $nombreCompleto ?>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="consultasdb/misDatos.php">Mis Datos</a></li>
                             <li><a class="dropdown-item" href="snippets/cerrarSesion.php">Cerrar Sesión</a></li>  
                         </ul>
                     </div>

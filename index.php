@@ -3,8 +3,13 @@
         session_start();
     if (!empty($_SESSION['rol']))
     {
+        if($_SESSION['rol'] == 'cliente'){
+            header('Location: abmcDatos.php');
+            die();
+        }else{
         header('Location: abmcAtenciones.php');
         die();
+        }
     }
         
     

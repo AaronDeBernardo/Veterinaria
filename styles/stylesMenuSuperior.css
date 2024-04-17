@@ -17,12 +17,14 @@
     display: inline-block;
     vertical-align: top;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    text-decoration: underline;
-    text-decoration-color: #ff9800;
-    text-decoration-thickness: 3px;
+    
+    color: #ff9800;
+    
     font-style:oblique;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px black;
+    filter: brightness(0.95);
 }
 
 .seccionesNavegacion:hover{

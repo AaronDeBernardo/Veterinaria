@@ -45,7 +45,7 @@
                 </p>       
                 <p class="textoEmpresa">En San Antón, nuestra visión es ser la clínica veterinaria líder en la región, 
                 reconocida por la excelencia en la atención médica que brindamos a las mascotas y por nuestro compromiso con el bienestar animal.</p>
-                <p class="textoEmpresa">Aspiramos a:</p>
+                <h5 class="textoEmpresa">Aspiramos a:</h5>
                     <ul class="textoEmpresa">
                         <li>Ser la primera opción para los propietarios de mascotas que buscan atención médica de alta calidad y un servicio compasivo.</li>
                         <li>Convertirnos en un centro de referencia para la medicina veterinaria especializada y de vanguardia.</li>
