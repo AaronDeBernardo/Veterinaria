@@ -32,12 +32,12 @@
             CERRAR MENÚ (imagen)
         </button>
 
-        <a href="abmcAtenciones.php" <?php echo $item == 'atenciones' ? 'id = itemSeleccionado' : null ?>>Atenciones</a>
-        <a href="abmcMascotas.php" <?php echo $item == 'mascotas' ? 'id = itemSeleccionado' : null ?>>Mascotas</a>
             
 <?php
     if($rol == 'admin' || $rol == 'veterinario' || $rol == 'peluquero'){
 ?>
+        <a href="abmcAtenciones.php" <?php echo $item == 'atenciones' ? 'id = itemSeleccionado' : null ?>>Atenciones</a>
+        <a href="abmcMascotas.php" <?php echo $item == 'mascotas' ? 'id = itemSeleccionado' : null ?>>Mascotas</a>
         <a href="abmcClientes.php" <?php echo $item == 'clientes' ? 'id = itemSeleccionado' : null ?>>Clientes</a>
 <?php }
     
@@ -49,6 +49,8 @@
 
     if($rol == 'cliente'){
 ?>
+        <a href="consultaAtenciones.php" <?php echo $item == 'atenciones' ? 'id = itemSeleccionado' : null ?>>Atenciones</a>
+        <a href="consultaMascotas.php" <?php echo $item == 'mascotas' ? 'id = itemSeleccionado' : null ?>>Mis mascotas</a>
         <a href="abmcDatos.php" <?php echo $item == 'misDatos' ? 'id = itemSeleccionado' : null ?>>Mis datos</a>
 
 <?php } ?>
