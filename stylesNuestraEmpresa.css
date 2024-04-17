@@ -1,6 +1,6 @@
 body{
     background-image: url(Recursos/fondoOficial.jpg);
-    background-image: contain;
+    background-size: contain;
     
 
 }

@@ -38,14 +38,6 @@
                     die();
                 }
             }
-            else
-            {
-                echo "<script>
-                alert('Las contraseñas nuevas no coinciden');
-                window.location.href='" . $destino . "';
-                </script>";
-                die();
-            } 
         }
     }
 

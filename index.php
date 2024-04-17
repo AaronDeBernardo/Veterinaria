@@ -30,7 +30,7 @@
         if (!empty($aux[0])){
             $_SESSION['cliente_id'] = $aux[0];
             $_SESSION['rol'] = 'cliente';
-            header('Location: abmcTurnos.php');
+            header('Location: abmcDatos.php');
             die();
         }
     }
@@ -92,7 +92,7 @@
                     <button type="button" class="btn-close ms-4" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
 <?php } ?>                
-                    <form method="POST">
+                    <form action="" method="POST">
                         <h1 class="text-secondary border-bottom border-warning border-5">Iniciar Sesión</h1>
                         <div class="form-floating mb-3">
                             <input name="email" class="form-control ingreso" id="floatingInput" placeholder="Correo Electronico" required>

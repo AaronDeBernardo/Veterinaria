@@ -50,7 +50,7 @@
     if($rol == 'cliente'){
 ?>
         <a href="abmcDatos.php" <?php echo $item == 'misDatos' ? 'id = itemSeleccionado' : null ?>>Mis datos</a>
-        <a href="abmcTurnos.php" <?php echo $item == 'misTurnos' ? 'id = itemSeleccionado' : null ?>>Turnos</a>
+
 <?php } ?>
 
     </div>

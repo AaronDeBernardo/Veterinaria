@@ -7,7 +7,7 @@
     }
 
     include_once 'consultasdb/connection.php';
-    $query = "SELECT clientes.id, clientes.nombre, clientes.apellido, clientes.email,   /*Faltaria ver como relacionar turnos.emisor_id si es alguien del personal o es propio*/
+    $query = "SELECT clientes.id, clientes.nombre, clientes.apellido, clientes.email,  
         clientes.ciudad, clientes.direccion, clientes.telefono FROM clientes
         WHERE clientes.id = '$_SESSION[cliente_id]'";
     $datosPersonales = consultaSQL($query);
@@ -146,6 +146,7 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-    <script src="misDatos.js"></script>
+    <script src="scriptMisDatos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
