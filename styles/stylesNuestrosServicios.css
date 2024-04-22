@@ -34,3 +34,7 @@ body{
 .cardServicios{
     min-height: 753px;
 }
+
+.row{
+    margin: 0;
+}

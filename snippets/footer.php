@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="styles/stylesFooter.css" type="text/css">
-<div class="container-fluid">
+<div class="container-fluid m-0 p-0">
     <div class="row p-3 bg-light text-black ">
         <div class="col-xs-12 col-md-12 col-lg-3 d-flex text-center justify-content-center">
             <div class="container-fluid w-50 m-20 p-0 align-self-center">

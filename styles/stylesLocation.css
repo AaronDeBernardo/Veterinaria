@@ -18,3 +18,7 @@ form h1{
     padding: 0 0 15px 0;
     text-shadow: 1px 1px 2px black;
 }
+
+.row{
+    margin: 0;
+}
