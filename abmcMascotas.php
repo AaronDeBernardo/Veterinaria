@@ -238,6 +238,7 @@
     <script src="plugins/jquery/jquery-3.7.1.min.js"></script>
     <script src="plugins/chosen/chosen.jquery.js"></script>
     <script src="scripts/scriptMascotas.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <?php include_once 'snippets/mostrarAlerta.php'?>
 </body>
 </html>

@@ -27,30 +27,17 @@
     $filtroA = $filtroM;
 
     if (isset($_POST['mascota_id']) && $_POST['mascota_id'] != 'todos')
-        $filtroM = $filtroM . " AND mascotas.id = '$_POST[mascota_id]'";
+        $filtroA = $filtroA . " AND mascotas.id = '$_POST[mascota_id]'";
     if (!empty($_POST['fecha_desde']))
-        $filtroM = $filtroM . " AND DATE(atenciones.fecha_hora) >= '$_POST[fecha_desde]'";
+        $filtroA = $filtroA . " AND DATE(atenciones.fecha_hora) >= '$_POST[fecha_desde]'";
     if (!empty($_POST['fecha_hasta']))
-        $filtroM = $filtroM . " AND DATE(atenciones.fecha_hora) <= '$_POST[fecha_hasta]'";
+        $filtroA = $filtroA . " AND DATE(atenciones.fecha_hora) <= '$_POST[fecha_hasta]'";
 
-
-
-
-
-
-        //hay problemitas con los filtros.........
-
-
-
-
-
-
-        
-
+    
     $query = "SELECT id, nombre FROM mascotas WHERE cliente_id = $_SESSION[cliente_id] AND baja = 0 $filtroM ORDER BY nombre";
     $mascotas = consultaSQL($query);
 
-    $query = "SELECT mascotas.nombre AS mascota_nombre, servicios.nombre, CONCAT(personal.apellido, ' ', personal.nombre) AS personal, atenciones.fecha_hora, 
+    $query = "SELECT atenciones.id, mascotas.nombre AS mascota_nombre, servicios.nombre, CONCAT(personal.apellido, ' ', personal.nombre) AS personal, atenciones.fecha_hora, 
         atenciones.fecha_hora_salida, atenciones.titulo, atenciones.precio, atenciones.descripcion FROM atenciones INNER JOIN mascotas ON mascotas.id = atenciones.mascota_id 
         INNER JOIN servicios ON servicios.id = atenciones.servicio_id INNER JOIN personal ON personal.id = atenciones.personal_id 
         INNER JOIN clientes ON mascotas.cliente_id = clientes.id WHERE mascotas.cliente_id = $_SESSION[cliente_id] $filtroA ORDER BY atenciones.fecha_hora DESC";
@@ -126,7 +113,7 @@
 
 <?php
                         foreach ($atenciones as $a){
-                            echo "<tr ondblclick=mostrarAtencion(this)>";
+                            echo "<tr id=idAtencion:$a[id] onclick=getId(this) ondblclick=mostrarAtencion() tabindex=0 onkeydown=if(event.key=='Enter'){getId(this)}>";
                                 echo "<td>$a[fecha_hora]</td>";
                                 echo "<td>$a[mascota_nombre]</td>";
                                 echo "<td>$a[nombre]</td>";
@@ -141,6 +128,9 @@
 
                         </tbody>
                     </table>
+                    <div style="display: inline-block;">
+                        <button type="button" class="btn btn-outline-secondary" id="btnVerAtencion" onclick="mostrarAtencion()">Ver atención</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -194,6 +184,7 @@
 
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="scripts/scriptConsultaAtenciones.js"></script>
     </body>
 </html>

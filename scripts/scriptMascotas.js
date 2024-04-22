@@ -24,7 +24,12 @@ function mostrarModalEliminar(boton){
         myModal.show();
     }
     else{
-        alert("Por favor, seleccione una fila de la tabla");
+        Swal.fire({
+            icon: "error",
+            title: "Ups...",
+            text: "Seleccione una mascota de la lista",     
+            confirmButtonColor: "#f0ad4e",           
+        });
     }
 }
 
@@ -90,7 +95,12 @@ function mostrarModalMascota(boton)
     }
     else
     {
-        alert("Por favor, seleccione una fila de la tabla");
+        Swal.fire({
+            icon: "error",
+            title: "Ups...",
+            text: "Seleccione una mascota de la lista",     
+            confirmButtonColor: "#f0ad4e",           
+        });
     }
 }
 

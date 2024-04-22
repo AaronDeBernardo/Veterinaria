@@ -28,14 +28,35 @@
         $filtro = $filtro . "AND DATE(atenciones.fecha_hora) >= '$_GET[fecha_desde]' ";
     if (!empty($_GET['fecha_hasta']))
         $filtro = $filtro . "AND DATE(atenciones.fecha_hora) <= '$_GET[fecha_hasta]' ";
-        
+    
+    
+    $query = "SELECT COUNT(atenciones.id) FROM atenciones INNER JOIN mascotas ON mascotas.id = atenciones.mascota_id 
+        INNER JOIN servicios ON servicios.id = atenciones.servicio_id INNER JOIN personal ON personal.id = atenciones.personal_id 
+        INNER JOIN clientes ON mascotas.cliente_id = clientes.id WHERE 1 = 1 $filtro";
+    $cantFilas = mysqli_fetch_array(consultaSQL($query))[0];
+    $filasPagina = 10;
+    $cantPaginas = ceil($cantFilas / $filasPagina);
+    $pagSelecionada = $_GET['pag'];
+    $offset = ($pagSelecionada - 1) * $filasPagina;
+    $offset = 0;
 
-    $query = "SELECT atenciones.id, atenciones.mascota_id, mascotas.nombre AS mascota_nombre, mascotas.cliente_id, CONCAT(clientes.apellido, ' ', clientes.nombre) AS duenio, 
+    $query = "SELECT atenciones.id, atenciones.mascota_id, mascotas.nombre AS mascota_nombre, mascotas.fecha_muerte, mascotas.cliente_id, CONCAT(clientes.apellido, ' ', clientes.nombre) AS duenio, 
         atenciones.servicio_id, servicios.nombre, atenciones.personal_id, CONCAT(personal.apellido, ' ', personal.nombre) AS personal, atenciones.fecha_hora, 
         atenciones.fecha_hora_salida, atenciones.titulo, atenciones.precio, atenciones.descripcion FROM atenciones INNER JOIN mascotas ON mascotas.id = atenciones.mascota_id 
         INNER JOIN servicios ON servicios.id = atenciones.servicio_id INNER JOIN personal ON personal.id = atenciones.personal_id 
-        INNER JOIN clientes ON mascotas.cliente_id = clientes.id WHERE 1 = 1 $filtro ORDER BY atenciones.fecha_hora DESC";
+        INNER JOIN clientes ON mascotas.cliente_id = clientes.id WHERE clientes.baja = 0 AND mascotas.baja = 0 $filtro 
+        ORDER BY atenciones.fecha_hora DESC LIMIT $filasPagina OFFSET $offset";
     $atenciones = consultaSQL($query);
+
+
+    $path = 'abmcAtenciones.php?';
+    $parsed = parse_url($_SERVER['REQUEST_URI']);
+    if (isset($parsed["query"])){
+        $query = $parsed["query"];
+        parse_str($query, $params);
+        unset($params['pag']);
+        $path = $path . http_build_query($params);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -117,12 +138,12 @@
 
 <?php
                         foreach ($atenciones as $a){
-                            echo "<tr id=idAtencion:$a[id] onclick=getId(this) ondblclick=mostrarAtencion() tabindex=0 onkeydown=if(event.key=='Enter'){getId(this)}>";
+                            echo "<tr id=idAtencion:$a[id] data-modificable=" . (is_null($a['fecha_muerte']) ? '1' : '0') . " onclick=getId(this) ondblclick=mostrarAtencion() tabindex=0 onkeydown=if(event.key=='Enter'){getId(this)}>";
                                 echo "<td>$a[fecha_hora]</td>";
                                 echo "<td data-mascota_id=$a[mascota_id]>$a[mascota_nombre]</td>";
                                 echo "<td data-cliente_id=$a[cliente_id]>$a[duenio]</td>";
                                 echo "<td data-servicio_id=$a[servicio_id]>$a[nombre]</td>";
-                                echo "<td data-personal_id=$a[personal_id] class='d-none d-sm-table-cell'>$a[personal]</td>";
+                                echo "<td data-personal_habilitado=" . (($a['personal_id'] == $_SESSION['personal_id'] || $_SESSION['rol'] == 'admin') ? '1' : '0') . " class='d-none d-sm-table-cell'>$a[personal]</td>";
                                 echo "<td class='d-none d-sm-table-cell'>$a[titulo]</td>";
                                 echo "<td style=display:none;>$a[descripcion]</td>";
                                 echo "<td style=display:none;>$a[fecha_hora_salida]</td>";
@@ -134,14 +155,50 @@
                         </tbody>
                     </table>
 
+
+
+<div class="row">
+    <div class="col-3">
                     <div style="display: inline-block;">
                         <button type="button" class="btn btn-outline-secondary" id="btnVerAtencion" onclick="mostrarAtencion()">Ver atención</button>
                     </div>
+    </div>
+    <div class="col-3">
+
+                    <div style="display: inline-block; margin: 0 auto;">
+                        <ul class="pagination">
+                        <?php
+                            for ($i = 1; $i <= $cantPaginas; $i++){
+                                if ($i == $pagSelecionada)
+                                    echo "<li class='page-item active'><span class=page-link>$i</span></li>";
+                                else
+                                    echo "<li class='page-item'><a class=page-link href=$path&pag=$i>$i</a></li>";
+                            }
+                        ?>
+                        </ul>
+                    </div>
+
+
+
+
+</div>
+
+
+<div class="col-3">
+
+
+
                     <div class="colBotones">
                         <button type="button" class="btn btn-outline-success" id="btnAnadirAtencion" onclick="mostrarModalAtencion(this)">Nueva atención</button>
                         <button type="button" class="btn btn-outline-primary" id="btnModificarAtencion" onclick="mostrarModalAtencion(this)">Modificar</button>
                         <button type="button" class="btn btn-outline-danger" id="btnEliminarAtencion" onclick="mostrarModalEliminar(this)">Baja</button>
                     </div>
+
+
+</div>
+
+
+
                 </div>
             </div>
         </div>
@@ -299,6 +356,7 @@
         <script src="plugins/jquery/jquery-3.7.1.min.js"></script>
         <script src="plugins/chosen/chosen.jquery.js"></script>
         <script src="scripts/scriptAtenciones.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <?php include_once 'snippets/mostrarAlerta.php'?>
     </body>
 </html>

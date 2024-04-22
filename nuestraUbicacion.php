@@ -29,19 +29,19 @@
                     <h1 class="text-secondary border-bottom border-warning border-5">Dejanos tu consulta!</h1>
                     <div class="col-md-6">
                         <label for="Nombre">Nombre</label>
-                        <input type="text" class="form-control" name="Nombre" id="Nombre" >
+                        <input type="text" class="form-control" name="Nombre" id="Nombre" required>
                     </div>
                     <div class="col-md-6">
                         <label for="Apellido">Apellido</label>
-                        <input type="text" class="form-control" name="Apellido" id="Apellido" >
+                        <input type="text" class="form-control" name="Apellido" id="Apellido" required>
                     </div>
                     <div class="col-md-6">
                         <label for="Ciudad">Ciudad</label>
-                        <input type="text" class="form-control" name="Ciudad" id="Ciudad" >
+                        <input type="text" class="form-control" name="Ciudad" id="Ciudad">
                     </div>
                     <div class="col-6">
                         <label for="Codigo Postal">Codigo Postal</label>
-                        <input type="number" class="form-control" name="CodPostal" id="Codigo Postal" >
+                        <input type="number" class="form-control" name="CodPostal" id="Codigo Postal">
                     </div>
 
                     <div class="col-12">
@@ -50,19 +50,19 @@
                     </div>
                     <div class="col-12">
                         <label for="Email">Email</label>
-                        <input type="email" class="form-control" name="Email" id="Email" >
+                        <input type="email" class="form-control" name="Email" id="Email" required>
                     </div>
                     <div class="col-md-4">
                         <label for="area">Cod. Área</label>
-                        <input type="number" class="form-control" name="CodArea" id="area" >
+                        <input type="number" class="form-control" name="CodArea" id="area" required>
                     </div>
                     <div class="col-md-8">
                         <label for="cel">Teléfono</label>
-                        <input type="number" class="form-control" name="Telefono" id="cel" >
+                        <input type="number" class="form-control" name="Telefono" id="cel" required>
                     </div>
                     <div class="col-12">
                         <label for="motivo">Motivo</label>
-                        <select class="form-select" name="Motivo" id="motivo" aria-label="Floating label select example" >
+                        <select class="form-select" name="Motivo" id="motivo" aria-label="Floating label select example" required>
                             <option selected disabled>Seleccione el motivo...</option>
                             <option value="CuidadosAnimales">Cuidados Animales</option>
                             <option value="CuidadosMedicinales">Cuidados Medicinales</option>
@@ -72,7 +72,7 @@
                     </div>
                     <div class="form">
                         <label for="consulta">Consulta</label>
-                        <textarea class="form-control" name="Problema" id="consulta" title="Describa su consulta: "></textarea>
+                        <textarea class="form-control" name="Problema" id="consulta" title="Describa su consulta" required></textarea>
                     </div>
 
                     <div class="d-grid gap-2 col-6 mx-auto">

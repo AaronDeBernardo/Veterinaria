@@ -7,6 +7,15 @@ function getId(fila)
 
     document.getElementById(fila.id).classList.add('fila-seleccionada');
     idSeleccionado = fila.id.replace('idAtencion:', '');
+    
+    if (fila.getElementsByTagName('td')[4].getAttribute('data-personal_habilitado') == '1'){
+        document.getElementById('btnModificarAtencion').style.display = 'inline';
+        document.getElementById('btnEliminarAtencion').style.display = 'inline';
+    }
+    else{
+        document.getElementById('btnModificarAtencion').style.display = 'none';
+        document.getElementById('btnEliminarAtencion').style.display = 'none';
+    }
 }
 
 function mostrarModalEliminar(boton){
@@ -17,7 +26,12 @@ function mostrarModalEliminar(boton){
         myModal.show();
     }
     else{
-        alert("Por favor, seleccione una fila de la tabla");
+        Swal.fire({
+            icon: "error",
+            title: "Ups...",
+            text: "Seleccione una fila de la tabla",     
+            confirmButtonColor: "#f0ad4e",           
+        });
     }
 }
 
@@ -25,6 +39,10 @@ function mostrarModalAtencion(boton)
 {
     if (boton.id == 'btnAnadirAtencion')
     {
+        var fecHoraMinima = new Date();
+        fecHoraMinima.setHours(fecHoraMinima.getHours() - 2); // + 1 - 3 (resto 3 por hora UTC)
+        fecHoraMinima = fecHoraMinima.toISOString().slice(0, -8);
+
         var modal = document.getElementById('modalAtencion');
         
         modal.querySelector('[name=operacion').value = 'insertar';
@@ -33,10 +51,15 @@ function mostrarModalAtencion(boton)
         modal.querySelector('[name=cliente_id]').value = "";
         modal.querySelector('[name=mascota_id]').value = "";
         modal.querySelector('[name=servicio_id]').value = "";
+        
         modal.getElementsByClassName('contenedor_dt')[0].style.display = 'none';
+        modal.querySelector('[name=fecha_hora_salida]').required = false;
+        modal.querySelector('[name=fecha_hora_salida]').value = '';
+        modal.querySelector('[name=fecha_hora_salida]').min = fecHoraMinima;
+
         modal.querySelector('[name=titulo]').value = null;
         modal.querySelector('[name=descripcion]').value = null;
-
+        
         modal.querySelector('[name=btn_enviar').classList.remove('btn-primary');
         modal.querySelector('[name=btn_enviar').classList.add('btn-success');
         modal.querySelector('[name=btn_enviar').textContent = 'Guardar';
@@ -56,50 +79,117 @@ function mostrarModalAtencion(boton)
     }
     else if (boton.id == 'btnModificarAtencion' && idSeleccionado)
     {
+        if (document.getElementById('idAtencion:' + idSeleccionado).getAttribute('data-modificable') == '1')
+        {
+            var atencion = document.getElementById('idAtencion:' + idSeleccionado).getElementsByTagName('td');
+            var modal = document.getElementById('modalAtencion');
+            
+            var fecHoraMinima = new Date(atencion[0].textContent);
+            fecHoraMinima.setHours(fecHoraMinima.getHours() - 2); // + 1 - 3 (resto 3 por hora UTC)
+            fecHoraMinima = fecHoraMinima.toISOString().slice(0, -8);
+            modal.querySelector('[name=fecha_hora_salida]').min = fecHoraMinima;
+
+            modal.querySelector('[name=operacion').value = 'modificar';
+            modal.querySelector('[name=id_modificar]').value = idSeleccionado;
+            
+            modal.querySelector('[name=mascota_id]').value = atencion[1].getAttribute('data-mascota_id');
+            modal.querySelector('[name=servicio_id]').value = atencion[3].getAttribute('data-servicio_id');
+            modal.querySelector('[name=titulo]').value = atencion[5].textContent;
+            modal.querySelector('[name=descripcion]').value = atencion[6].textContent;
+
+            fec_hora_salida = atencion[7].textContent;
+            
+            if (fec_hora_salida)
+            {
+                modal.getElementsByClassName('contenedor_dt')[0].style.display = 'block';
+                modal.querySelector('[name=fecha_hora_salida]').required = true;
+                modal.querySelector('[name=fecha_hora_salida]').value = fec_hora_salida;
+            }
+            else
+            {
+                modal.getElementsByClassName('contenedor_dt')[0].style.display = 'none';
+                modal.querySelector('[name=fecha_hora_salida]').required = false;
+                modal.querySelector('[name=fecha_hora_salida]').value = '';
+            }
+
+            modal.querySelector('[name=btn_enviar').classList.add('btn-primary');
+            modal.querySelector('[name=btn_enviar').classList.remove('btn-success');
+            modal.querySelector('[name=btn_enviar').textContent = 'Modificar';
+            document.getElementById('labelModalAtencion').textContent = 'Modificar atención';
+
+            $('#select_mascota').trigger("chosen:updated");
+            $('#select_servicio').trigger("chosen:updated");
+            document.getElementById('select_mascota').dispatchEvent(new Event('change'));
+
+            var myModal = new bootstrap.Modal(modal, {});
+            myModal.show();
+        }
+        else
+        {
+            Swal.fire({
+                icon: "error",
+                title: "Atención",
+                text: "La mascota seleccionada ha fallecido. No se puede modificar la atención.",     
+                confirmButtonColor: "#f0ad4e",           
+            });
+        }
+    }
+    else
+    {
+        Swal.fire({
+            icon: "error",
+            title: "Ups...",
+            text: "Seleccione una fila de la tabla",     
+            confirmButtonColor: "#f0ad4e",           
+        });
+    }
+}
+
+function borrarFiltros(){
+    window.location.replace(location.pathname);
+}
+
+function mostrarAtencion()
+{
+    if (idSeleccionado)
+    {
         var atencion = document.getElementById('idAtencion:' + idSeleccionado).getElementsByTagName('td');
-        var modal = document.getElementById('modalAtencion');
-        
-        modal.querySelector('[name=operacion').value = 'modificar';
-        modal.querySelector('[name=id_modificar]').value = idSeleccionado;
-        
-        modal.querySelector('[name=mascota_id]').value = atencion[1].getAttribute('data-mascota_id');
-        modal.querySelector('[name=servicio_id]').value = atencion[3].getAttribute('data-servicio_id');
+        var modal = document.getElementById('modalDatos');
+    
+        modal.querySelector('[name=fecha_hora]').value = atencion[0].textContent;
+        modal.querySelector('[name=mascota]').value = atencion[1].textContent;
+        modal.querySelector('[name=cliente]').value = atencion[2].textContent;
+        modal.querySelector('[name=servicio]').value = atencion[3].textContent;
+        modal.querySelector('[name=personal]').value = atencion[4].textContent;
         modal.querySelector('[name=titulo]').value = atencion[5].textContent;
         modal.querySelector('[name=descripcion]').value = atencion[6].textContent;
+        modal.querySelector('[name=precio]').value = atencion[8].textContent;
 
         fec_hora_salida = atencion[7].textContent;
         
         if (fec_hora_salida)
         {
             modal.getElementsByClassName('contenedor_dt')[0].style.display = 'block';
-            modal.querySelector('[name=fecha_hora_salida]').required = true;
             modal.querySelector('[name=fecha_hora_salida]').value = fec_hora_salida;
         }
         else
         {
             modal.getElementsByClassName('contenedor_dt')[0].style.display = 'none';
-            modal.querySelector('[name=fecha_hora_salida]').required = false;
             modal.querySelector('[name=fecha_hora_salida]').value = '';
         }
-
-        modal.querySelector('[name=btn_enviar').classList.add('btn-primary');
-        modal.querySelector('[name=btn_enviar').classList.remove('btn-success');
-        modal.querySelector('[name=btn_enviar').textContent = 'Modificar';
-        document.getElementById('labelModalAtencion').textContent = 'Modificar atención';
-
-        $('#select_mascota').trigger("chosen:updated");
-        $('#select_servicio').trigger("chosen:updated");
-        document.getElementById('select_mascota').dispatchEvent(new Event('change'));
 
         var myModal = new bootstrap.Modal(modal, {});
         myModal.show();
     }
-    else
-    {
-        alert("Por favor, seleccione una fila de la tabla");
+    else{
+        Swal.fire({
+            icon: "error",
+            title: "Ups...",
+            text: "Seleccione una fila de la tabla",     
+            confirmButtonColor: "#f0ad4e",           
+        });
     }
 }
-
 
 $('#modalAtencion').on('shown.bs.modal', function () {
     $('.chosen-select', this).chosen();
@@ -172,39 +262,3 @@ $('#select_servicio').on('change', function(e) {
 $('#formFiltro').on('shown.bs.collapse', function(e){
     $('.chosen-select', this).chosen();
 });
-
-function borrarFiltros(){
-    window.location.replace(location.pathname);
-}
-
-
-function mostrarAtencion()
-{
-    var atencion = document.getElementById('idAtencion:' + idSeleccionado).getElementsByTagName('td');
-    var modal = document.getElementById('modalDatos');
- 
-    modal.querySelector('[name=fecha_hora]').value = atencion[0].textContent;
-    modal.querySelector('[name=mascota]').value = atencion[1].textContent;
-    modal.querySelector('[name=cliente]').value = atencion[2].textContent;
-    modal.querySelector('[name=servicio]').value = atencion[3].textContent;
-    modal.querySelector('[name=personal]').value = atencion[4].textContent;
-    modal.querySelector('[name=titulo]').value = atencion[5].textContent;
-    modal.querySelector('[name=descripcion]').value = atencion[6].textContent;
-    modal.querySelector('[name=precio]').value = atencion[8].textContent;
-
-    fec_hora_salida = atencion[7].textContent;
-    
-    if (fec_hora_salida)
-    {
-        modal.getElementsByClassName('contenedor_dt')[0].style.display = 'block';
-        modal.querySelector('[name=fecha_hora_salida]').value = fec_hora_salida;
-    }
-    else
-    {
-        modal.getElementsByClassName('contenedor_dt')[0].style.display = 'none';
-        modal.querySelector('[name=fecha_hora_salida]').value = '';
-    }
-
-    var myModal = new bootstrap.Modal(modal, {});
-    myModal.show();
-}

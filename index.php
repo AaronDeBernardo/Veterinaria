@@ -110,7 +110,7 @@
                             <input name="password" type="password" class="form-control ingreso" id="floatingPassword" placeholder="Password" required>
                             <label for="floatingPassword">Contraseña</label>
                         </div>
-                        <p><a href="#" class="text-black link-offset-2 mb-2 link-underline-opacity-100-hover reestablecer">¿Olvidó su contraseña?</a></p>
+                        <p><a href="snippets/enviarMail.php" class="text-black link-offset-2 mb-2 link-underline-opacity-100-hover reestablecer">¿Olvidó su contraseña?</a></p>
                         <div class="d-grid gap-2 col-6 mx-auto">
                             <button class="btn btn-warning mb-4 mt-2" type="submit">Iniciar Sesión</button>
                         </div>

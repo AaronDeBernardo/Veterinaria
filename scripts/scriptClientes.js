@@ -72,11 +72,13 @@ function mostrarModalCliente(boton){
             myModal.show();
         }
         else{
-            alert("Por favor, seleccione una fila de la tabla");
+            Swal.fire({
+                icon: "error",
+                title: "Ups...",
+                text: "Seleccione una fila de la tabla",     
+                confirmButtonColor: "#f0ad4e",           
+            });
         }
-    }
-    else{
-        alert("Por favor, seleccione una fila de la lista");
     }
 }
 
@@ -93,7 +95,12 @@ function mostrarModalEliminar(boton)
         }
     }
     else{
-        alert("Por favor, seleccione una fila de la lista");
+        Swal.fire({
+            icon: "error",
+            title: "Ups...",
+            text: "Seleccione una fila de la tabla",     
+            confirmButtonColor: "#f0ad4e",           
+        });
     }
 }
 
@@ -110,7 +117,12 @@ function mostrarModalClave(boton)
         }
     }
     else{
-        alert("Por favor, seleccione una fila de la lista");
+        Swal.fire({
+            icon: "error",
+            title: "Ups...",
+            text: "Seleccione una fila de la tabla",     
+            confirmButtonColor: "#f0ad4e",           
+        });
     }
 }
 
