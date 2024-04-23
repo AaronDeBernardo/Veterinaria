@@ -14,6 +14,8 @@
 <body>
 
     <?php 
+    session_start();
+    echo $_SESSION['alerta'];
     include_once 'snippets/menuSuperior.php';
     ?>
     <div class="container-fluid my-4 px-5">
@@ -25,44 +27,45 @@
 
             </div>
             <div class="col-12 col-md-4 bg-light rounded-5 pt-4 mt-2 flex-wrap border border-warning border-4 ">
-                <form class="row g-2" action="https://formsubmit.co/0be7fe7fd9fcaaaf56ee408af67cb498" method="POST">
+                <form class="row g-2" action="snippets/enviarMail.php" method="POST">
+                    <input type="hidden" name="operacion" value="consulta">
                     <h1 class="text-secondary border-bottom border-warning border-5">Dejanos tu consulta!</h1>
                     <div class="col-md-6">
-                        <label for="Nombre">Nombre</label>
-                        <input type="text" class="form-control" name="Nombre" id="Nombre" required>
+                        <label for="nombre">Nombre</label>
+                        <input type="text" class="form-control" name="nombre" id="nombre" required>
                     </div>
                     <div class="col-md-6">
-                        <label for="Apellido">Apellido</label>
-                        <input type="text" class="form-control" name="Apellido" id="Apellido" required>
+                        <label for="apellido">Apellido</label>
+                        <input type="text" class="form-control" name="apellido" id="apellido" required>
                     </div>
                     <div class="col-md-6">
-                        <label for="Ciudad">Ciudad</label>
-                        <input type="text" class="form-control" name="Ciudad" id="Ciudad">
+                        <label for="ciudad">Ciudad</label>
+                        <input type="text" class="form-control" name="ciudad" id="ciudad">
                     </div>
                     <div class="col-6">
-                        <label for="Codigo Postal">Codigo Postal</label>
-                        <input type="number" class="form-control" name="CodPostal" id="Codigo Postal">
+                        <label for="codigoPostal">Codigo Postal</label>
+                        <input type="number" class="form-control" name="codPostal" id="codigoPostal">
                     </div>
 
                     <div class="col-12">
-                        <label for="Direccion">Dirección</label>
-                        <input type="text" class="form-control" name="Direccion" id="Direccion">
+                        <label for="direccion">Dirección</label>
+                        <input type="text" class="form-control" name="direccion" id="direccion">
                     </div>
                     <div class="col-12">
-                        <label for="Email">Email</label>
-                        <input type="email" class="form-control" name="Email" id="Email" required>
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" name="email" id="email" required>
                     </div>
                     <div class="col-md-4">
                         <label for="area">Cod. Área</label>
-                        <input type="number" class="form-control" name="CodArea" id="area" required>
+                        <input type="number" class="form-control" name="codArea" id="area" required>
                     </div>
                     <div class="col-md-8">
                         <label for="cel">Teléfono</label>
-                        <input type="number" class="form-control" name="Telefono" id="cel" required>
+                        <input type="number" class="form-control" name="telefono" id="cel" required>
                     </div>
                     <div class="col-12">
                         <label for="motivo">Motivo</label>
-                        <select class="form-select" name="Motivo" id="motivo" aria-label="Floating label select example" required>
+                        <select class="form-select" name="motivo" id="motivo" aria-label="Floating label select example" required>
                             <option selected disabled>Seleccione el motivo...</option>
                             <option value="CuidadosAnimales">Cuidados Animales</option>
                             <option value="CuidadosMedicinales">Cuidados Medicinales</option>
@@ -72,7 +75,7 @@
                     </div>
                     <div class="form">
                         <label for="consulta">Consulta</label>
-                        <textarea class="form-control" name="Problema" id="consulta" title="Describa su consulta" required></textarea>
+                        <textarea class="form-control" name="problema" id="consulta" title="Describa su consulta" required></textarea>
                     </div>
 
                     <div class="d-grid gap-2 col-6 mx-auto">
