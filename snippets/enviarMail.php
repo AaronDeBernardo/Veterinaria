@@ -54,13 +54,15 @@ switch ($_POST['operacion']) {
         {
             $destinatario = 'veterinariasananton237@gmail.com';
             $nombre = 'Veterinaria San Antón';
-            $asunto = 'Consulta';
+            $asunto = "Consulta $_POST[motivo]";
             
-            $cuerpoHtml = "<p>Hola $_POST[nombre] $_POST[apellido], somos Veterinaria San Antón!</p>";
-            $cuerpoHtml .= "<p>Recibimos su consulta sobre <b>$_POST[motivo]</b>. Nos comunicaremos con usted en breve</p>";
+            $cuerpoHtml = "<p>Hola $_POST[nombre] $_POST[apellido], <b>somos Veterinaria San Antón!</b></p><hr>";
+            $cuerpoHtml .= "<p>Hemos recibimos su consulta sobre <b>$_POST[motivo]</b>. Nos comunicaremos con usted a la brevedad.</p>";
             $cuerpoHtml .= "<p>El número de teléfono que nos suministró es: $_POST[codArea]-$_POST[telefono]</p><br>";
-            $cuerpoHtml .= "<h3>Su consulta</h3>";
-            $cuerpoHtml .= "<p>$_POST[problema]</p>";
+            $cuerpoHtml .= "<h3>Su consulta:</h3>";
+            $cuerpoHtml .= "<p>$_POST[problema]</p><hr>";
+            $cuerpoHtml .= "<b>Si algunos de los datos es erroneo, envie nuevamente la consulta y en descripcion de la consulta realice las aclaraciones pertinentes.</b>";
+            $cuerpoHtml .= "<b>Si usted no envio la consulta, desestime este mensaje.</b>";
             
 //direccion codigo postal y ciudad están disponibles tambien
 

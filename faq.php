@@ -21,19 +21,19 @@
         </div>
         <div class="row my-5 py-3" id="row2">
             <div class="col-md-2 d-none d-md-block"></div>
-            <div class="col-12 col-md-2 d-flex justify-content-center btn">
+            <div class="col-12 col-md-2 d-flex justify-content-center btnSeccion">
                 <button type="button" class="btn btn-warning">
                     <a href="#cuidadoGeneral" class="text-black text-decoration-none">CUIDADOS GENERALES</a>
                 </button>
             </div>
             <div class="col-md-1 d-none d-md-block"></div>
-            <div class="col-12 col-md-2 d-flex justify-content-center btn">
+            <div class="col-12 col-md-2 d-flex justify-content-center btnSeccion">
                 <button type="button" class="btn btn-warning">
                     <a href="#salud" class="text-black text-decoration-none">SALUD</a>
                 </button>
             </div>
             <div class="col-md-1 d-none d-md-block"></div>
-            <div class="col-12 col-md-2 d-flex justify-content-center btn">
+            <div class="col-12 col-md-2 d-flex justify-content-center btnSeccion">
                 <button type="button" class="btn btn-warning">
                     <a href="#veterinaria" class="text-black text-decoration-none">VETERINARIA</a>
                 </button>

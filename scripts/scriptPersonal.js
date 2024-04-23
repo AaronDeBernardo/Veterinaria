@@ -90,3 +90,25 @@ function mostrarModalEliminar(boton){
         });
     }
 }
+
+function mostrarModalClave(boton)
+{
+    if (idSeleccionado)
+    {
+        if (boton.id == "btnModificarClave")
+        {
+            document.getElementById("id_modificar_clave").value = idSeleccionado;
+            modal = document.getElementById("modalModificarClave");
+            myModal = new bootstrap.Modal(modal, {});
+            myModal.show();
+        }
+    }
+    else{
+        Swal.fire({
+            icon: "error",
+            title: "Ups...",
+            text: "Seleccione una fila de la tabla",     
+            confirmButtonColor: "#f0ad4e",           
+        });
+    }
+}

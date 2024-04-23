@@ -155,16 +155,8 @@
                         </tbody>
                     </table>
 
-
-
-<div class="row">
-    <div class="col-3">
-                    <div style="display: inline-block;">
-                        <button type="button" class="btn btn-outline-secondary" id="btnVerAtencion" onclick="mostrarAtencion()">Ver atención</button>
-                    </div>
-    </div>
-    <div class="col-3">
-
+            <div class="row">
+                <div class="col-12 d-flex  justify-content-between align-items-center">
                     <div style="display: inline-block; margin: 0 auto;">
                         <ul class="pagination">
                         <?php
@@ -177,31 +169,22 @@
                         ?>
                         </ul>
                     </div>
+                </div>
 
-
-
-
-</div>
-
-
-<div class="col-3">
-
-
-
+            <div>
+            <div class="row">
+                <div class="col-12 d-flex d-wrap justify-content-end">
                     <div class="colBotones">
+                        <button type="button" class="btn btn-outline-secondary" id="btnVerAtencion" onclick="mostrarAtencion()">Ver atención</button>
                         <button type="button" class="btn btn-outline-success" id="btnAnadirAtencion" onclick="mostrarModalAtencion(this)">Nueva atención</button>
                         <button type="button" class="btn btn-outline-primary" id="btnModificarAtencion" onclick="mostrarModalAtencion(this)">Modificar</button>
                         <button type="button" class="btn btn-outline-danger" id="btnEliminarAtencion" onclick="mostrarModalEliminar(this)">Baja</button>
                     </div>
-
-
-</div>
-
-
-
                 </div>
             </div>
         </div>
+    </div>
+</div>                        
 
 
         <!-- Modals -->
@@ -358,5 +341,7 @@
         <script src="scripts/scriptAtenciones.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <?php include_once 'snippets/mostrarAlerta.php'?>
+
+
     </body>
 </html>

@@ -1,5 +1,14 @@
 #list-clientes{
     line-height: 1em; 
     overflow-y: auto;
-    height: 50vh;
+    max-height: 50vh;
+}
+.row{
+    margin: 0;
+}
+#nav-tabContent{
+    max-width: 50vh;
+
+    display:block;
+
 }

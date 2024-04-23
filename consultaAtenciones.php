@@ -128,8 +128,10 @@
 
                         </tbody>
                     </table>
+
                     <div style="display: inline-block;">
                         <button type="button" class="btn btn-outline-secondary" id="btnVerAtencion" onclick="mostrarAtencion()">Ver atención</button>
+                                               
                     </div>
                 </div>
             </div>

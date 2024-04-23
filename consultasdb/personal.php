@@ -15,6 +15,14 @@
             $_SESSION['alerta'] = 'Personal eliminado con éxito';
         }
     }
+    elseif ($op == 'modificar_clave')
+    {
+        if (!empty($_POST['id_modificar']) && isset($_POST['clave']))
+        {
+            $query = "UPDATE personal SET clave = '" . md5($_POST['clave']) . "' WHERE id = '$_POST[id_modificar]'";
+            $_SESSION['alerta'] = 'Clave modificada con éxito';
+        }
+    }
     else if (isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['email']) && isset($_POST['rol_id']))
     {
         if ($op == 'insertar' && isset($_POST['clave']))

@@ -20,3 +20,6 @@ form .ingreso{
     background: none;
     outline: none;
 }
+.row{
+    margin: 0;
+}

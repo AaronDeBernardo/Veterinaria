@@ -34,8 +34,8 @@
     <div class="container-fluid p-0">
         <div class="row">
             <?php  $_SESSION['item'] = 'clientes'; include_once 'snippets/menuLateral.php'; ?>
-            
-            <div class="col-12 col-md-4 col-lg-4 col-xl-4 mt-3">
+        
+            <div class="col-12 col-md-4 col-lg-5 col-xl-4 mt-3">
                 <form action="#" method="GET">
                     <div class="form-group" id="div-filtro">
                         <label for="filtro">Buscar cliente</label>
@@ -61,7 +61,7 @@
                 </div>
             </div>
 
-            <div class="col-12 col-md-4 col-lg-5 col-xl-6">
+            <div class="col-12 col-md-4 col-lg-4 col-xl-5">
                 <div id="div-separacion">&nbsp;</div>
                 <div class="tab-content" id="nav-tabContent">
 <?php
@@ -98,8 +98,8 @@
                 ?>
                         </div>
                     
-                        <button type="button" class="btn btn-info d-none" id="btnVerMascotas" onclick="verMascotas()">Ver mascotas</button>
-                        <button type="button" class="btn btn-warning d-none" id="btnModificarClave" onclick="mostrarModalClave(this)">Cambiar contraseña</button>
+                        <button type="button" class="btn btn-info d-none mt-2 me-2" id="btnVerMascotas" onclick="verMascotas()">Ver mascotas</button>
+                        <button type="button" class="btn btn-warning d-none mt-2" id="btnModificarClave" onclick="mostrarModalClave(this)">Cambiar contraseña</button>
                     </div>
                 </div>
             </div>
@@ -210,6 +210,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
     <script src="scripts/scriptClientes.js"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <?php include_once 'snippets/mostrarAlerta.php'?>
 </body>

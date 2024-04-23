@@ -19,6 +19,7 @@
         <title>Veterinaria San Antón</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="styles/styles.css" type="text/css">
+        <link rel="stylesheet" href="styles/stylesPersonal.css" type="text/css">
         <link rel="icon" href="recursos/logoVeterinaria.png">
     </head>
     <body>
@@ -56,6 +57,9 @@
                         <div class="col-12">
                             <button type="button" id="btnAnadirPers" class="btn btn-outline-success" onclick="mostrarModalPersonal(this)">
                                 Nuevo personal
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary" id="btnModificarClave" onclick="mostrarModalClave(this)">
+                                Cambiar contraseña
                             </button>
                             <button type="button" id="btnModificarPers" class="btn btn-outline-primary" onclick="mostrarModalPersonal(this)">
                                 Modificar
@@ -145,6 +149,31 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="modalModificarClave" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="labelModalClave" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 id="labelModalClave" class="modal-title fs-5">Modificar contraseña</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="consultasdb/personal.php" method="POST">
+                        <input type="hidden" name="operacion" value="modificar_clave">
+                        <input type="hidden" id="id_modificar_clave" name="id_modificar">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="cambioClave">Nueva contraseña</label>
+                                <input type="password" name="clave" class="form-control" id="cambioClave" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
 
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
