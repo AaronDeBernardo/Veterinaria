@@ -30,7 +30,7 @@
     {
         if (!empty($_POST['id_eliminar']))
         {
-            $autorizado = $_SESSION['rol_id'] == 'admin' ? true : false;
+            $autorizado = $_SESSION['rol'] == 'admin' ? true : false;
 
             if (!$autorizado){
                 $q = "SELECT personal_id FROM atenciones WHERE id = '$_POST[id_eliminar]'";
@@ -77,7 +77,7 @@
             }
             elseif ($op == 'modificar' && !empty($_POST['id_modificar']))
             {
-                $autorizado = $_SESSION['rol_id'] == 'admin' ? true : false;
+                $autorizado = $_SESSION['rol'] == 'admin' ? true : false;
 
                 if (!$autorizado){
                     $q = "SELECT personal_id FROM atenciones WHERE id = '$_POST[id_modificar]'";

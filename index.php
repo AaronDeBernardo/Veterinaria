@@ -1,6 +1,7 @@
 <?php
     if (!isset($_SESSION))
         session_start();
+    
     if (!empty($_SESSION['rol']))
     {
         if($_SESSION['rol'] == 'cliente'){
@@ -103,23 +104,58 @@
                     <form action="#" method="POST">
                         <h1 class="text-secondary border-bottom border-warning border-5">Iniciar Sesión</h1>
                         <div class="form-floating mb-3">
-                            <input name="email" class="form-control ingreso" id="floatingInput" placeholder="Correo Electronico" required>
+                            <input name="email" type="email" class="form-control ingreso" id="floatingInput" placeholder="Correo Electronico" required>
                             <label for="floatingInput">Correo electrónico</label>
                         </div>
                         <div class="form-floating">
                             <input name="password" type="password" class="form-control ingreso" id="floatingPassword" placeholder="Password" required>
                             <label for="floatingPassword">Contraseña</label>
                         </div>
-                        <p><a href="snippets/enviarMail.php" class="text-black link-offset-2 mb-2 link-underline-opacity-100-hover reestablecer">¿Olvidó su contraseña?</a></p>
+
+                        <p><a href="#modalRecuperarClave" data-bs-toggle="modal" class="text-black link-offset-2 mb-2 link-underline-opacity-100-hover reestablecer">
+                            ¿Olvidó su contraseña?
+                        </a></p>
+                        
                         <div class="d-grid gap-2 col-6 mx-auto">
                             <button class="btn btn-warning mb-4 mt-2" type="submit">Iniciar Sesión</button>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
+        
+        
+        <div class="modal fade" id="modalRecuperarClave" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="labelModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="labelModal">Recuperar mi clave</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <form action="snippets/enviarMail.php" method="POST">
+                        <div class="modal-body">
+                            <input type="hidden" name="operacion" value="recuperarClave">
+                            <div class="form-group">
+                                <label for="email" class="form-label">Su correo electrónico</label>
+                                <input type="email" id="email" name="correo" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-warning">Continuar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-        <?php include_once 'snippets/footer.php';?> 
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <?php 
+        include_once 'snippets/footer.php';
+        include_once 'snippets/mostrarAlerta.php'
+        ?>
     </body>
 </html>

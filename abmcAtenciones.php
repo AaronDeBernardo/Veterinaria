@@ -32,13 +32,12 @@
     
     $query = "SELECT COUNT(atenciones.id) FROM atenciones INNER JOIN mascotas ON mascotas.id = atenciones.mascota_id 
         INNER JOIN servicios ON servicios.id = atenciones.servicio_id INNER JOIN personal ON personal.id = atenciones.personal_id 
-        INNER JOIN clientes ON mascotas.cliente_id = clientes.id WHERE 1 = 1 $filtro";
+        INNER JOIN clientes ON mascotas.cliente_id = clientes.id WHERE clientes.baja = 0 AND mascotas.baja = 0 $filtro";
     $cantFilas = mysqli_fetch_array(consultaSQL($query))[0];
     $filasPagina = 10;
     $cantPaginas = ceil($cantFilas / $filasPagina);
-    $pagSelecionada = $_GET['pag'];
+    $pagSelecionada = isset($_GET['pag']) ? $_GET['pag'] : 1;
     $offset = ($pagSelecionada - 1) * $filasPagina;
-    $offset = 0;
 
     $query = "SELECT atenciones.id, atenciones.mascota_id, mascotas.nombre AS mascota_nombre, mascotas.fecha_muerte, mascotas.cliente_id, CONCAT(clientes.apellido, ' ', clientes.nombre) AS duenio, 
         atenciones.servicio_id, servicios.nombre, atenciones.personal_id, CONCAT(personal.apellido, ' ', personal.nombre) AS personal, atenciones.fecha_hora, 

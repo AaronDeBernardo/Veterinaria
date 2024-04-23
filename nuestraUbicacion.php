@@ -13,11 +13,7 @@
 </head>
 <body>
 
-    <?php 
-    session_start();
-    echo $_SESSION['alerta'];
-    include_once 'snippets/menuSuperior.php';
-    ?>
+<?php include_once 'snippets/menuSuperior.php'; ?>
     <div class="container-fluid my-4 px-5">
         <div class="row">
             <div class="col-12 col-md-7 p-0 border border-warning border-4 rounded-5 mt-3 mb-2">
@@ -87,8 +83,11 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <?php 
     include_once 'snippets/footer.php';
+    include_once 'snippets/mostrarAlerta.php'
     ?>
 </body>
 </html>
