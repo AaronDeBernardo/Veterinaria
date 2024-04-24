@@ -95,7 +95,7 @@
 <?php
     foreach ($mascotas as $m){
 ?>
-                            <?php echo "<tr id=idMascota:$m[id] onclick=getId(this) tabindex=0 onkeydown=if(event.key=='Enter'){getId(this)}>"?>
+                            <?php echo "<tr id=idMascota:$m[id] onclick=getId(this) tabindex=0 onkeydown=\"if(event.key=='Enter'){getId(this)}\">"?>
                                 <?php echo "<td data-cliente_id=$m[cliente_id]>$m[duenio]</td>" ?>
                                 <td><?php echo $m['nombre'] ?></td>
                                 <td><?php echo $m['raza'] ?></td>

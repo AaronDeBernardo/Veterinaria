@@ -44,7 +44,7 @@
 <?php
     while($row = mysqli_fetch_array($resultados)){
         ?>
-                            <tr <?php echo "id=servicio_id:$row[id]" ?> onclick='getId(this)' tabindex="0" onkeydown="if(event.key == 'Enter'){getId(this)}">
+                            <tr <?php echo "id=servicio_id:$row[id] onclick='getId(this)' tabindex=0 onkeydown=\"if(event.key == 'Enter'){getId(this)}\""?>>
                                 <?php echo "<td>$row[nombre]</td>" ?>
                                 <?php echo "<td data-tipo_id=$row[tipo_servicio_id]>$row[tipo]" ?></td>
                                 <?php echo "<td>$" . number_format($row['precio'], 2, ',', '.') . "</td>"?>
@@ -123,27 +123,26 @@
         </div>
 
         <div class="modal fade" id="modalEliminar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="labelModalEliminar" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 id="labelModalEliminar" class="modal-title fs-5">Eliminar servicio</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-
-                        <form action="consultasdb/servicio.php" method="POST">
-                            <div class="modal-body">
-                                <input type="hidden" name="operacion" value="eliminar">
-                                <input type="hidden" id="id_eliminar" name="id_eliminar">
-                                <div class="form-group">
-                                    <p>¿Está seguro que desea eliminar el servicio seleccionado?</p>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                <button type="submit" class="btn btn-danger">Eliminar servicio</button>
-                            </div>
-                        </form>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 id="labelModalEliminar" class="modal-title fs-5">Eliminar servicio</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+
+                    <form action="consultasdb/servicio.php" method="POST">
+                        <div class="modal-body">
+                            <input type="hidden" name="operacion" value="eliminar">
+                            <input type="hidden" id="id_eliminar" name="id_eliminar">
+                            <div class="form-group">
+                                <p>¿Está seguro que desea eliminar el servicio seleccionado?</p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-danger">Eliminar servicio</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

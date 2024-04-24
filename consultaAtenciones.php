@@ -81,7 +81,7 @@
                             </div>                            
                             <div class="form-group">
                                 <label for="fecha_desde">Fecha desde</label>
-                                <input type="date" name="fecha_desde" id="fecha_desde"class="form-control" <?php echo (isset($_POST['fecha_desde']) ? "value=$_POST[fecha_desde]" : "")?>>
+                                <input type="date" name="fecha_desde" id="fecha_desde" class="form-control" <?php echo (isset($_POST['fecha_desde']) ? "value=$_POST[fecha_desde]" : "")?>>
                                 <label for="fecha_hasta">Fecha hasta</label>
                                 <input type="date" name="fecha_hasta" id="fecha_hasta" class="form-control" <?php echo (isset($_POST['fecha_hasta']) ? "value=$_POST[fecha_hasta]" : "")?>>
                             </div>
@@ -113,7 +113,7 @@
 
 <?php
                         foreach ($atenciones as $a){
-                            echo "<tr id=idAtencion:$a[id] onclick=getId(this) ondblclick=mostrarAtencion() tabindex=0 onkeydown=if(event.key=='Enter'){getId(this)}>";
+                            echo "<tr id=idAtencion:$a[id] onclick=getId(this) ondblclick=mostrarAtencion() tabindex=0 onkeydown=\"if(event.key=='Enter'){getId(this)}\">";
                                 echo '<td>' . date("d/m/Y H:i:s", strtotime($a['fecha_hora'])) . '</td>';
                                 echo "<td>$a[mascota_nombre]</td>";
                                 echo "<td>$a[nombre]</td>";
@@ -161,7 +161,7 @@
                         </div>
                         <div class="form-group">
                             <label for="fecha_hora_atencion">Fecha y hora de atención</label>
-                            <input type="text" name="fecha_hora" id="fecha_hora_atencion"class="form-control" disabled>
+                            <input type="text" name="fecha_hora" id="fecha_hora_atencion" class="form-control" disabled>
                         </div>
                         <div class="form-group contenedor_dt">
                             <label for="fecha_hora_salida">Fecha y hora de salida</label>

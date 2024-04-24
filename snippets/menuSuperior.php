@@ -44,15 +44,15 @@
 
         <?php if (isset($_SESSION['rol'])){?>
             <div class="justify-content-end ps-2 me-3 ">
-                    <div class="dropdown">
-                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <?php echo $nombreCompleto ?>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="snippets/cerrarSesion.php">Cerrar Sesión</a></li>  
-                        </ul>
-                    </div>
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <?php echo $nombreCompleto ?>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="snippets/cerrarSesion.php">Cerrar Sesión</a></li>  
+                    </ul>
                 </div>
+            </div>
         <?php } ?>
 
     </div>

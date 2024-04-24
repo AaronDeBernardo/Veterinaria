@@ -133,11 +133,11 @@
                                 <th style=display:none;>Precio</th>
                             </tr>
                         </thead>
-                        <tbody class="border-3 border-warning">
 
+                        <tbody class="border-3 border-warning">
 <?php
                         foreach ($atenciones as $a){
-                            echo "<tr id=idAtencion:$a[id] data-modificable=" . (is_null($a['fecha_muerte']) ? '1' : '0') . " onclick=getId(this) ondblclick=mostrarAtencion() tabindex=0 onkeydown=if(event.key=='Enter'){getId(this)}>";
+                            echo "<tr id=idAtencion:$a[id] data-modificable=" . (is_null($a['fecha_muerte']) ? '1' : '0') . " onclick=getId(this) ondblclick=mostrarAtencion() tabindex=0 onkeydown=\"if(event.key == 'Enter'){getId(this)}\">";
                                 echo '<td>' . date("d/m/Y H:i:s", strtotime($a['fecha_hora'])) . '</td>';
                                 echo "<td data-mascota_id=$a[mascota_id]>$a[mascota_nombre]</td>";
                                 echo "<td data-cliente_id=$a[cliente_id]>$a[duenio]</td>";
@@ -163,14 +163,14 @@
                                 if ($i == $pagSelecionada)
                                     echo "<li class='page-item active'><span class=page-link>$i</span></li>";
                                 else
-                                    echo "<li class='page-item'><a class=page-link href=$path&pag=$i>$i</a></li>";
+                                    echo "<li class='page-item'><a class=page-link href=\"$path&pag=$i\">$i</a></li>";
                             }
                         ?>
                         </ul>
                     </div>
                 </div>
+            </div>
 
-            <div>
             <div class="row">
                 <div class="col-12 d-flex d-wrap justify-content-end">
                     <div class="colBotones">
