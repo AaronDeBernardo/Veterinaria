@@ -104,9 +104,9 @@
                                 <th scope="col">Servicio</th>
                                 <th scope="col" class="d-none d-sm-table-cell">Personal</th>
                                 <th scope="col" class="d-none d-sm-table-cell">Título</th>
-                                <th style=display:none;></th>
-                                <th style=display:none;></th>
-                                <th style=display:none;></th>
+                                <th style=display:none;>Descripción</th>
+                                <th style=display:none;>Salida</th>
+                                <th style=display:none;>Precio</th>
                             </tr>
                         </thead>
                         <tbody class="border-3 border-warning">
@@ -130,8 +130,8 @@
                     </table>
 
                     <div style="display: inline-block;">
-                        <button type="button" class="btn btn-outline-secondary" id="btnVerAtencion" onclick="mostrarAtencion()">Ver atención</button>
-                                               
+                        <button type="button" class="btn btn-primary" id="btnVerAtencion" onclick="mostrarAtencion()">Ver atención</button>
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalInforme">Informe gastos</button>
                     </div>
                 </div>
             </div>
@@ -194,8 +194,9 @@
                     <form action="snippets/enviarMail.php" method="POST">
                         <input type="hidden" name="operacion" value="informeGastos">
                         <div class="modal-body">
+                            <p>El informe llegará a su casilla de correo electrónico</p>
                             <div class="form-group">
-                                <label for="mes">Personal</label>
+                                <label for="mes">Mes seleccionado</label>
                                 <input type="month" id="mes" name="mes" class="form-control" required>
                             </div>
                         </div>
