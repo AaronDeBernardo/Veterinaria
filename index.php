@@ -5,7 +5,7 @@
     if (!empty($_SESSION['rol']))
     {
         if($_SESSION['rol'] == 'cliente'){
-            header('Location: abmcDatos.php');
+            header('Location: consultaAtenciones.php');
             die();
         }else{
         header('Location: abmcAtenciones.php');
@@ -40,7 +40,7 @@
             $_SESSION['rol'] = 'cliente';
             $_SESSION['nombre'] = $aux[1];
             $_SESSION['apellido'] = $aux[2];
-            header('Location: abmcDatos.php');
+            header('Location: consultaAtenciones.php');
             die();
         }
     }

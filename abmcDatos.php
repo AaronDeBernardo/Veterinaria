@@ -71,12 +71,13 @@
                         <button type="button" class="btn btn-warning mb-4 mt-2" data-bs-toggle="modal" data-bs-target="#modalModificarDatos">Modificar Datos</button>
                     </div>
                 </form>
-            </div> 
-            <div class="modal fade" id="modalModificarDatos" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            </div>
+            
+            <div class="modal fade" id="modalModificarDatos" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="tituloModalDatos" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5">Modificar Datos</h1>
+                            <h1 id="tituloModalDatos" class="modal-title fs-5">Modificar Datos</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <form action="consultasdb/misDatos.php" method="POST">
@@ -110,11 +111,11 @@
             </div>
 
 
-            <div class="modal fade" id="modalModificarContraseña" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal fade" id="modalModificarContraseña" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="tituloModClave" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5">Modificar Contraseña</h1>
+                            <h1 id="tituloModClave" class="modal-title fs-5">Modificar Contraseña</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <form action="consultasdb/misDatos.php" id="formularioContraseña" onsubmit="return validarClave()" method="POST">

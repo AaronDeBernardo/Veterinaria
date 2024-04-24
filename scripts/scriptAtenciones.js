@@ -84,7 +84,13 @@ function mostrarModalAtencion(boton)
             var atencion = document.getElementById('idAtencion:' + idSeleccionado).getElementsByTagName('td');
             var modal = document.getElementById('modalAtencion');
             
-            var fecHoraMinima = new Date(atencion[0].textContent);
+            aux = atencion[0].textContent;
+            aux = aux.split(' ');
+            aux[0] = aux[0].split('/').reverse().join('-');
+            aux = aux[0] + ' ' + aux[1];
+            
+            var fecHoraMinima = new Date(aux);
+
             fecHoraMinima.setHours(fecHoraMinima.getHours() - 2); // + 1 - 3 (resto 3 por hora UTC)
             fecHoraMinima = fecHoraMinima.toISOString().slice(0, -8);
             modal.querySelector('[name=fecha_hora_salida]').min = fecHoraMinima;
@@ -97,8 +103,14 @@ function mostrarModalAtencion(boton)
             modal.querySelector('[name=titulo]').value = atencion[5].textContent;
             modal.querySelector('[name=descripcion]').value = atencion[6].textContent;
 
-            fec_hora_salida = atencion[7].textContent;
-            
+            var fec_hora_salida;
+            aux = atencion[7].textContent;
+            if (aux){
+                aux = aux.split(' ');
+                aux[0] = aux[0].split('/').reverse().join('-');
+                fec_hora_salida = aux[0] + ' ' + aux[1];
+            }
+
             if (fec_hora_salida)
             {
                 modal.getElementsByClassName('contenedor_dt')[0].style.display = 'block';

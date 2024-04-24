@@ -61,7 +61,7 @@
                 </div>
             </div>
 
-            <div class="col-12 col-md-4 col-lg-4 col-xl-5">
+            <div class="col-12 col-md-4 col-lg-4 col-xl-5 mt-3">
                 <div id="div-separacion">&nbsp;</div>
                 <div class="tab-content" id="nav-tabContent">
 <?php
@@ -136,7 +136,7 @@
                         </div>
                         <div class="form-group">
                             <label for="telCliente">Teléfono</label>
-                            <input type="text" name="telefono" class="form-control" id="telCliente" required>
+                            <input type="number" name="telefono" class="form-control" id="telCliente" required>
                         </div>
                         <div class="form-group">
                             <label for="ciudadCliente">Ciudad</label>

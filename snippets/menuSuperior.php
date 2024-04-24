@@ -3,11 +3,10 @@
         session_start();
     if (isset($_SESSION['apellido']) && isset($_SESSION['nombre'])) {
         $nombreCompleto = $_SESSION['apellido'] . ' ' . $_SESSION['nombre'];
-        } else {
+    }
+    else{
         $nombreCompleto = "Usuario";
-        }
-          
-
+    }
 ?>
 
 

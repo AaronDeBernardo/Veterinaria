@@ -62,7 +62,7 @@
                     <div class="col-12">
                         <label for="motivo">Motivo</label>
                         <select class="form-select" name="motivo" id="motivo" aria-label="Floating label select example" required>
-                            <option selected disabled>Seleccione el motivo...</option>
+                            <option selected disabled value="">Seleccione el motivo...</option>
                             <option value="CuidadosAnimales">Cuidados Animales</option>
                             <option value="CuidadosMedicinales">Cuidados Medicinales</option>
                             <option value="CuidadosEsteticos">Cuidados Estéticos</option>

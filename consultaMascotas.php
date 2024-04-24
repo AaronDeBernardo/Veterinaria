@@ -82,9 +82,10 @@
                                 <td><?php echo $m['nombre'] ?></td>
                                 <td><?php echo $m['raza'] ?></td>
                                 <td><?php echo $m['color'] ?></td>
-                                <td><?php echo $m['fecha_de_nac'] ?></td>
+                                <td><?php echo date("d/m/Y", strtotime($m['fecha_de_nac'])) ?></td>
+
 <?php                           if (!$filtro)
-                                    echo "<td>$m[fecha_muerte]</td>"?>
+                                    echo '<td>' . ($m['fecha_muerte'] ? date("d/m/Y", strtotime($m['fecha_muerte'])) : '') . '</td>'?>
                             </tr>
 <?php } ?>
                         </tbody>

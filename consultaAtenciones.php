@@ -114,14 +114,14 @@
 <?php
                         foreach ($atenciones as $a){
                             echo "<tr id=idAtencion:$a[id] onclick=getId(this) ondblclick=mostrarAtencion() tabindex=0 onkeydown=if(event.key=='Enter'){getId(this)}>";
-                                echo "<td>$a[fecha_hora]</td>";
+                                echo '<td>' . date("d/m/Y H:i:s", strtotime($a['fecha_hora'])) . '</td>';
                                 echo "<td>$a[mascota_nombre]</td>";
                                 echo "<td>$a[nombre]</td>";
                                 echo "<td class='d-none d-sm-table-cell'>$a[personal]</td>";
                                 echo "<td class='d-none d-sm-table-cell'>$a[titulo]</td>";
                                 echo "<td style=display:none;>$a[descripcion]</td>";
-                                echo "<td style=display:none;>$a[fecha_hora_salida]</td>";
-                                echo "<td style=display:none;>$a[precio]</td>";
+                                echo '<td style=display:none;>' . ($a['fecha_hora_salida'] ? date("d/m/Y H:i:s", strtotime($a['fecha_hora_salida'])) : '') . '</td>';
+                                echo "<td style=display:none;>$" . number_format($a['precio'], 2, ',', '.') . "</td>";
                             echo "</tr>";
                         }
 ?>
@@ -197,7 +197,7 @@
                             <p>El informe llegará a su casilla de correo electrónico</p>
                             <div class="form-group">
                                 <label for="mes">Mes seleccionado</label>
-                                <input type="month" id="mes" name="mes" class="form-control" required>
+                                <input type="month" id="mes" name="mes" class="form-control" required max="<?php echo date('Y-m')?>">
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -213,6 +213,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="scripts/scriptConsultaAtenciones.js"></script>
-
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <?php include_once 'snippets/mostrarAlerta.php'?>
     </body>
 </html>

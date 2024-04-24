@@ -47,7 +47,7 @@
                             <tr <?php echo "id=servicio_id:$row[id]" ?> onclick='getId(this)' tabindex="0" onkeydown="if(event.key == 'Enter'){getId(this)}">
                                 <?php echo "<td>$row[nombre]</td>" ?>
                                 <?php echo "<td data-tipo_id=$row[tipo_servicio_id]>$row[tipo]" ?></td>
-                                <?php echo "<td>$row[precio]</td>"?>
+                                <?php echo "<td>$" . number_format($row['precio'], 2, ',', '.') . "</td>"?>
                                 <?php echo $row['rango_fechas'] ? '<td data-check_fechas=1>Sí</td>' : '<td data-check_fechas=0>No</td>' ?>
                             </tr>
 <?php } ?>

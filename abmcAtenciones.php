@@ -138,15 +138,15 @@
 <?php
                         foreach ($atenciones as $a){
                             echo "<tr id=idAtencion:$a[id] data-modificable=" . (is_null($a['fecha_muerte']) ? '1' : '0') . " onclick=getId(this) ondblclick=mostrarAtencion() tabindex=0 onkeydown=if(event.key=='Enter'){getId(this)}>";
-                                echo "<td>$a[fecha_hora]</td>";
+                                echo '<td>' . date("d/m/Y H:i:s", strtotime($a['fecha_hora'])) . '</td>';
                                 echo "<td data-mascota_id=$a[mascota_id]>$a[mascota_nombre]</td>";
                                 echo "<td data-cliente_id=$a[cliente_id]>$a[duenio]</td>";
                                 echo "<td data-servicio_id=$a[servicio_id]>$a[nombre]</td>";
                                 echo "<td data-personal_habilitado=" . (($a['personal_id'] == $_SESSION['personal_id'] || $_SESSION['rol'] == 'admin') ? '1' : '0') . " class='d-none d-sm-table-cell'>$a[personal]</td>";
                                 echo "<td class='d-none d-sm-table-cell'>$a[titulo]</td>";
                                 echo "<td style=display:none;>$a[descripcion]</td>";
-                                echo "<td style=display:none;>$a[fecha_hora_salida]</td>";
-                                echo "<td style=display:none;>$a[precio]</td>";
+                                echo '<td style=display:none;>' . ($a['fecha_hora_salida'] ? date("d/m/Y H:i:s", strtotime($a['fecha_hora_salida'])) : '') . '</td>';
+                                echo "<td style=display:none;>$" . number_format($a['precio'], 2, ',', '.') . "</td>";
                             echo "</tr>";
                         }
 ?>

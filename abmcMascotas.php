@@ -86,7 +86,7 @@
                         <thead class="border-3 border-warning">
                             <tr>
                                 <th>Dueño</th>
-                                <th>Nombre mascota</th>
+                                <th>Mascota</th>
                                 <th>Raza</th>
                                 <th>Color</th>
                             </tr>
@@ -113,7 +113,7 @@
                 </div>
             </div>
 
-            <div class="col-12 col-md-4 col-lg-4 col-xl-5">
+            <div class="col-12 col-md-4 col-lg-4 col-xl-5 mt-3">
                 <div id="div-separacion">&nbsp;</div>
                 <div class="tab-content" id="nav-tabContent">
                 <?php
@@ -129,9 +129,9 @@
                                 if (empty($m['foto']))
                                     echo "<p class=card-text>La mascota no tiene foto</p>";
 
-                                echo "<p class=card-text>Fecha de nacimiento: $m[fecha_de_nac]</p>";
+                                echo '<p class=card-text>Fecha de nacimiento: ' . date("d/m/Y", strtotime($m['fecha_de_nac'])) . '</p>';
                                 if (!empty($m['fecha_muerte']))
-                                    echo "<p class=card-text>Fecha de muerte: $m[fecha_muerte]</p>";
+                                    echo '<p class=card-text>Fecha de muerte: ' . date("d/m/Y", strtotime($m['fecha_muerte'])) . '</p>';
 
                             echo "</div>";
                         echo "</div>";

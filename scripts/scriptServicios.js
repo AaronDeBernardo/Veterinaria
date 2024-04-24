@@ -43,7 +43,9 @@ function mostrarModalServicio(boton)
             
             modal.querySelector('[name=nombre]').value = servicio[0].textContent;
             modal.querySelector('[name=tipo_servicio_id]').value = servicio[1].getAttribute('data-tipo_id');
-            modal.querySelector('[name=precio]').value = servicio[2].textContent;
+
+            precio = servicio[2].textContent.replace(/\.|\$/g, '').replace(',', '.');
+            modal.querySelector('[name=precio]').value = precio;
             
             if (servicio[3].getAttribute('data-check_fechas') != "0")
                 document.getElementById('checkFechas').checked = true;
