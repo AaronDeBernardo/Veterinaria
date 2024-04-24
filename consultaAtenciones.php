@@ -56,7 +56,7 @@
     </head>
     <body>
         <?php include_once 'snippets/menuSuperior.php' ?>    
-    
+   
         <div class="container-fluid p-0">
             <div class="row">
                 <?php  $_SESSION['item'] = 'atenciones'; include_once 'snippets/menuLateral.php'; ?>
@@ -70,7 +70,7 @@
 
                         <form action="#" method="POST" id="formFiltro" class="collapse bg-light rounded-5 pt-4 mt-2 flex-wrap border border-warning border-4" style="margin-bottom:20px">
                             <div class="form-group">
-                                <label>Mascota</label>
+                                <label for="select_mascota_filtro">Mascota</label>
                                 <select id="select_mascota_filtro" name="mascota_id" class="form-select">
                                     <option selected value="todos"> -- Todas las mascotas -- </option>
                                     <?php
@@ -80,10 +80,10 @@
                                 </select>
                             </div>                            
                             <div class="form-group">
-                                <label>Fecha desde</label>
-                                <input type="date" name="fecha_desde" class="form-control" <?php echo (isset($_POST['fecha_desde']) ? "value=$_POST[fecha_desde]" : "")?>>
-                                <label>Fecha hasta</label>
-                                <input type="date" name="fecha_hasta" class="form-control" <?php echo (isset($_POST['fecha_hasta']) ? "value=$_POST[fecha_hasta]" : "")?>>
+                                <label for="fecha_desde">Fecha desde</label>
+                                <input type="date" name="fecha_desde" id="fecha_desde"class="form-control" <?php echo (isset($_POST['fecha_desde']) ? "value=$_POST[fecha_desde]" : "")?>>
+                                <label for="fecha_hasta">Fecha hasta</label>
+                                <input type="date" name="fecha_hasta" id="fecha_hasta" class="form-control" <?php echo (isset($_POST['fecha_hasta']) ? "value=$_POST[fecha_hasta]" : "")?>>
                             </div>
                             <div class="form-group">
                                 <input type="hidden" name="soloMascotasVivas" value="todas">
@@ -148,36 +148,36 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>Mascota</label>
-                            <input type="text" name="mascota" class="form-control" disabled>
+                            <label for="mascota">Mascota</label>
+                            <input type="text" name="mascota" id="mascota" class="form-control" disabled>
                         </div>
                         <div class="form-group">
-                            <label>Servicio</label>
-                            <input type="text" name="servicio" class="form-control" disabled>
+                            <label for="servicio">Servicio</label>
+                            <input type="text" name="servicio" id="servicio" class="form-control" disabled>
                         </div>
                         <div class="form-group">
-                            <label>Personal</label>
-                            <input type="text" name="personal" class="form-control" disabled>
+                            <label for="personal">Personal</label>
+                            <input type="text" name="personal" id="personal" class="form-control" disabled>
                         </div>
                         <div class="form-group">
-                            <label>Fecha y hora de atención</label>
-                            <input type="text" name="fecha_hora" class="form-control" disabled>
+                            <label for="fecha_hora_atencion">Fecha y hora de atención</label>
+                            <input type="text" name="fecha_hora" id="fecha_hora_atencion"class="form-control" disabled>
                         </div>
                         <div class="form-group contenedor_dt">
-                            <label>Fecha y hora de salida</label>
-                            <input type="text" name="fecha_hora_salida" class="form-control" disabled>
+                            <label for="fecha_hora_salida">Fecha y hora de salida</label>
+                            <input type="text" name="fecha_hora_salida" id="fecha_hora_salida" class="form-control" disabled>
                         </div>
                         <div class="form-group">
-                            <label>Precio</label>
-                            <input type="text" name="precio" class="form-control" disabled>
+                            <label for="precio">Precio</label>
+                            <input type="text" name="precio" id="precio" class="form-control" disabled>
                         </div>
                         <div class="form-group">
-                            <label>Título</label>
-                            <input type="text" name="titulo" class="form-control" disabled>
+                            <label for="titulo">Título</label>
+                            <input type="text" name="titulo" id="titulo"  class="form-control" disabled>
                         </div>
                         <div class="form-group">    
-                            <label>Descripcion</label>
-                            <textarea name="descripcion" rows="5" class="form-control" disabled></textarea>
+                            <label for="descripcion">Descripcion</label>
+                            <textarea name="descripcion" id="descripcion" rows="5" class="form-control" disabled></textarea>
                         </div>
                     </div>
                 </div>
@@ -213,5 +213,6 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="scripts/scriptConsultaAtenciones.js"></script>
+
     </body>
 </html>

@@ -34,6 +34,7 @@
         {
             $_SESSION['alerta'] = 'Las claves ingresadas no coinciden';
             $_SESSION['icono_alerta'] = 'error';
+            $destino = '../restablecerClave.php';
         }
     }
     header('Location:' . $destino);
