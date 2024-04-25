@@ -21,21 +21,21 @@
                 <h1 class="titulos">Nosotros</h1>
             </div>
         </div>
-        <div class="row row2" >
-            <div class="col-12" >
+        <div class="row row2 mt-4" >
+            <div class="col-12 " >
                 <h1 class= "titulos" style="font-size: 50px; filter: brightness(0.95);">¿Quienes Somos?</h1><br>
-                <p class="textoEmpresa fs-4" >San Antón es una clínica veterinaria dedicada a brindar atención médica integral de la más alta calidad para sus mascotas.
+                <p class="textoEmpresa fs-4 px-5" >San Antón es una clínica veterinaria dedicada a brindar atención médica integral de la más alta calidad para sus mascotas.
                 Nuestro equipo de profesionales altamente calificados y experimentados está comprometido a ofrecer un servicio personalizado y compasivo a cada uno de nuestros clientes.</p>
             </div>
         </div>
 
         
-        <div class="row" id="row3">
+        <div class="row mt-4" id="row3">
             <div class="col-12">
                 <h1 class="titulos">Misión y Visión</h1>
             </div>  
         </div>
-        <div class="row row2" >
+        <div class="row row2 mt-4 p-5" >
             <div class="col-12">
                 <p class="textoEmpresa">
                 En San Antón, nuestra misión es simple pero fundamental: proporcionar atención médica integral y de la más alta calidad para sus queridas mascotas. Nos impulsa un profundo respeto por el vínculo entre las personas y sus animales, y nos esforzamos por ser una extensión compasiva y confiable de ese vínculo.

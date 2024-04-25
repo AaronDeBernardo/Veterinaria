@@ -37,7 +37,7 @@
             <div class="col-md-1 col-lg-1 col-xl-2 d-none d-md-block"></div>
             <div class="col-12 col-md-5 col-lg-6 col-xl-6 bg-light rounded-5  pt-4 mt-2 flex-wrap border border-warning border-4 "> <!--ACOMODAR MARGIN , CUANDO SE COLOCA EL MISMO SE ENDIABLA LA PAGINA -->
             
-                <form class="row g-2" action="" method="post">
+                <form class="row g-2" action="#" method="post">
                     <h1 class="text-secondary border-bottom border-warning border-5">Mis Datos</h1>
                     <div class="col-md-6">
                         <label for="name">Nombre</label>
@@ -58,11 +58,11 @@
                     </div>
                     <div class="col-md-6">
                         <label for="mail">Email</label>
-                        <input type="email" class="form-control" id="mail" placeholder="Email" value="<?php echo $row['email'] ?>"disabled>
+                        <input type="email" class="form-control" id="mail" placeholder="Email" value="<?php echo $row['email'] ?>" disabled>
                     </div>
                     <div class="col-md-6">
                         <label for="tel">Teléfono</label>
-                        <input type="number" class="form-control" id="tel" placeholder="Teléfono" value="<?php echo $row['telefono'] ?>"disabled>
+                        <input type="number" class="form-control" id="tel" placeholder="Teléfono" value="<?php echo $row['telefono'] ?>" disabled>
                     </div>
                     <div class="d-grid gap-2 col-12 mx-auto">
                         <button type="button" class="btn btn-secondary mt-2" data-bs-toggle="modal" data-bs-target="#modalModificarContraseña">Cambiar Contraseña</button>
@@ -120,11 +120,11 @@
                         </div>
                         <form action="consultasdb/misDatos.php" id="formularioContraseña" onsubmit="return validarClave()" method="POST">
                             <input type="hidden" name="operacion" value="modificarClave">
-                            <input type="hidden" id="idModificar" name="idModificar" value="<?php echo $_SESSION['cliente_id']?>"> 
+                            <input type="hidden" id="idModificar2" name="idModificar2" value="<?php echo $_SESSION['cliente_id']?>"> 
                             <div class="modal-body">
                                 <div class="form-group">  
                                     <label for="claveActual">Contraseña Actual</label>
-                                    <input type="password" name="claveActual" id="claveActual" id="claveActual" class="form-control" required>
+                                    <input type="password" name="claveActual" id="claveActual" class="form-control" required>
                                 </div>
                                 <div class="form-group">  
                                     <label for="claveNueva">Nueva Contraseña</label>

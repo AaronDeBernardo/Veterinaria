@@ -21,24 +21,23 @@
         </div>
         <div class="row my-5 py-3" id="row2">
             <div class="col-md-2 d-none d-md-block"></div>
-            <div class="col-12 col-md-2 d-flex justify-content-center btnSeccion">
-                <button type="button" class="btn btn-warning">
-                    <a href="#cuidadoGeneral" class="text-black text-decoration-none">CUIDADOS GENERALES</a>
-                </button>
+            <div class="col-12 col-md-2 my-2 d-flex justify-content-center btnSeccion">
+                <form style="display: inline" action="#cuidadoGeneral" method="get">
+                    <button class="btn btn-warning fs-4 fst-italic fw-bold">CUIDADOS GENERALES</button>
+                </form>
             </div>
             <div class="col-md-1 d-none d-md-block"></div>
-            <div class="col-12 col-md-2 d-flex justify-content-center btnSeccion">
-                <button type="button" class="btn btn-warning">
-                    <a href="#salud" class="text-black text-decoration-none">SALUD</a>
-                </button>
+            <div class="col-12 col-md-2 my-2 d-flex justify-content-center btnSeccion">
+                <form style="display: inline" action="#salud" method="get">
+                    <button class="btn btn-warning fs-4 fst-italic fw-bold">SALUD</button>
+                </form>
             </div>
             <div class="col-md-1 d-none d-md-block"></div>
-            <div class="col-12 col-md-2 d-flex justify-content-center btnSeccion">
-                <button type="button" class="btn btn-warning">
-                    <a href="#veterinaria" class="text-black text-decoration-none">VETERINARIA</a>
-                </button>
+            <div class="col-12 col-md-2 my-2 d-flex justify-content-center btnSeccion">
+                <form style="display: inline" action="#veterinaria" method="get">
+                    <button class="btn btn-warning fs-4 fst-italic fw-bold">VETERINARIA</button>
+                </form>
             </div>
-
             <div class="col-md-2 d-none d-md-block"></div>
         </div>
         <div class="row" id="row3">
@@ -47,13 +46,11 @@
                 <div class="card rounded-5 border-warning border-4 mb-3 mx-0 cardCuidados" >
                     <div class="card-header rounded-top-5 preguntas">¿Con qué frecuencia debo llevar a mi mascota a chequeos regulares?</div>
                     <div class="card-body">
-                        <p class="card-text">
                             <ul>
                                 <li>En general, un chequeo anual es recomendado para todas las mascotas.</li>
                                 <li>Cachorros, animales mayores y aquellos con enfermedades crónicas pueden necesitar chequeos más frecuentes.</li>
                                 <li>Los chequeos regulares son importantes para prevenir problemas de salud y mantener a tu mascota sana.</li>
                             </ul>
-                        </p>
                     </div>
                 </div>
             </div>
@@ -61,14 +58,12 @@
                 <div class="card rounded-5 border-warning border-4 mb-3 mx-0  cardCuidados" >
                     <div class="card-header rounded-top-5 preguntas">¿Cómo puedo prevenir las pulgas, garrapatas y parásitos intestinales en mi mascota?</div>
                     <div class="card-body">
-                        
-                        <!--<p class="card-text">-->
                             <ul>
                                 <li>Baña a tu mascota con la frecuencia adecuada utilizando un champú antiparasitario específico para perros o gatos.</li>
                                 <li>Utiliza productos antiparasitarios como collares, pipetas o comprimidos, siguiendo estrictamente las instrucciones del veterinario.</li>
                                 <li>Desparasita internamente a tu mascota según el plan recomendado por el veterinario, utilizando medicamentos específicos.</li>
                             </ul>
-                        <!--</p>-->
+
                     </div>
                 </div>
             </div>
@@ -104,7 +99,7 @@
             </div>
         </div>
         <div class="row" id="row4">
-            <h1 class= "titulos mb-3 mx-0 " id="salud">Salud</h1><br>
+            <h1 class= "titulos mb-3 mx-0" id="salud">Salud</h1><br>
             <div class="col-12 col-md-6">
                 <div class="card rounded-5 border-warning border-4 mb-3 mx-0  cardSalud" >
                     <div class="card-header rounded-top-5 preguntas">¿Cuáles son los signos de una enfermedad grave en mi mascota?</div>
@@ -119,8 +114,6 @@
                 <div class="card rounded-5 border-warning border-4 mb-3 mx-0  cardSalud" >
                     <div class="card-header rounded-top-5 preguntas">¿Qué debo hacer si mi mascota tiene una lesión en la piel?</div>
                     <div class="card-body">
-                        
-                        <p class="card-text">Las lesiones en la piel son un problema común en las mascotas, y pueden ser causadas por diversos factores como rascado excesivo, peleas con otros animales, parásitos, alergias o enfermedades infecciosas.</p>
                         <ul>
                             <li>Limpiar la lesión: límpiar suavemente con agua tibia y jabón antibacteriano.</li>
                             <li>Seca la zona con una gasa limpia o una toalla suave.</li>
