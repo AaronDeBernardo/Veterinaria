@@ -14,10 +14,10 @@
     <?php
         include_once 'snippets/menuSuperior.php';
     ?>
-    <div class="container-fluid px-5 pb-4">
+    <div class="container-fluid mt-2 mb-5">
         <div class="row">
             <div class="col-12 d-flex justify-content-center">
-                <h1 class="py-3" id="titulo">
+                <h1 id="titulo">
                     Nuestros Servicios
                 </h1>
             </div>
