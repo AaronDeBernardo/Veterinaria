@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Preguntas Frecuentes</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+<?php
+    include_once('snippets/cabeceraHtml.php');
+    mostrarCabecera("<link rel='stylesheet' href='styles/stylesFAQ.css' type='text/css'>", "Preguntas Frecuentes", false);
+?>
 
-    <link rel="stylesheet" href="styles/stylesFAQ.css" type="text/css">
-    <link rel="icon" href="recursos/logoVeterinaria.png">
-</head>
 <body>
     <?php include_once 'snippets/menuSuperior.php';?>
     <div class="container-fluid p-0 m-0">
@@ -43,7 +35,7 @@
         <div class="row" id="row3">
             <h1 class= "titulos mb-3 mx-0 " id="cuidadoGeneral">Cuidado General</h1><br>
             <div class="col-12 col-md-6">
-                <div class="card rounded-5 border-warning border-4 mb-3 mx-0 cardCuidados" >
+                <div class="card rounded-5 border-warning border-4 mb-3 mx-0">
                     <div class="card-header rounded-top-5 preguntas">¿Con qué frecuencia debo llevar a mi mascota a chequeos regulares?</div>
                     <div class="card-body">
                             <ul>
@@ -55,7 +47,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-6">
-                <div class="card rounded-5 border-warning border-4 mb-3 mx-0  cardCuidados" >
+                <div class="card rounded-5 border-warning border-4 mb-3 mx-0">
                     <div class="card-header rounded-top-5 preguntas">¿Cómo puedo prevenir las pulgas, garrapatas y parásitos intestinales en mi mascota?</div>
                     <div class="card-body">
                             <ul>
@@ -68,7 +60,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-6">
-                <div class="card rounded-5 border-warning border-4 mb-3 mx-0  cardCuidados" >
+                <div class="card rounded-5 border-warning border-4 mb-3 mx-0">
                     <div class="card-header rounded-top-5 preguntas">¿Con qué frecuencia debo bañar a mi mascota?</div>
                     <div class="card-body">
                         
@@ -81,7 +73,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-6">
-                <div class="card rounded-5 border-warning border-4 mb-3 mx-0  cardCuidados" >
+                <div class="card rounded-5 border-warning border-4 mb-3 mx-0">
                     <div class="card-header rounded-top-5 preguntas">¿Cuando puedo esterilizar o castrar a mi mascota?</div>
                     <div class="card-body">
                         
@@ -101,7 +93,7 @@
         <div class="row" id="row4">
             <h1 class= "titulos mb-3 mx-0" id="salud">Salud</h1><br>
             <div class="col-12 col-md-6">
-                <div class="card rounded-5 border-warning border-4 mb-3 mx-0  cardSalud" >
+                <div class="card rounded-5 border-warning border-4 mb-3 mx-0">
                     <div class="card-header rounded-top-5 preguntas">¿Cuáles son los signos de una enfermedad grave en mi mascota?</div>
                     <div class="card-body">
                         
@@ -111,7 +103,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-6">
-                <div class="card rounded-5 border-warning border-4 mb-3 mx-0  cardSalud" >
+                <div class="card rounded-5 border-warning border-4 mb-3 mx-0">
                     <div class="card-header rounded-top-5 preguntas">¿Qué debo hacer si mi mascota tiene una lesión en la piel?</div>
                     <div class="card-body">
                         <ul>
@@ -123,7 +115,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-6">
-                <div class="card rounded-5 border-warning border-4 mb-3 mx-0  cardSalud" >
+                <div class="card rounded-5 border-warning border-4 mb-3 mx-0">
                     <div class="card-header rounded-top-5 preguntas">¿Qué debo hacer si mi mascota cojea o tiene dolor en las articulaciones?</div>
                     <div class="card-body">
                         
@@ -133,7 +125,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-6">
-                <div class="card rounded-5 border-warning border-4 mb-3 mx-0  cardSalud" >
+                <div class="card rounded-5 border-warning border-4 mb-3 mx-0">
                     <div class="card-header rounded-top-5 preguntas">¿Qué debo hacer si mi mascota parece estar deprimida o letárgica?</div>
                     <div class="card-body">
                         
@@ -147,7 +139,7 @@
         <div class="row" id="row5">
             <h1 class= "titulos mb-3 mx-0 " id="veterinaria">Veterinaria</h1><br>
             <div class="col-12 col-md-6">
-                <div class="card rounded-5 border-warning border-4 mb-3 mx-0  cardVeterinaria" >
+                <div class="card rounded-5 border-warning border-4 mb-3 mx-0">
                     <div class="card-header rounded-top-5 preguntas">¿Cuánto cuesta una visita al veterinario?</div>
                     <div class="card-body">
                         
@@ -157,7 +149,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-6">
-                <div class="card rounded-5 border-warning border-4 mb-3 mx-0  cardVeterinaria" >
+                <div class="card rounded-5 border-warning border-4 mb-3 mx-0">
                     <div class="card-header rounded-top-5 preguntas">¿Qué debo hacer si tengo una emergencia con mi mascota?</div>
                     <div class="card-body">
                         
@@ -166,7 +158,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-6">
-                <div class="card rounded-5 border-warning border-4 mb-3 mx-0  cardVeterinaria" >
+                <div class="card rounded-5 border-warning border-4 mb-3 mx-0">
                     <div class="card-header rounded-top-5 preguntas">¿Cómo obtengo un turno con un especialista en San Antón?</div>
                     <div class="card-body">
                         
@@ -176,7 +168,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-6">
-                <div class="card rounded-5 border-warning border-4 mb-3 mx-0  cardVeterinaria" >
+                <div class="card rounded-5 border-warning border-4 mb-3 mx-0">
                     <div class="card-header rounded-top-5 preguntas">¿Qué horarios trabajan?</div>
                     <div class="card-body">
                         
@@ -186,6 +178,7 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <?php include_once 'snippets/footer.php';?> 
 </body>
 </html>

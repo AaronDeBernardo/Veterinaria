@@ -1,9 +1,7 @@
 body{
     background-image: url(../recursos/fondoOficial.jpg);
     background-size: contain;
-
 }
-
 
 #row1{
     margin: 0;
@@ -22,9 +20,7 @@ body{
 
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
-
 }
-
 
 .titulos{    
     top: 50%;
@@ -45,24 +41,11 @@ body{
     font-size: 20px;
     font-style: italic;
     font-weight: 500;
-
 }
 
 .card{
     margin-left: 2vh;
     margin-right: 2vh;
-
-}
-
-.cardCuidados{
-    height: auto;
-    }
-
-.cardSalud{
-    height: auto;
-}
-
-.cardVeterinaria{
     height: auto;
 }
 
@@ -80,8 +63,6 @@ body{
     border-radius: 5%;
 }
 
-
 .row{
     margin: 0;
-    
 }

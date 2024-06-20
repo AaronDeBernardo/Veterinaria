@@ -44,41 +44,33 @@
             die();
         }
     }
-?>
 
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Veterinaria San Antón</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <link rel="stylesheet" href="styles/styles.css" type="text/css">
-        <link rel="stylesheet" href="styles/stylesIndex.css" type="text/css">
-        <link rel="icon" href="recursos/logoVeterinaria.png">
-    </head>
+    include_once('snippets/cabeceraHtml.php');
+    mostrarCabecera("<link rel='stylesheet' href='styles/stylesIndex.css' type='text/css'>");
+?>
 
     <body>
-        
-<?php
-    include_once 'snippets/menuSuperior.php';
-?>
+        <?php include_once 'snippets/menuSuperior.php' ?>
 
         <div class="container">
             <div class="row">
             <?php
                 $files = glob('recursos/publicidad/*.{jpg,png}', GLOB_BRACE);
                 if (count($files) > 0){
+                    $bandera = true;
             ?>
 
                 <div class="col-12 col-lg-7 mb-4 mt-4">
                     <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
-                            <?php foreach ($files as $file){ ?>
-                                <div class="carousel-item active">
-                                    <img src=<?php echo $rutaInicio . $file ?> class="d-block w-100" alt="publicidad Veterinaria">
-                                </div>
-                            <?php } ?>
+
+                            <?php foreach ($files as $file){
+                                echo "<div class='carousel-item" . ($bandera ? " active" : "") . "'>";
+                                    echo "<img src=" . $rutaInicio . $file . " class='d-block w-100' alt='Publicidad Veterinaria'>";
+                                echo "</div>";
+                                $bandera = false;
+                            } ?>
+                            
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

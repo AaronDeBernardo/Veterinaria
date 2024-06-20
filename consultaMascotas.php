@@ -26,19 +26,12 @@
 
     $query = "SELECT id, nombre, foto, raza, color, fecha_de_nac, fecha_muerte FROM mascotas WHERE baja = 0 AND cliente_id = $_SESSION[cliente_id] $filtro ORDER BY nombre";
     $mascotas = consultaSQL($query);
+
+
+    include_once('snippets/cabeceraHtml.php');
+    mostrarCabecera("<link rel='stylesheet' href='styles/stylesMascotas.css' type='text/css'>");
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veterinaria San Antón</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles/styles.css" type="text/css">
-    <link rel="stylesheet" href="styles/stylesMascotas.css" type="text/css">
-    <link rel="icon" href="recursos/logoVeterinaria.png">
-</head>
 <body>
     <?php include_once 'snippets/menuSuperior.php' ?>    
 
