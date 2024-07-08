@@ -26,9 +26,10 @@
 
     <div class="container-fluid p-0">
         <div class="row">
-            <?php  $_SESSION['item'] = 'clientes'; include_once 'snippets/menuLateral.php'; ?>
         
-            <div class="col-12 col-md-4 col-lg-5 col-xl-4 mt-3">
+            <?php  $_SESSION['item'] = 'clientes'; include_once 'snippets/menuLateral.php'; ?>
+            
+            <div class="col-12 col-md-4 col-lg-4 col-xl-4 mt-3">
                 <form action="#" method="GET">
                     <div class="form-group" id="div-filtro">
                         <label for="filtro">Buscar cliente</label>
@@ -89,13 +90,15 @@
                     echo "</div>";
                 }
                 ?>
-                        </div>
-                    
-                        <button type="button" class="btn btn-info d-none mt-2 me-2" id="btnVerMascotas" onclick="verMascotas()">Ver mascotas</button>
-                        <button type="button" class="btn btn-warning d-none mt-2" id="btnModificarClave" onclick="mostrarModalClave(this)">Cambiar contraseña</button>
-                    </div>
+                    <button type="button" class="btn btn-info d-none mt-2 me-2" id="btnVerMascotas" onclick="verMascotas()">Ver mascotas</button>
+                    <button type="button" class="btn btn-warning d-none mt-2" id="btnModificarClave" onclick="mostrarModalClave(this)">Cambiar contraseña</button>
                 </div>
+                    
+                    <!--<button type="button" class="btn btn-info d-none mt-2 me-2" id="btnVerMascotas" onclick="verMascotas()">Ver mascotas</button>
+                    <button type="button" class="btn btn-warning d-none mt-2" id="btnModificarClave" onclick="mostrarModalClave(this)">Cambiar contraseña</button>-->
             </div>
+        </div>
+    </div>
 
 
     <!-- Modals -->

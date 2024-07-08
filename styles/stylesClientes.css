@@ -7,8 +7,10 @@
     margin: 0;
 }
 #nav-tabContent{
-    max-width: 50vh;
-
+    /*max-width: 50vh;*/
+    margin: auto;
     display:block;
+    width: 100%;
 
 }
+

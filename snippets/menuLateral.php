@@ -17,7 +17,7 @@
 
 <link rel="stylesheet" href="styles/stylesMenuLateral.css">
 
-<div class="col-12 col-md-4 col-lg-3 col-xl-2 mb-3 me-5">
+<div class="col-12 col-md-3 col-lg-3 col-xl-2 mb-3 ">
     <div class="d-flex d-md-none">
         <button class="btnSidebar" type="button" onclick="abrirSidebar()">
             SECCIONES
