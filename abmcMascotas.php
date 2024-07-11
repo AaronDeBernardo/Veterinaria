@@ -37,7 +37,7 @@
         <div class="row">
             <?php $_SESSION['item'] = 'mascotas'; include_once 'snippets/menuLateral.php'; ?>
             
-            <div class="col-12 col-md-4 col-lg-5 col-xl-4 mt-3">
+            <div class="col-12 col-md-6 col-lg-5 col-xl-4 mt-3">
                 
                 <div id="div-filtro">
                     <button type="button" class="btn btn-secondary" style="margin-bottom:10px" data-bs-toggle="collapse" data-bs-target="#formFiltro">Filtrar</button>
@@ -106,7 +106,7 @@
                 </div>
             </div>
 
-            <div class="col-12 col-md-4 col-lg-4 col-xl-5 mt-3">
+            <div class="col-12 col-md-5 col-lg-4 col-xl-5 mt-3">
                 <div id="div-separacion">&nbsp;</div>
                 <div class="tab-content" id="nav-tabContent">
                 <?php

@@ -7,12 +7,15 @@
             </div>
         </div>
         <div class="col-xs-12 col-md-4 col-lg-3 text-center">
-            <h5 class="h4 my-3 subdivision">Enlaces de interés</h5>
-            <div class="mb-2 seccionesFooter">
+            <h5 class="h4 my-2 subdivision">Enlaces de interés</h5>
+            <div class="mb-1 seccionesFooter">
                 <a class="text-black text-decoration-none" href="nuestraEmpresa.php"><img class="logo" src="recursos/footer/grupo.png" alt="">Quiénes Somos?</a>
             </div>
-            <div class="mb-2 seccionesFooter">
+            <div class="mb-1 seccionesFooter">
                 <a class="text-black text-decoration-none" href="nuestrosServicios.php"><img class="logo" src="recursos/footer/serviciosMascotas.png" alt="">Servicios</a>
+            </div>
+            <div class="mb-1 seccionesFooter">
+                <a class="text-black text-decoration-none" href="recursos\mapasDeSitio.pdf" target="_blank"><img class="logo" src="recursos/footer/mapa-del-sitio.png" alt="">Mapa del Sitio</a>
             </div>
             <div class="mb-2">
                 <h5 class="h4 my-2 subdivision ">Contacto</h5>

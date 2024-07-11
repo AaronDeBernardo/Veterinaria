@@ -17,14 +17,14 @@
 
 <link rel="stylesheet" href="styles/stylesMenuLateral.css">
 
-<div class="col-12 col-md-3 col-lg-3 col-xl-2 mb-3 ">
-    <div class="d-flex d-md-none">
+<div class="col-12 col-lg-3 col-xl-2 mb-3 ">
+    <div class="d-flex d-lg-none">
         <button class="btnSidebar" type="button" onclick="abrirSidebar()">
             SECCIONES
         </button>
     </div>
 
-    <div id="sidebar" class="sidebar d-none d-md-block">
+    <div id="sidebar" class="sidebar d-none d-lg-block">
         <button class="btnSidebar d-md-none" type="button" onclick="cerrarSidebar()">
             SECCIONES
         </button>

@@ -27,8 +27,7 @@
             
             <?php include_once 'snippets/menuLateral.php';
             $row = mysqli_fetch_array($datosPersonales); ?>
-            <div class="col-md-1 col-lg-1 col-xl-2 d-none d-md-block"></div>
-            <div class="col-12 col-md-5 col-lg-6 col-xl-6 bg-light rounded-5  pt-4 mt-2 flex-wrap border border-warning border-4 "> <!--ACOMODAR MARGIN , CUANDO SE COLOCA EL MISMO SE ENDIABLA LA PAGINA -->
+            <div class="col-12 col-md-8 col-lg-8 col-xl-6 bg-light rounded-5  pt-4 mt-2 flex-wrap border border-warning border-4 " style="display:block; margin:auto">
             
                 <form class="row g-2" action="#" method="post">
                     <h1 class="text-secondary border-bottom border-warning border-5">Mis Datos</h1>
